@@ -60,20 +60,20 @@
 
     <!-- Right Layout -->
     <div class="ant-layout">
-      <!-- Official Header -->
-      <header class="ant-layout-header navbarShadow" style="background-color: rgb(255, 255, 255); padding: 0 16px; display: flex; align-items: center; justify-content: space-between;">
-        <div style="display: flex; align-items: center; gap: 16px;">
-          <span role="img" aria-label="menu-unfold" class="anticon anticon-menu-unfold trigger" style="font-size: 18px; cursor: pointer;">
+      <!-- Official Header (Clean, Non-wrapping, Official Ant Tags) -->
+      <header class="ant-layout-header navbarShadow official-header-layout">
+        <div class="header-left-cluster">
+          <span role="img" aria-label="menu-unfold" class="anticon anticon-menu-unfold trigger" style="font-size: 18px; cursor: pointer; color: #555;">
             <svg viewBox="64 64 896 896" width="1em" height="1em" fill="currentColor"><path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM142.4 642.1L298.7 519a8.84 8.84 0 000-13.9L142.4 381.9c-5.8-4.6-14.4-.5-14.4 6.9v246.3a8.9 8.9 0 0014.4 7z"></path></svg>
           </span>
           
-          <!-- Search Box in Header -->
+          <!-- Search Box -->
           <div class="official-search-container">
             <input 
               type="text" 
               id="globalSearchInput" 
               class="official-search-input" 
-              placeholder="Search by keyword, problem text, code, or test case... (Press '/' to search)" 
+              placeholder="Search question, problem text, code... (Press '/')" 
               autocomplete="off"
             />
             <kbd class="official-search-kbd">/</kbd>
@@ -81,12 +81,23 @@
           </div>
         </div>
 
-        <div style="display: flex; align-items: center; gap: 14px;">
-          <span id="liveClock" class="clock-display" style="font-weight: 500; font-size: 13px; color: #333;">October 30th 2026, 02:58:00 Am</span>
-          <span style="font-size: 13px; color: #555;">Role: <strong style="color: #111;">Student</strong></span>
-          <span style="font-size: 13px; color: #555;">Name: <strong style="color: #111;">Sahaj</strong></span>
-          <span style="font-size: 13px; color: #555;">Id: <strong style="color: #111;">222129593083</strong></span>
-          <button type="button" class="ant-btn ant-btn-danger" style="border-radius: 4px; font-weight: 600; font-size: 12px; height: 30px; line-height: 28px; background-color: #ff4d4f; border-color: #ff4d4f; color: #fff;">LOGOUT</button>
+        <!-- Official Student Tags (Strictly Non-wrapping) -->
+        <div class="header-right-cluster">
+          <span class="ant-tag ant-tag-purple overlineSmallTag codeText header-tag-item">
+            <span role="img" aria-label="clock-circle" class="anticon anticon-clock-circle">
+              <svg viewBox="64 64 896 896" width="12" height="12" fill="currentColor"><path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"></path><path d="M686.7 638.6L544.1 535.5V288c0-4.4-3.6-8-8-8H488c-4.4 0-8 3.6-8 8v275.4c0 2.6 1.2 5 3.3 6.5l165.4 120.6c3.6 2.6 8.6 1.8 11.2-1.7l28.6-39c2.6-3.7 1.8-8.7-1.8-11.2z"></path></svg>
+            </span>
+            <span id="liveClock">October 30th 2026, 3:05:00 am</span>
+          </span>
+          <span class="ant-tag ant-tag-green overlineSmallTag header-tag-item"> role: student </span>
+          <span class="ant-tag ant-tag-blue overlineSmallTag header-tag-item"> name: sahaj </span>
+          <span class="ant-tag ant-tag-cyan overlineSmallTag header-tag-item"> id: 222129593083 </span>
+          <button type="button" class="ant-btn ant-btn-danger header-logout-btn">
+            <span role="img" aria-label="poweroff" class="anticon anticon-poweroff">
+              <svg viewBox="64 64 896 896" width="12" height="12" fill="currentColor"><path d="M705.6 124.9a8 8 0 00-11.6 7.2v64.2c0 5.5 2.9 10.6 7.5 13.6a352.2 352.2 0 0162.2 49.8c32.7 32.8 58.4 70.9 76.3 113.3a355 355 0 0127.9 138.7c0 48.1-9.4 94.8-27.9 138.7a355.92 355.92 0 01-76.3 113.3 353.06 353.06 0 01-113.2 76.4c-43.8 18.6-90.5 28-138.5 28s-94.7-9.4-138.5-28a353.06 353.06 0 01-113.2-76.4A355.92 355.92 0 01184 650.4a355 355 0 01-27.9-138.7c0-48.1 9.4-94.8 27.9-138.7 17.9-42.4 43.6-80.5 76.3-113.3 19-19 39.8-35.6 62.2-49.8 4.7-2.9 7.5-8.1 7.5-13.6V132c0-6-6.3-9.8-11.6-7.2C178.5 195.2 82 339.3 80 506.3 77.2 745.1 272.5 943.5 511.2 944c239 .5 432.8-193.3 432.8-432.4 0-169.2-97-315.7-238.4-386.7zM480 560h64c4.4 0 8-3.6 8-8V88c0-4.4-3.6-8-8-8h-64c-4.4 0-8 3.6-8 8v464c0 4.4 3.6 8 8 8z"></path></svg>
+            </span>
+            <span>Logout</span>
+          </button>
         </div>
       </header>
 
@@ -204,20 +215,20 @@
                     </td>
                   </tr>
 
-                  <!-- Row 3: Code Editor -->
+                  <!-- Row 3: Code Editor (Official Light Mode) -->
                   <tr class="ant-descriptions-row">
                     <th class="ant-descriptions-item-label"><span>Code Editor</span></th>
                     <td class="ant-descriptions-item-content" colspan="5" style="padding: 12px;">
                       
                       <!-- Card enclosing editor & controls -->
-                      <div class="ant-card ant-card-bordered ant-card-small course-card" style="width: 100%;">
+                      <div class="ant-card ant-card-bordered ant-card-small course-card" style="width: 100%; border: 1px solid #d9d9d9;">
                         
                         <!-- Editor Top Bar -->
-                        <div class="ant-card-head" style="display: flex; justify-content: space-between; align-items: center; background: #fafafa; border-bottom: 1px solid #f0f0f0; padding: 0 12px;">
+                        <div class="ant-card-head" style="display: flex; justify-content: space-between; align-items: center; background: #fafafa; border-bottom: 1px solid #d9d9d9; padding: 0 12px; height: 42px;">
                           <div class="ant-card-head-title" style="font-size: 13px; font-weight: 700; color: #333;">Code Editor</div>
                           
                           <div class="ant-card-extra" style="display: flex; align-items: center; gap: 8px;">
-                            <select id="selLanguage" class="ant-select-selector" style="border: 1px solid #d9d9d9; border-radius: 4px; padding: 2px 8px; font-size: 12px; height: 28px;">
+                            <select id="selLanguage" class="ant-select-selector" style="border: 1px solid #d9d9d9; border-radius: 4px; padding: 2px 8px; font-size: 12px; height: 28px; background: #fff;">
                               <option value="c">c</option>
                               <option value="cpp">cpp</option>
                             </select>
@@ -234,7 +245,7 @@
                           </div>
                         </div>
 
-                        <!-- Ace-like Editor Container -->
+                        <!-- Official Ace-like Light Mode Editor Container -->
                         <div class="official-editor-container">
                           <div class="official-editor-gutter" id="editorGutter">
                             <!-- Line numbers -->
@@ -243,7 +254,7 @@
                         </div>
 
                         <!-- Status bar -->
-                        <div style="background: #fafafa; border-top: 1px solid #f0f0f0; padding: 6px 12px; font-size: 12px; color: #52c41a; font-weight: 600; display: flex; justify-content: space-between;">
+                        <div style="background: #fafafa; border-top: 1px solid #e8e8e8; padding: 6px 12px; font-size: 12px; color: #52c41a; font-weight: 600; display: flex; justify-content: space-between;">
                           <span id="lblEditorStatus">Verified 100% Full Pass on SRM eLab</span>
                           <span id="lblCodeStats" style="color: #8c8c8c; font-family: monospace;">Lines: 35 | Bytes: 480</span>
                         </div>

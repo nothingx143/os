@@ -37,17 +37,90 @@ body {
   display: inline-block;
 }
 
-/* Navbar Shadow */
+/* Navbar & Header Leakage Safeguards */
 .navbarShadow {
   box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
   border-bottom: 1px solid #e8e8e8;
-  height: 64px;
 }
 
-/* Header Search */
+.official-header-layout {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 0 16px !important;
+  height: 64px !important;
+  min-height: 64px !important;
+  background: #ffffff !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  white-space: nowrap !important;
+  gap: 12px !important;
+  scrollbar-width: none !important;
+}
+
+.official-header-layout::-webkit-scrollbar {
+  display: none !important;
+}
+
+.header-left-cluster {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+.header-right-cluster {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.header-tag-item {
+  white-space: nowrap !important;
+  margin: 0 !important;
+  font-size: 12px !important;
+  height: 26px !important;
+  line-height: 24px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  text-transform: lowercase !important;
+  flex-shrink: 0 !important;
+}
+
+.header-logout-btn {
+  height: 28px !important;
+  line-height: 26px !important;
+  padding: 0 10px !important;
+  border-radius: 4px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  margin-left: 4px !important;
+  flex-shrink: 0 !important;
+  font-weight: 600 !important;
+  font-size: 12px !important;
+}
+
+/* Header Search Input */
 .official-search-container {
   position: relative;
-  width: 380px;
+  width: 320px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 900px) {
+  .official-search-container {
+    width: 220px;
+  }
+}
+
+@media (max-width: 600px) {
+  .official-search-container {
+    width: 170px;
+  }
 }
 
 .official-search-input {
@@ -55,8 +128,8 @@ body {
   height: 32px;
   border: 1px solid #d9d9d9;
   border-radius: 4px;
-  padding: 4px 34px 4px 10px;
-  font-size: 12.5px;
+  padding: 4px 28px 4px 10px;
+  font-size: 12px;
   outline: none;
   transition: all 0.2s;
   background-color: #fafafa;
@@ -70,21 +143,26 @@ body {
 
 .official-search-kbd {
   position: absolute;
-  right: 8px;
-  top: 6px;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
   background: #f0f0f0;
   border: 1px solid #d9d9d9;
   border-radius: 3px;
   font-size: 10px;
-  padding: 1px 5px;
+  height: 20px;
+  line-height: 18px;
+  padding: 0 5px;
   color: #8c8c8c;
   font-family: monospace;
+  box-sizing: border-box;
+  pointer-events: none;
 }
 
 /* Search Dropdown */
 .official-search-dropdown {
   position: absolute;
-  top: 38px;
+  top: 36px;
   left: 0;
   right: 0;
   background: #fff;
@@ -235,34 +313,39 @@ body {
   border-color: #f0f0f0 !important;
 }
 
-/* Code Editor Styling */
+/* -------------------------------------------------------------
+   LIGHT MODE CODE EDITOR (Exact SRM eLab Official Light Ace Skin)
+   ------------------------------------------------------------- */
 .official-editor-container {
   display: flex;
-  background: #141414;
-  color: #f0f0f0;
-  font-family: 'Fira Code', Consolas, monospace;
-  font-size: 13px;
-  line-height: 1.55;
-  max-height: 480px;
+  background: #ffffff !important;
+  color: #000000 !important;
+  font-family: Monaco, Menlo, "Ubuntu Mono", Consolas, "Source Code Pro", source-code-pro, monospace !important;
+  font-size: 14.5px !important;
+  line-height: 1.6 !important;
+  max-height: 520px;
   overflow: auto;
+  border-top: none;
 }
 
 .official-editor-gutter {
   width: 48px;
-  background: #1f1f1f;
-  border-right: 1px solid #303030;
+  background: #f0f0f0 !important;
+  border-right: 1px solid #e0e0e0 !important;
   padding: 12px 6px;
   text-align: right;
-  color: #666666;
+  color: #555555 !important;
   user-select: none;
-  font-size: 12px;
+  font-size: 13px !important;
+  font-family: inherit;
 }
 
 .official-editor-code {
   flex: 1;
   padding: 12px 16px;
   margin: 0;
-  color: #e6edf3;
+  color: #000000 !important;
+  background: #ffffff !important;
   overflow-x: auto;
   font-family: inherit;
   tab-size: 4;
@@ -270,6 +353,7 @@ body {
 
 .official-editor-code code {
   font-family: inherit;
+  color: #000000 !important;
 }
 
 /* Copy Button (Official Style) */

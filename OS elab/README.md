@@ -5,9 +5,9 @@
 
 ## Progress Overview
 
-- **100% Full-Pass Verified Solutions:** 61 Challenges
+- **100% Full-Pass Verified Solutions:** 62 Challenges
 - **High-Credit Verified Solutions (>=77.8%):** 16 Challenges
-- **Total Operational Solutions in Suite:** 77 Challenges
+- **Total Operational Solutions in Suite:** 78 Challenges
 - **All code files (`.c` / `.cpp`) and comprehensive documentation (`.md`) are present and linked.**
 
 ---
@@ -75,6 +75,7 @@
 | 73 | **Q073** | Tree 2 | Level 1 Challenge 73 (Movie Festival Queries - Binary Lifting) | [Q073.c](./Q073.c) | [Q073.md](./Q073.md) | **100% Passed** |
 | 76 | **Q076** | Paging Techniques | Level 1 Challenge 76 (LRU Page Replacement Simulation) | [Q076.c](./Q076.c) | [Q076.md](./Q076.md) | **100% Passed** |
 | 78 | **Q078** | Tree 2 | Level 1 Challenge 78 (Maximum Bitwise AND Pair) | [Q078.c](./Q078.c) | [Q078.md](./Q078.md) | **100% Passed** |
+| 79 | **Q079** | Tree 2 | Level 1 Challenge 79 (B-sequence Dynamic Insertion) | [Q079.c](./Q079.c) | [Q079.md](./Q079.md) | **100% Passed** |
 | 92 | **Q092** | Hashing | Level 1 Challenge 92 (Canthi and Sami are having a game! The g) | [Q092.c](./Q092.c) | [Q092.md](./Q092.md) | **100% Passed** |
 | 96 | **Q096** | Hashing | Level 1 Challenge 96 (Rick was besieged by walkers after the G) | [Q096.c](./Q096.c) | [Q096.md](./Q096.md) | **100% Passed** |
 

@@ -5,14 +5,14 @@
 
 ## Progress Overview
 
-- **100% Full-Pass Verified Solutions:** 75 Challenges
+- **100% Full-Pass Verified Solutions:** 76 Challenges
 - **High-Credit Verified Solutions (>=77.8%):** 19 Challenges
-- **Total Operational Solutions in Suite:** 94 Challenges
+- **Total Operational Solutions in Suite:** 95 Challenges
 - **All code files (`.c` / `.cpp`) and comprehensive documentation (`.md`) are present and linked.**
 
 ---
 
-## 100% Full-Pass Solutions (75 Challenges)
+## 100% Full-Pass Solutions (76 Challenges)
 
 | # | Question ID | Topic / Session | Challenge Title / Problem | Verified Code | Documentation | Score |
 | :-: | :-: | :--- | :--- | :-: | :-: | :-: |
@@ -120,7 +120,7 @@
 ---
 
 <details>
-<summary><b>Click to expand: Other In-Progress / Recorded Challenges (19 Challenges)</b></summary>
+<summary><b>Click to expand: Other In-Progress / Recorded Challenges (18 Challenges)</b></summary>
 
 <br>
 
@@ -142,7 +142,6 @@
 | 81 | **Q081** | Graph | Level 1 Challenge 81 (In the country of india, there are N cit) | [Q081.c](./Q081.c) | [Q081.md](./Q081.md) | Partial (0%) |
 | 82 | **Q082** | IPC | Level 1 Challenge 82 (A pipe is a technique for passing inform) | [Q082.c](./Q082.c) | [Q082.md](./Q082.md) | Partial (55.56%) |
 | 83 | **Q083** | IPC | Level 1 Challenge 83 (Child reads the first string sent by par) | [Q083.c](./Q083.c) | [Q083.md](./Q083.md) | Partial (0%) |
-| 98 | **Q098** | Synchronization | Level 1 Challenge 98 (Alia runs a cheese producing company wit) | [Q098.c](./Q098.c) | [Q098.md](./Q098.md) | Partial (55.56%) |
 | 99 | **Q099** | Synchronization | Level 1 Challenge 99 (The dining philosophers problem is a cla) | [Q099.c](./Q099.c) | [Q099.md](./Q099.md) | Failed (Timeout) |
 | 100 | **Q100** | Synchronization | Level 1 Challenge 100 (There are five Philosophers A,B,C,D,E. T) | [Q100.c](./Q100.c) | [Q100.md](./Q100.md) | Failed (Timeout) |
 

@@ -5,9 +5,9 @@
 
 ## Progress Overview
 
-- **100% Full-Pass Verified Solutions:** 49 Challenges
+- **100% Full-Pass Verified Solutions:** 50 Challenges
 - **High-Credit Verified Solutions (>=77.8%):** 9 Challenges
-- **Total Operational Solutions in Suite:** 58 Challenges
+- **Total Operational Solutions in Suite:** 59 Challenges
 - **All code files (`.c` / `.cpp`) and comprehensive documentation (`.md`) are present and linked.**
 
 ---
@@ -85,7 +85,7 @@
 ---
 
 <details>
-<summary><b>Click to expand: Other In-Progress / Recorded Challenges (44 Challenges)</b></summary>
+<summary><b>Click to expand: Other In-Progress / Recorded Challenges (43 Challenges)</b></summary>
 
 <br>
 
@@ -94,7 +94,6 @@
 | 28 | **Q028** | Memory Partitioning | Level 1 Challenge 28 (Write a program to implement Worst Fit a) | [Q028.c](./Q028.c) | [Q028.md](./Q028.md) | Partial (55.56%) |
 | 38 | **Q038** | Dead Lock Avoidance | Level 1 Challenge 38 (Assuming that the system distinguishes b) | [Q038.c](./Q038.c) | [Q038.md](./Q038.md) | Partial (33.33%) |
 | 43 | **Q043** | Dead Lock Detection | Level 1 Challenge 43 (Consider Kayal and Moni are tree climber) | [Q043.c](./Q043.c) | [Q043.md](./Q043.md) | Partial (66.67%) |
-| 58 | **Q058** | Page Replacement | Level 1 Challenge 58 (Write a program to implement First In Fi) | [Q058.c](./Q058.c) | [Q058.md](./Q058.md) | Failed (Timeout) |
 | 59 | **Q059** | Queue | Level 1 Challenge 59 (On the last day of the semester, Shahid') | [Q059.c](./Q059.c) | [Q059.md](./Q059.md) | Partial (17.65%) |
 | 61 | **Q061** | File Organization | Level 1 Challenge 61 (Bogar a student of Murugan was teaching ) | [Q061.c](./Q061.c) | [Q061.md](./Q061.md) | Partial (0%) |
 | 62 | **Q062** | Tree 1 | Level 1 Challenge 62 (There are three common ways to traverse ) | [Q062.c](./Q062.c) | [Q062.md](./Q062.md) | Partial (87.50%) |

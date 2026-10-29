@@ -5,9 +5,9 @@
 
 ## Progress Overview
 
-- **100% Full-Pass Verified Solutions:** 48 Challenges
+- **100% Full-Pass Verified Solutions:** 49 Challenges
 - **High-Credit Verified Solutions (>=77.8%):** 8 Challenges
-- **Total Operational Solutions in Suite:** 56 Challenges
+- **Total Operational Solutions in Suite:** 57 Challenges
 - **All code files (`.c` / `.cpp`) and comprehensive documentation (`.md`) are present and linked.**
 
 ---
@@ -60,6 +60,7 @@
 | 53 | **Q053** | Page Replacement | Level 1 Challenge 53 (Professor CHIRAG told his students about) | [Q053.c](./Q053.c) | [Q053.md](./Q053.md) | **100% Passed** |
 | 54 | **Q054** | Queue | Level 1 Challenge 54 (You own a club on eerie planet. The day ) | [Q054.c](./Q054.c) | [Q054.md](./Q054.md) | **100% Passed** |
 | 55 | **Q055** | Queue | Level 1 Challenge 55 (You are given a string. You can remove a) | [Q055.c](./Q055.c) | [Q055.md](./Q055.md) | **100% Passed** |
+| 56 | **Q056** | Queue | Level 1 Challenge 56 (Queue Enqueue Display) | [Q056.c](./Q056.c) | [Q056.md](./Q056.md) | **100% Passed** |
 | 60 | **Q060** | Queue | Level 1 Challenge 60 (The Monk recently learnt about priority ) | [Q060.c](./Q060.c) | [Q060.md](./Q060.md) | **100% Passed** |
 | 65 | **Q065** | Tree 1 | Level 1 Challenge 65 (A company has n employees, who form a tr) | [Q065.c](./Q065.c) | [Q065.md](./Q065.md) | **100% Passed** |
 | 92 | **Q092** | Hashing | Level 1 Challenge 92 (Canthi and Sami are having a game! The g) | [Q092.c](./Q092.c) | [Q092.md](./Q092.md) | **100% Passed** |
@@ -83,7 +84,7 @@
 ---
 
 <details>
-<summary><b>Click to expand: Other In-Progress / Recorded Challenges (46 Challenges)</b></summary>
+<summary><b>Click to expand: Other In-Progress / Recorded Challenges (45 Challenges)</b></summary>
 
 <br>
 
@@ -92,7 +93,6 @@
 | 28 | **Q028** | Memory Partitioning | Level 1 Challenge 28 (Write a program to implement Worst Fit a) | [Q028.c](./Q028.c) | [Q028.md](./Q028.md) | Partial (55.56%) |
 | 38 | **Q038** | Dead Lock Avoidance | Level 1 Challenge 38 (Assuming that the system distinguishes b) | [Q038.c](./Q038.c) | [Q038.md](./Q038.md) | Partial (33.33%) |
 | 43 | **Q043** | Dead Lock Detection | Level 1 Challenge 43 (Consider Kayal and Moni are tree climber) | [Q043.c](./Q043.c) | [Q043.md](./Q043.md) | Partial (66.67%) |
-| 56 | **Q056** | Queue | Level 1 Challenge 56 (Sathya is an DS expert training youngste) | [Q056.c](./Q056.c) | [Q056.md](./Q056.md) | Partial (16.67%) |
 | 57 | **Q057** | Page Replacement | Level 1 Challenge 57 (The operating system keeps track of all ) | [Q057.c](./Q057.c) | [Q057.md](./Q057.md) | Partial (0%) |
 | 58 | **Q058** | Page Replacement | Level 1 Challenge 58 (Write a program to implement First In Fi) | [Q058.c](./Q058.c) | [Q058.md](./Q058.md) | Failed (Timeout) |
 | 59 | **Q059** | Queue | Level 1 Challenge 59 (On the last day of the semester, Shahid') | [Q059.c](./Q059.c) | [Q059.md](./Q059.md) | Partial (17.65%) |

@@ -6,8 +6,8 @@
 ## Progress Overview
 
 - **100% Full-Pass Verified Solutions:** 52 Challenges
-- **High-Credit Verified Solutions (>=77.8%):** 9 Challenges
-- **Total Operational Solutions in Suite:** 61 Challenges
+- **High-Credit Verified Solutions (>=77.8%):** 10 Challenges
+- **Total Operational Solutions in Suite:** 62 Challenges
 - **All code files (`.c` / `.cpp`) and comprehensive documentation (`.md`) are present and linked.**
 
 ---
@@ -84,11 +84,12 @@
 | 35 | **Q035** | Dead Lock Avoidance | Level 1 Challenge 35 (Joy is newly joined student in the colle) | [Q035.c](./Q035.c) | [Q035.md](./Q035.md) | Partial (77.78%) |
 | 39 | **Q039** | Dead Lock Avoidance | Level 1 Challenge 39 (A and B played safety game in the ground) | [Q039.c](./Q039.c) | [Q039.md](./Q039.md) | Partial (77.78%) |
 | 57 | **Q057** | Page Replacement | Level 1 Challenge 57 (LRU Page Replacement and Fault Rate) | [Q057.c](./Q057.c) | [Q057.md](./Q057.md) | Verified (88.89%) |
+| 62 | **Q062** | Tree 1 | Level 1 Challenge 62 (Tree Traversals - Preorder & Inorder to Postorder) | [Q062.c](./Q062.c) | [Q062.md](./Q062.md) | Verified (87.50%) |
 
 ---
 
 <details>
-<summary><b>Click to expand: Other In-Progress / Recorded Challenges (41 Challenges)</b></summary>
+<summary><b>Click to expand: Other In-Progress / Recorded Challenges (40 Challenges)</b></summary>
 
 <br>
 
@@ -97,7 +98,6 @@
 | 28 | **Q028** | Memory Partitioning | Level 1 Challenge 28 (Write a program to implement Worst Fit a) | [Q028.c](./Q028.c) | [Q028.md](./Q028.md) | Partial (55.56%) |
 | 38 | **Q038** | Dead Lock Avoidance | Level 1 Challenge 38 (Assuming that the system distinguishes b) | [Q038.c](./Q038.c) | [Q038.md](./Q038.md) | Partial (33.33%) |
 | 43 | **Q043** | Dead Lock Detection | Level 1 Challenge 43 (Consider Kayal and Moni are tree climber) | [Q043.c](./Q043.c) | [Q043.md](./Q043.md) | Partial (66.67%) |
-| 62 | **Q062** | Tree 1 | Level 1 Challenge 62 (There are three common ways to traverse ) | [Q062.c](./Q062.c) | [Q062.md](./Q062.md) | Partial (87.50%) |
 | 63 | **Q063** | Tree 1 | Level 1 Challenge 63 (Darsh, Ratik, Swathy are good friends, T) | [Q063.c](./Q063.c) | [Q063.md](./Q063.md) | Partial (55.56%) |
 | 64 | **Q064** | Tree 1 | Level 1 Challenge 64 (You are given a tree consisting of n nod) | [Q064.c](./Q064.c) | [Q064.md](./Q064.md) | Partial (0%) |
 | 66 | **Q066** | Tree 1 | Level 1 Challenge 66 (You are given a list consisting of n int) | [Q066.c](./Q066.c) | [Q066.md](./Q066.md) | Partial (37.50%) |

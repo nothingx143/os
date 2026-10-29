@@ -5,9 +5,9 @@
 
 ## Progress Overview
 
-- **100% Full-Pass Verified Solutions:** 67 Challenges
+- **100% Full-Pass Verified Solutions:** 68 Challenges
 - **High-Credit Verified Solutions (>=77.8%):** 18 Challenges
-- **Total Operational Solutions in Suite:** 85 Challenges
+- **Total Operational Solutions in Suite:** 86 Challenges
 - **All code files (`.c` / `.cpp`) and comprehensive documentation (`.md`) are present and linked.**
 
 ---
@@ -81,6 +81,7 @@
 | 82 | **Q082** | IPC | Level 1 Challenge 82 (Fibonacci Series Generation with IPC Pipes) | [Q082.c](./Q082.c) | [Q082.md](./Q082.md) | **100% Passed** |
 | 85 | **Q085** | Graph | Level 1 Challenge 85 (Teleporters Path - Eulerian Directed Path) | [Q085.c](./Q085.c) | [Q085.md](./Q085.md) | **100% Passed** |
 | 86 | **Q086** | IPC | Level 1 Challenge 86 (Producer-Consumer Simulation using Semaphores) | [Q086.c](./Q086.c) | [Q086.md](./Q086.md) | **100% Passed** |
+| 87 | **Q087** | Graph | Level 1 Challenge 87 (Road Construction - Disjoint Set Union) | [Q087.c](./Q087.c) | [Q087.md](./Q087.md) | **100% Passed** |
 | 92 | **Q092** | Hashing | Level 1 Challenge 92 (Canthi and Sami are having a game! The g) | [Q092.c](./Q092.c) | [Q092.md](./Q092.md) | **100% Passed** |
 | 96 | **Q096** | Hashing | Level 1 Challenge 96 (Rick was besieged by walkers after the G) | [Q096.c](./Q096.c) | [Q096.md](./Q096.md) | **100% Passed** |
 
@@ -134,7 +135,6 @@
 | 81 | **Q081** | Graph | Level 1 Challenge 81 (In the country of india, there are N cit) | [Q081.c](./Q081.c) | [Q081.md](./Q081.md) | Partial (0%) |
 | 82 | **Q082** | IPC | Level 1 Challenge 82 (A pipe is a technique for passing inform) | [Q082.c](./Q082.c) | [Q082.md](./Q082.md) | Partial (55.56%) |
 | 83 | **Q083** | IPC | Level 1 Challenge 83 (Child reads the first string sent by par) | [Q083.c](./Q083.c) | [Q083.md](./Q083.md) | Partial (0%) |
-| 87 | **Q087** | Graph | Level 1 Challenge 87 (There are n cities and initially no road) | [Q087.c](./Q087.c) | [Q087.md](./Q087.md) | Partial (37.50%) |
 | 88 | **Q088** | IPC | Level 1 Challenge 88 (The Chef likes to stay in touch with his) | [Q088.c](./Q088.c) | [Q088.md](./Q088.md) | Partial (55.56%) |
 | 89 | **Q089** | Graph | Level 1 Challenge 89 (The professor wants to divide the class ) | [Q089.c](./Q089.c) | [Q089.md](./Q089.md) | Partial (30.00%) |
 | 90 | **Q090** | Graph | Level 1 Challenge 90 (Kaaleppi has just robbed a bank and is n) | [Q090.c](./Q090.c) | [Q090.md](./Q090.md) | Partial (0%) |

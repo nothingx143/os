@@ -5,9 +5,9 @@
 
 ## Progress Overview
 
-- **100% Full-Pass Verified Solutions:** 64 Challenges
+- **100% Full-Pass Verified Solutions:** 65 Challenges
 - **High-Credit Verified Solutions (>=77.8%):** 16 Challenges
-- **Total Operational Solutions in Suite:** 80 Challenges
+- **Total Operational Solutions in Suite:** 81 Challenges
 - **All code files (`.c` / `.cpp`) and comprehensive documentation (`.md`) are present and linked.**
 
 ---
@@ -78,6 +78,7 @@
 | 79 | **Q079** | Tree 2 | Level 1 Challenge 79 (B-sequence Dynamic Insertion) | [Q079.c](./Q079.c) | [Q079.md](./Q079.md) | **100% Passed** |
 | 80 | **Q080** | Tree 2 | Level 1 Challenge 80 (Polynomial Segment Tree Queries) | [Q080.c](./Q080.c) | [Q080.md](./Q080.md) | **100% Passed** |
 | 81 | **Q081** | Graph | Level 1 Challenge 81 (Essential Items Transport with Free Edge Offers) | [Q081.cpp](./Q081.cpp) | [Q081.md](./Q081.md) | **100% Passed** |
+| 82 | **Q082** | IPC | Level 1 Challenge 82 (Fibonacci Series Generation with IPC Pipes) | [Q082.c](./Q082.c) | [Q082.md](./Q082.md) | **100% Passed** |
 | 92 | **Q092** | Hashing | Level 1 Challenge 92 (Canthi and Sami are having a game! The g) | [Q092.c](./Q092.c) | [Q092.md](./Q092.md) | **100% Passed** |
 | 96 | **Q096** | Hashing | Level 1 Challenge 96 (Rick was besieged by walkers after the G) | [Q096.c](./Q096.c) | [Q096.md](./Q096.md) | **100% Passed** |
 

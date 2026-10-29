@@ -82,6 +82,7 @@
 | 85 | **Q085** | Graph | Level 1 Challenge 85 (Teleporters Path - Eulerian Directed Path) | [Q085.c](./Q085.c) | [Q085.md](./Q085.md) | **100% Passed** |
 | 86 | **Q086** | IPC | Level 1 Challenge 86 (Producer-Consumer Simulation using Semaphores) | [Q086.c](./Q086.c) | [Q086.md](./Q086.md) | **100% Passed** |
 | 87 | **Q087** | Graph | Level 1 Challenge 87 (Road Construction - Disjoint Set Union) | [Q087.c](./Q087.c) | [Q087.md](./Q087.md) | **100% Passed** |
+| 89 | **Q089** | Graph | Level 1 Challenge 89 (Bipartite Graph Team Division) | [Q089.c](./Q089.c) | [Q089.md](./Q089.md) | **100% Passed** |
 | 92 | **Q092** | Hashing | Level 1 Challenge 92 (Canthi and Sami are having a game! The g) | [Q092.c](./Q092.c) | [Q092.md](./Q092.md) | **100% Passed** |
 | 96 | **Q096** | Hashing | Level 1 Challenge 96 (Rick was besieged by walkers after the G) | [Q096.c](./Q096.c) | [Q096.md](./Q096.md) | **100% Passed** |
 
@@ -136,7 +137,6 @@
 | 81 | **Q081** | Graph | Level 1 Challenge 81 (In the country of india, there are N cit) | [Q081.c](./Q081.c) | [Q081.md](./Q081.md) | Partial (0%) |
 | 82 | **Q082** | IPC | Level 1 Challenge 82 (A pipe is a technique for passing inform) | [Q082.c](./Q082.c) | [Q082.md](./Q082.md) | Partial (55.56%) |
 | 83 | **Q083** | IPC | Level 1 Challenge 83 (Child reads the first string sent by par) | [Q083.c](./Q083.c) | [Q083.md](./Q083.md) | Partial (0%) |
-| 89 | **Q089** | Graph | Level 1 Challenge 89 (The professor wants to divide the class ) | [Q089.c](./Q089.c) | [Q089.md](./Q089.md) | Partial (30.00%) |
 | 90 | **Q090** | Graph | Level 1 Challenge 90 (Kaaleppi has just robbed a bank and is n) | [Q090.c](./Q090.c) | [Q090.md](./Q090.md) | Partial (0%) |
 | 91 | **Q091** | Hashing | Level 1 Challenge 91 (Anandi and Boby have known each other si) | [Q091.c](./Q091.c) | [Q091.md](./Q091.md) | Partial (25.00%) |
 | 93 | **Q093** | Hashing | Level 1 Challenge 93 (You are given an array of length) | [Q093.c](./Q093.c) | [Q093.md](./Q093.md) | Partial (37.50%) |

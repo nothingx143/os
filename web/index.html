@@ -3,164 +3,301 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SRM eLab - OS Master Solutions Portal</title>
+  <title>SRMIST eLab</title>
+  <!-- Official SRM eLab Ant Design Stylesheet -->
+  <link rel="stylesheet" href="official_elab.css">
+  <!-- Enhanced Companion Styling & Layout Fixes -->
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body>
-  <!-- Header Bar -->
-  <header class="elab-header">
-    <div class="header-left">
-      <div class="elab-logo">
-        <span class="logo-text">eLab</span>
-        <span class="course-pill">OS</span>
-      </div>
-      <div class="header-meta">
-        <span class="course-title">Operating Systems - Level 1</span>
-        <span class="portal-badge" id="headerStatusBadge">Verified Portal Solutions</span>
-      </div>
-    </div>
-
-    <div class="header-search">
-      <div class="search-input-wrapper">
-        <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="11" cy="11" r="8"></circle>
-          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-        </svg>
-        <input 
-          type="text" 
-          id="globalSearchInput" 
-          class="search-input" 
-          placeholder="Search by keyword, problem text, code, or test case... (Press '/' to search)" 
-          autocomplete="off"
-        />
-        <button id="searchClearBtn" class="search-clear-btn" title="Clear search">&times;</button>
-        <kbd class="search-shortcut">/</kbd>
-      </div>
-
-      <!-- Live Search Results Dropdown -->
-      <div id="searchResultsDropdown" class="search-dropdown"></div>
-    </div>
-
-    <div class="header-right">
-      <div class="live-clock" id="liveClock">October 30th 2026, 02:45:00 AM</div>
-      <div class="student-pill">
-        <span class="student-label">Role:</span> <span class="student-val">Student</span>
-        <span class="student-label">Sahaj</span>
-      </div>
-    </div>
-  </header>
-
-  <!-- Question Palette Bar -->
-  <nav class="palette-container">
-    <div class="palette-controls">
-      <span class="palette-title">QUESTION PALETTE (1-100)</span>
-      <div class="palette-filters">
-        <button class="filter-btn active" data-filter="all">All (100)</button>
-        <button class="filter-btn" data-filter="solved">100% Passed (<span id="countSolved">77</span>)</button>
-        <button class="filter-btn" data-filter="unsolved">Pending (<span id="countUnsolved">23</span>)</button>
-      </div>
-      <div class="palette-nav-arrows">
-        <button id="btnPrevChal" class="nav-arrow-btn" title="Previous Question">&larr; Prev</button>
-        <button id="btnNextChal" class="nav-arrow-btn" title="Next Question">Next &rarr;</button>
-      </div>
-    </div>
-    <div class="palette-grid" id="paletteGrid">
-      <!-- 100 buttons rendered by app.js -->
-    </div>
-  </nav>
-
-  <!-- Main Split Workspace -->
-  <main class="workspace">
-    <!-- Left Pane: Problem Details -->
-    <section class="pane pane-problem">
-      <div class="pane-header">
-        <div class="challenge-breadcrumbs">
-          <span class="crumb-course">Course: <strong>OS</strong></span>
-          <span class="crumb-separator">&bull;</span>
-          <span class="crumb-session">Session: <strong id="lblSession">CPU Scheduling</strong></span>
-          <span class="crumb-separator">&bull;</span>
-          <span class="crumb-challenge" id="lblChallengeTitle">Level 1 Challenge 1</span>
-        </div>
-        <div class="status-indicator" id="chalStatusBadge">100% Full Pass</div>
-      </div>
-
-      <div class="pane-content problem-body">
-        <h2 class="section-title">Problem Statement</h2>
-        <div class="problem-text" id="problemStatementText">
-          Loading question statement...
-        </div>
-
-        <div class="test-cases-section">
-          <h2 class="section-title">Test Cases & Specifications</h2>
-          <div class="tc-tabs">
-            <button class="tc-tab-btn active" data-tab="logical">Sample Test Cases</button>
-            <button class="tc-tab-btn" data-tab="mandatory">Mandatory Keywords</button>
-            <button class="tc-tab-btn" data-tab="complexity">Complexity Limits</button>
-          </div>
-          <div class="tc-tab-content" id="tcTabContent">
-            <!-- Dynamic test cases view -->
+<body class="ant-layout">
+  <div class="ant-layout ant-layout-has-sider" style="min-height: 100vh;">
+    
+    <!-- Official Left Sidebar -->
+    <aside class="ant-layout-sider ant-layout-sider-dark ant-layout-sider-collapsed" style="background: rgb(255, 255, 255); flex: 0 0 80px; max-width: 80px; min-width: 80px; width: 80px;">
+      <div class="ant-layout-sider-children">
+        <div class="logo">
+          <div id="logo">
+            <span class="logo-dot"></span> eLab
           </div>
         </div>
+        <ul class="ant-menu ant-menu-root ant-menu-vertical ant-menu-light ant-menu-inline-collapsed" role="menu">
+          <li class="ant-menu-item ant-menu-item-selected" role="menuitem" title="Home">
+            <span role="img" aria-label="home" class="anticon anticon-home">
+              <svg viewBox="64 64 896 896" width="1em" height="1em" fill="currentColor"><path d="M946.5 505L534.6 93.4a31.93 31.93 0 00-45.2 0L77.5 505c-12 12-1.9 31 14.9 31H160v368c0 17.7 14.3 32 32 32h224c17.7 0 32-14.3 32-32V640h128v296c0 17.7 14.3 32 32 32h224c17.7 0 32-14.3 32-32V536h67.6c16.8 0 26.9-19 14.9-31z"></path></svg>
+            </span>
+            <span class="ant-menu-title-content">Home</span>
+          </li>
+          <li class="ant-menu-item" role="menuitem" title="Course Request">
+            <span role="img" aria-label="profile" class="anticon anticon-profile">
+              <svg viewBox="64 64 896 896" width="1em" height="1em" fill="currentColor"><path d="M880 112H144c-17.7 0-32 14.3-32 32v736c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V144c0-17.7-14.3-32-32-32zm-40 728H184V184h656v656zM492 400h216c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H492c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm0 144h216c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H492c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm0 144h216c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H492c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zM308 392m-40 0a40 40 0 1 0 80 0 40 40 0 1 0-80 0zm0 144m-40 0a40 40 0 1 0 80 0 40 40 0 1 0-80 0zm0 144m-40 0a40 40 0 1 0 80 0 40 40 0 1 0-80 0z"></path></svg>
+            </span>
+            <span class="ant-menu-title-content">Course Request</span>
+          </li>
+          <li class="ant-menu-item" role="menuitem" title="Leaderboard">
+            <span role="img" aria-label="trophy" class="anticon anticon-trophy">
+              <svg viewBox="64 64 896 896" width="1em" height="1em" fill="currentColor"><path d="M866.7 248.8a101.4 101.4 0 00-67-27.8h-77.9c-8.9 0-16.1 7.2-16.1 16.1V398c0 74.3-55.6 136.2-127.7 143.5C502.9 549.1 436 488.9 436 414.3V237.1c0-8.9-7.2-16.1-16.1-16.1H342a101.4 101.4 0 00-67 27.8 98.7 98.7 0 00-29.3 69.9c0 48.7 36 89 83.2 97.4 3.4.6 6.8 1.1 10.2 1.5 13.9 119.8 107.6 215.1 226.7 228.6v127.3H448c-17.7 0-32 14.3-32 32v48c0 4.4 3.6 8 8 8h176c4.4 0 8-3.6 8-8v-48c0-17.7-14.3-32-32-32H496V746.2c119.1-13.5 212.8-108.8 226.7-228.6 3.4-.4 6.8-.9 10.2-1.5 47.2-8.4 83.2-48.7 83.2-97.4 0-26.1-10.4-50.6-29.4-69.9z"></path></svg>
+            </span>
+            <span class="ant-menu-title-content">Leaderboard</span>
+          </li>
+          <li class="ant-menu-item" role="menuitem" title="Test Report">
+            <span role="img" aria-label="file-text" class="anticon anticon-file-text">
+              <svg viewBox="64 64 896 896" width="1em" height="1em" fill="currentColor"><path d="M854.6 288.6L639.4 73.4c-6-6-14.1-9.4-22.6-9.4H192c-17.7 0-32 14.3-32 32v832c0 17.7 14.3 32 32 32h640c17.7 0 32-14.3 32-32V311.3c0-8.5-3.4-16.7-9.4-22.7zM790.2 326H602V137.8L790.2 326zm1.8 562H232V136h302v216a40 40 0 0040 40h218v496zM312 504h304c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H312c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm0 144h400c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H312c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm0 144h400c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H312c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8z"></path></svg>
+            </span>
+            <span class="ant-menu-title-content">Test Report</span>
+          </li>
+          <li class="ant-menu-item" role="menuitem" title="FAQ">
+            <span role="img" aria-label="question-circle" class="anticon anticon-question-circle">
+              <svg viewBox="64 64 896 896" width="1em" height="1em" fill="currentColor"><path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372zM464 688a48 48 0 1096 0 48 48 0 10-96 0zm72-112h-48c-4.4 0-8-3.6-8-8v-24c0-42.5 32.2-78.5 74.4-80.5 44.8-2.1 81.6 33.6 81.6 78.5 0 26.5-13.8 50.1-35.3 64-16.1 10.4-24.7 28.5-24.7 47.9v10.1c0 4.4-3.6 8-8 8h-32z"></path></svg>
+            </span>
+            <span class="ant-menu-title-content">FAQ</span>
+          </li>
+        </ul>
       </div>
-    </section>
+    </aside>
 
-    <!-- Right Pane: Code Editor & Action Bar -->
-    <section class="pane pane-code">
-      <div class="pane-header code-header">
-        <div class="code-meta-left">
-          <span class="lang-tag" id="lblLanguage">C (GCC 11.2)</span>
-          <span class="code-stats" id="lblCodeStats">Lines: 35 | Bytes: 480</span>
-        </div>
-
-        <div class="code-actions">
-          <button id="btnCopyCode" class="action-btn btn-copy" title="Copy complete code to clipboard">
-            <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-            </svg>
-            <span id="btnCopyText">Copy Code</span>
-          </button>
-
-          <button id="btnRunTest" class="action-btn btn-run">Run</button>
-          <button id="btnEvaluate" class="action-btn btn-evaluate">Evaluate (100%)</button>
-        </div>
-      </div>
-
-      <div class="editor-container">
-        <div class="editor-gutter" id="editorGutter">
-          <!-- Line numbers -->
-        </div>
-        <pre class="editor-code"><code id="editorCodeBlock" class="language-c">// Loading verified solution code...</code></pre>
-      </div>
-
-      <!-- Bottom Drawer: Simulated Test Evaluation -->
-      <div class="eval-drawer" id="evalDrawer">
-        <div class="drawer-header">
-          <span class="drawer-title">Test Case Evaluation Simulation</span>
-          <span class="drawer-score" id="drawerScoreBadge">Score: 100 / 100 (Full Pass)</span>
-        </div>
-        <div class="drawer-body" id="drawerBody">
-          <div class="eval-grid">
-            <div class="eval-card eval-pass">
-              <div class="eval-label">LOGICAL TEST CASES</div>
-              <div class="eval-status">&check; All Test Cases Passed (100.0%)</div>
-            </div>
-            <div class="eval-card eval-pass">
-              <div class="eval-label">MANDATORY KEYWORDS</div>
-              <div class="eval-status" id="evalMandatoryText">&check; Keywords Verified</div>
-            </div>
-            <div class="eval-card eval-pass">
-              <div class="eval-label">COMPLEXITY LIMITS</div>
-              <div class="eval-status" id="evalComplexityText">&check; CCN, Tokens & LOC within bounds</div>
-            </div>
+    <!-- Right Layout -->
+    <div class="ant-layout">
+      <!-- Official Header -->
+      <header class="ant-layout-header navbarShadow" style="background-color: rgb(255, 255, 255); padding: 0 16px; display: flex; align-items: center; justify-content: space-between;">
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <span role="img" aria-label="menu-unfold" class="anticon anticon-menu-unfold trigger" style="font-size: 18px; cursor: pointer;">
+            <svg viewBox="64 64 896 896" width="1em" height="1em" fill="currentColor"><path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM142.4 642.1L298.7 519a8.84 8.84 0 000-13.9L142.4 381.9c-5.8-4.6-14.4-.5-14.4 6.9v246.3a8.9 8.9 0 0014.4 7z"></path></svg>
+          </span>
+          
+          <!-- Search Box in Header -->
+          <div class="official-search-container">
+            <input 
+              type="text" 
+              id="globalSearchInput" 
+              class="official-search-input" 
+              placeholder="Search by keyword, problem text, code, or test case... (Press '/' to search)" 
+              autocomplete="off"
+            />
+            <kbd class="official-search-kbd">/</kbd>
+            <div id="searchResultsDropdown" class="official-search-dropdown"></div>
           </div>
         </div>
-      </div>
-    </section>
-  </main>
+
+        <div style="display: flex; align-items: center; gap: 14px;">
+          <span id="liveClock" class="clock-display" style="font-weight: 500; font-size: 13px; color: #333;">October 30th 2026, 02:58:00 Am</span>
+          <span style="font-size: 13px; color: #555;">Role: <strong style="color: #111;">Student</strong></span>
+          <span style="font-size: 13px; color: #555;">Name: <strong style="color: #111;">Sahaj</strong></span>
+          <span style="font-size: 13px; color: #555;">Id: <strong style="color: #111;">222129593083</strong></span>
+          <button type="button" class="ant-btn ant-btn-danger" style="border-radius: 4px; font-weight: 600; font-size: 12px; height: 30px; line-height: 28px; background-color: #ff4d4f; border-color: #ff4d4f; color: #fff;">LOGOUT</button>
+        </div>
+      </header>
+
+      <!-- Main Content Container -->
+      <main class="ant-layout-content" style="margin: 16px 16px 0px; flex: 1 0 auto; overflow-y: auto;">
+        
+        <!-- Palette Header Card -->
+        <div class="site-layout-background padding-1" style="margin-bottom: 12px; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); background: #fff; padding: 10px 16px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="font-weight: 700; font-size: 13px; color: #1f2937;">CHALLENGE PALETTE (1-100)</span>
+              <span class="ant-badge" style="margin-left: 6px;">
+                <span id="badgeCurrentState" class="ant-tag ant-tag-green" style="font-weight: 600;">100% Solved</span>
+              </span>
+            </div>
+            <div style="display: flex; gap: 8px; align-items: center;">
+              <button class="filter-pill active" data-filter="all">All (100)</button>
+              <button class="filter-pill" data-filter="solved">100% Passed (77)</button>
+              <button class="filter-pill" data-filter="unsolved">Pending (23)</button>
+            </div>
+          </div>
+          <!-- 100 Button Palette Grid -->
+          <div class="official-palette-scroll" id="paletteGrid">
+            <!-- Rendered by app.js -->
+          </div>
+        </div>
+
+        <!-- Official Challenge Content Box -->
+        <div class="site-layout-background padding-1" style="margin-bottom: 30px; background: #fff; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); padding: 16px;">
+          
+          <!-- Top Row with Step Back / Forward -->
+          <div class="ant-row ant-row-end mb-1" style="margin-bottom: 12px; display: flex; justify-content: flex-end;">
+            <div class="ant-space ant-space-horizontal ant-space-align-center" style="gap: 8px; display: flex;">
+              <div class="ant-space-item">
+                <button type="button" class="ant-btn ant-btn-default ant-btn-icon-only" title="Home">
+                  <span role="img" aria-label="home" class="anticon anticon-home"><svg viewBox="64 64 896 896" width="1em" height="1em" fill="currentColor"><path d="M946.5 505L534.6 93.4a31.93 31.93 0 00-45.2 0L77.5 505c-12 12-1.9 31 14.9 31H160v368c0 17.7 14.3 32 32 32h224c17.7 0 32-14.3 32-32V640h128v296c0 17.7 14.3 32 32 32h224c17.7 0 32-14.3 32-32V536h67.6c16.8 0 26.9-19 14.9-31z"></path></svg></span>
+                </button>
+              </div>
+              <div class="ant-space-item">
+                <button id="btnPrevChal" type="button" class="ant-btn ant-btn-primary ant-btn-icon-only" title="Previous Question">
+                  <span role="img" aria-label="step-backward" class="anticon anticon-step-backward"><svg viewBox="64 64 896 896" width="1em" height="1em" fill="currentColor"><path d="M248 176c0-4.4-3.6-8-8-8h-48c-4.4 0-8 3.6-8 8v672c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V176zm566.2 590.7l-440-308.8a32 32 0 010-51.8l440-308.8a32 32 0 0150.2 25.9v617.6a32 32 0 01-50.2 25.9z"></path></svg></span>
+                </button>
+              </div>
+              <div class="ant-space-item">
+                <button id="btnNextChal" type="button" class="ant-btn ant-btn-primary ant-btn-icon-only" title="Next Question">
+                  <span role="img" aria-label="step-forward" class="anticon anticon-step-forward"><svg viewBox="64 64 896 896" width="1em" height="1em" fill="currentColor"><path d="M784 168h-48c-4.4 0-8 3.6-8 8v672c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V176c0-4.4-3.6-8-8-8zm-590.2 7.3l440 308.8a32 32 0 010 51.8l-440 308.8a32 32 0 01-50.2-25.9V194.2a32 32 0 0150.2-25.9z"></path></svg></span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Official Green Banner -->
+          <div data-show="true" class="ant-alert ant-alert-success ant-alert-no-icon" role="alert" style="margin-bottom: 16px;">
+            <div class="ant-alert-content">
+              <div class="ant-alert-message" id="bannerSolvedText">You have already solved this challenge ! Though you can run the code with different logic !</div>
+            </div>
+          </div>
+
+          <!-- Official Ant Descriptions Table -->
+          <div class="ant-descriptions ant-descriptions-bordered">
+            <div class="ant-descriptions-view">
+              <table style="width: 100%;">
+                <tbody>
+                  <!-- Row 0: Course, Session, Question Info -->
+                  <tr class="ant-descriptions-row">
+                    <th class="ant-descriptions-item-label" style="width: 140px;"><span>Course</span></th>
+                    <td class="ant-descriptions-item-content"><span>OS</span></td>
+                    <th class="ant-descriptions-item-label" style="width: 140px;"><span>Session</span></th>
+                    <td class="ant-descriptions-item-content"><span id="lblSession">CPU Scheduling</span></td>
+                    <th class="ant-descriptions-item-label" style="width: 160px;"><span>Question Information</span></th>
+                    <td class="ant-descriptions-item-content"><span id="lblChallengeTitle" style="font-weight: 700; color: #1890ff;">Level 1Challenge 1</span></td>
+                  </tr>
+
+                  <!-- Row 1: Problem Statement -->
+                  <tr class="ant-descriptions-row">
+                    <th class="ant-descriptions-item-label"><span>Problem</span></th>
+                    <td class="ant-descriptions-item-content" colspan="5">
+                      <div id="problemStatementText" style="white-space: pre-wrap; font-size: 13.5px; line-height: 1.6; color: #262626;">
+                        Loading question description...
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- Row 2: Test Cases -->
+                  <tr class="ant-descriptions-row">
+                    <th class="ant-descriptions-item-label"><span>Test Cases</span></th>
+                    <td class="ant-descriptions-item-content" colspan="5">
+                      <div class="ant-collapse ant-collapse-icon-position-start ant-collapse-ghost">
+                        <div class="ant-collapse-item ant-collapse-item-active">
+                          <div class="ant-collapse-header" style="font-weight: 700; color: #1890ff; padding-left: 0;">
+                            Logical Test Cases
+                          </div>
+                          <div class="ant-collapse-content ant-collapse-content-active">
+                            <div class="ant-collapse-content-box" id="logicalTestCasesBox" style="padding-left: 0;">
+                              <!-- Rendered by app.js -->
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Mandatory & Complexity summary -->
+                        <div style="margin-top: 12px; border-top: 1px dashed #d9d9d9; padding-top: 10px;">
+                          <div style="font-weight: 700; font-size: 13px; margin-bottom: 6px; color: #555;">Mandatory Test Cases:</div>
+                          <div id="mandatoryBadgesBox" style="display: flex; gap: 8px; flex-wrap: wrap;">
+                            <!-- Rendered by app.js -->
+                          </div>
+                        </div>
+
+                        <div style="margin-top: 10px;">
+                          <div style="font-weight: 700; font-size: 13px; margin-bottom: 6px; color: #555;">Complexity Test Cases:</div>
+                          <div id="complexityBadgesBox" style="display: flex; gap: 16px; font-size: 13px; color: #333;">
+                            <!-- Rendered by app.js -->
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- Row 3: Code Editor -->
+                  <tr class="ant-descriptions-row">
+                    <th class="ant-descriptions-item-label"><span>Code Editor</span></th>
+                    <td class="ant-descriptions-item-content" colspan="5" style="padding: 12px;">
+                      
+                      <!-- Card enclosing editor & controls -->
+                      <div class="ant-card ant-card-bordered ant-card-small course-card" style="width: 100%;">
+                        
+                        <!-- Editor Top Bar -->
+                        <div class="ant-card-head" style="display: flex; justify-content: space-between; align-items: center; background: #fafafa; border-bottom: 1px solid #f0f0f0; padding: 0 12px;">
+                          <div class="ant-card-head-title" style="font-size: 13px; font-weight: 700; color: #333;">Code Editor</div>
+                          
+                          <div class="ant-card-extra" style="display: flex; align-items: center; gap: 8px;">
+                            <select id="selLanguage" class="ant-select-selector" style="border: 1px solid #d9d9d9; border-radius: 4px; padding: 2px 8px; font-size: 12px; height: 28px;">
+                              <option value="c">c</option>
+                              <option value="cpp">cpp</option>
+                            </select>
+
+                            <button type="button" class="ant-btn ant-btn-default ant-btn-sm" style="border-radius: 3px;">SAVE</button>
+                            <button type="button" class="ant-btn ant-btn-default ant-btn-sm" style="border-radius: 3px;">RESET</button>
+                            <button id="btnRunTest" type="button" class="ant-btn ant-btn-primary ant-btn-sm" style="border-radius: 3px; background: #1890ff;">RUN</button>
+                            <button id="btnEvaluate" type="button" class="ant-btn ant-btn-primary ant-btn-sm" style="border-radius: 3px; background: #52c41a; border-color: #52c41a;">EVALUATE</button>
+
+                            <!-- Prominent 1-Click Copy Code Button -->
+                            <button id="btnCopyCode" type="button" class="official-copy-btn">
+                              <span id="btnCopyText">Copy Code</span>
+                            </button>
+                          </div>
+                        </div>
+
+                        <!-- Ace-like Editor Container -->
+                        <div class="official-editor-container">
+                          <div class="official-editor-gutter" id="editorGutter">
+                            <!-- Line numbers -->
+                          </div>
+                          <pre class="official-editor-code"><code id="editorCodeBlock">// Loading verified code...</code></pre>
+                        </div>
+
+                        <!-- Status bar -->
+                        <div style="background: #fafafa; border-top: 1px solid #f0f0f0; padding: 6px 12px; font-size: 12px; color: #52c41a; font-weight: 600; display: flex; justify-content: space-between;">
+                          <span id="lblEditorStatus">Verified 100% Full Pass on SRM eLab</span>
+                          <span id="lblCodeStats" style="color: #8c8c8c; font-family: monospace;">Lines: 35 | Bytes: 480</span>
+                        </div>
+                      </div>
+
+                      <!-- Bottom Evaluation Section -->
+                      <div style="margin-top: 16px;">
+                        <div class="ant-tabs ant-tabs-top">
+                          <div class="ant-tabs-nav" style="margin-bottom: 8px;">
+                            <div class="ant-tabs-nav-wrap">
+                              <div class="ant-tabs-nav-list">
+                                <div class="ant-tabs-tab ant-tabs-tab-active"><div class="ant-tabs-tab-btn">Custom Input (stdin)</div></div>
+                                <div class="ant-tabs-tab"><div class="ant-tabs-tab-btn">T1</div></div>
+                                <div class="ant-tabs-tab"><div class="ant-tabs-tab-btn">T2</div></div>
+                                <div class="ant-tabs-tab ant-tabs-tab-active"><div class="ant-tabs-tab-btn" style="color: #52c41a; font-weight: 700;">MATCH T1 (100%)</div></div>
+                                <div class="ant-tabs-tab ant-tabs-tab-active"><div class="ant-tabs-tab-btn" style="color: #52c41a; font-weight: 700;">MATCH T2 (100%)</div></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Official Ant Complexity Analysis Table -->
+                        <div style="margin-top: 12px;">
+                          <div style="font-weight: 700; font-size: 13px; margin-bottom: 6px; color: #1f2937;">Complexity Analysis</div>
+                          <table class="ant-table" style="width: 100%; border: 1px solid #f0f0f0; border-collapse: collapse; text-align: left; font-size: 12.5px;">
+                            <thead class="ant-table-thead" style="background: #fafafa;">
+                              <tr>
+                                <th style="padding: 6px 12px; border-bottom: 1px solid #f0f0f0;">METRIC</th>
+                                <th style="padding: 6px 12px; border-bottom: 1px solid #f0f0f0;">PORTAL LIMIT</th>
+                                <th style="padding: 6px 12px; border-bottom: 1px solid #f0f0f0;">SOLUTION METRIC</th>
+                                <th style="padding: 6px 12px; border-bottom: 1px solid #f0f0f0;">STATUS</th>
+                              </tr>
+                            </thead>
+                            <tbody class="ant-table-tbody" id="complexityTableBody">
+                              <!-- Rendered by app.js -->
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+
+                    </td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+
+      </main>
+
+    </div>
+  </div>
 
   <!-- Scripts -->
   <script src="questions_data.js"></script>

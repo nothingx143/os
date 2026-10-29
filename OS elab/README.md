@@ -5,9 +5,9 @@
 
 ## Progress Overview
 
-- **100% Full-Pass Verified Solutions:** 52 Challenges
+- **100% Full-Pass Verified Solutions:** 53 Challenges
 - **High-Credit Verified Solutions (>=77.8%):** 10 Challenges
-- **Total Operational Solutions in Suite:** 62 Challenges
+- **Total Operational Solutions in Suite:** 63 Challenges
 - **All code files (`.c` / `.cpp`) and comprehensive documentation (`.md`) are present and linked.**
 
 ---
@@ -65,6 +65,7 @@
 | 59 | **Q059** | Queue | Level 1 Challenge 59 (Circular Queue Linked List) | [Q059.c](./Q059.c) | [Q059.md](./Q059.md) | **100% Passed** |
 | 60 | **Q060** | Queue | Level 1 Challenge 60 (The Monk recently learnt about priority ) | [Q060.c](./Q060.c) | [Q060.md](./Q060.md) | **100% Passed** |
 | 61 | **Q061** | File Organization | Level 1 Challenge 61 (Single Level Directory File Search) | [Q061.c](./Q061.c) | [Q061.md](./Q061.md) | **100% Passed** |
+| 63 | **Q063** | Tree 1 | Level 1 Challenge 63 (Binary Search Tree Insertion) | [Q063.c](./Q063.c) | [Q063.md](./Q063.md) | **100% Passed** |
 | 65 | **Q065** | Tree 1 | Level 1 Challenge 65 (A company has n employees, who form a tr) | [Q065.c](./Q065.c) | [Q065.md](./Q065.md) | **100% Passed** |
 | 92 | **Q092** | Hashing | Level 1 Challenge 92 (Canthi and Sami are having a game! The g) | [Q092.c](./Q092.c) | [Q092.md](./Q092.md) | **100% Passed** |
 | 96 | **Q096** | Hashing | Level 1 Challenge 96 (Rick was besieged by walkers after the G) | [Q096.c](./Q096.c) | [Q096.md](./Q096.md) | **100% Passed** |
@@ -89,7 +90,7 @@
 ---
 
 <details>
-<summary><b>Click to expand: Other In-Progress / Recorded Challenges (40 Challenges)</b></summary>
+<summary><b>Click to expand: Other In-Progress / Recorded Challenges (39 Challenges)</b></summary>
 
 <br>
 
@@ -98,7 +99,6 @@
 | 28 | **Q028** | Memory Partitioning | Level 1 Challenge 28 (Write a program to implement Worst Fit a) | [Q028.c](./Q028.c) | [Q028.md](./Q028.md) | Partial (55.56%) |
 | 38 | **Q038** | Dead Lock Avoidance | Level 1 Challenge 38 (Assuming that the system distinguishes b) | [Q038.c](./Q038.c) | [Q038.md](./Q038.md) | Partial (33.33%) |
 | 43 | **Q043** | Dead Lock Detection | Level 1 Challenge 43 (Consider Kayal and Moni are tree climber) | [Q043.c](./Q043.c) | [Q043.md](./Q043.md) | Partial (66.67%) |
-| 63 | **Q063** | Tree 1 | Level 1 Challenge 63 (Darsh, Ratik, Swathy are good friends, T) | [Q063.c](./Q063.c) | [Q063.md](./Q063.md) | Partial (55.56%) |
 | 64 | **Q064** | Tree 1 | Level 1 Challenge 64 (You are given a tree consisting of n nod) | [Q064.c](./Q064.c) | [Q064.md](./Q064.md) | Partial (0%) |
 | 66 | **Q066** | Tree 1 | Level 1 Challenge 66 (You are given a list consisting of n int) | [Q066.c](./Q066.c) | [Q066.md](./Q066.md) | Partial (37.50%) |
 | 67 | **Q067** | File Organization | Level 1 Challenge 67 (Bogar a student of Murugan was teaching ) | [Q067.c](./Q067.c) | [Q067.md](./Q067.md) | Partial (0%) |

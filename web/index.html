@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SRM eLab - OS Master Solutions Portal</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Header Bar -->
+  <header class="elab-header">
+    <div class="header-left">
+      <div class="elab-logo">
+        <span class="logo-text">eLab</span>
+        <span class="course-pill">OS</span>
+      </div>
+      <div class="header-meta">
+        <span class="course-title">Operating Systems - Level 1</span>
+        <span class="portal-badge" id="headerStatusBadge">Verified Portal Solutions</span>
+      </div>
+    </div>
+
+    <div class="header-search">
+      <div class="search-input-wrapper">
+        <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input 
+          type="text" 
+          id="globalSearchInput" 
+          class="search-input" 
+          placeholder="Search by keyword, problem text, code, or test case... (Press '/' to search)" 
+          autocomplete="off"
+        />
+        <button id="searchClearBtn" class="search-clear-btn" title="Clear search">&times;</button>
+        <kbd class="search-shortcut">/</kbd>
+      </div>
+
+      <!-- Live Search Results Dropdown -->
+      <div id="searchResultsDropdown" class="search-dropdown"></div>
+    </div>
+
+    <div class="header-right">
+      <div class="live-clock" id="liveClock">October 30th 2026, 02:45:00 AM</div>
+      <div class="student-pill">
+        <span class="student-label">Role:</span> <span class="student-val">Student</span>
+        <span class="student-label">Sahaj</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Question Palette Bar -->
+  <nav class="palette-container">
+    <div class="palette-controls">
+      <span class="palette-title">QUESTION PALETTE (1-100)</span>
+      <div class="palette-filters">
+        <button class="filter-btn active" data-filter="all">All (100)</button>
+        <button class="filter-btn" data-filter="solved">100% Passed (<span id="countSolved">77</span>)</button>
+        <button class="filter-btn" data-filter="unsolved">Pending (<span id="countUnsolved">23</span>)</button>
+      </div>
+      <div class="palette-nav-arrows">
+        <button id="btnPrevChal" class="nav-arrow-btn" title="Previous Question">&larr; Prev</button>
+        <button id="btnNextChal" class="nav-arrow-btn" title="Next Question">Next &rarr;</button>
+      </div>
+    </div>
+    <div class="palette-grid" id="paletteGrid">
+      <!-- 100 buttons rendered by app.js -->
+    </div>
+  </nav>
+
+  <!-- Main Split Workspace -->
+  <main class="workspace">
+    <!-- Left Pane: Problem Details -->
+    <section class="pane pane-problem">
+      <div class="pane-header">
+        <div class="challenge-breadcrumbs">
+          <span class="crumb-course">Course: <strong>OS</strong></span>
+          <span class="crumb-separator">&bull;</span>
+          <span class="crumb-session">Session: <strong id="lblSession">CPU Scheduling</strong></span>
+          <span class="crumb-separator">&bull;</span>
+          <span class="crumb-challenge" id="lblChallengeTitle">Level 1 Challenge 1</span>
+        </div>
+        <div class="status-indicator" id="chalStatusBadge">100% Full Pass</div>
+      </div>
+
+      <div class="pane-content problem-body">
+        <h2 class="section-title">Problem Statement</h2>
+        <div class="problem-text" id="problemStatementText">
+          Loading question statement...
+        </div>
+
+        <div class="test-cases-section">
+          <h2 class="section-title">Test Cases & Specifications</h2>
+          <div class="tc-tabs">
+            <button class="tc-tab-btn active" data-tab="logical">Sample Test Cases</button>
+            <button class="tc-tab-btn" data-tab="mandatory">Mandatory Keywords</button>
+            <button class="tc-tab-btn" data-tab="complexity">Complexity Limits</button>
+          </div>
+          <div class="tc-tab-content" id="tcTabContent">
+            <!-- Dynamic test cases view -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Right Pane: Code Editor & Action Bar -->
+    <section class="pane pane-code">
+      <div class="pane-header code-header">
+        <div class="code-meta-left">
+          <span class="lang-tag" id="lblLanguage">C (GCC 11.2)</span>
+          <span class="code-stats" id="lblCodeStats">Lines: 35 | Bytes: 480</span>
+        </div>
+
+        <div class="code-actions">
+          <button id="btnCopyCode" class="action-btn btn-copy" title="Copy complete code to clipboard">
+            <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            <span id="btnCopyText">Copy Code</span>
+          </button>
+
+          <button id="btnRunTest" class="action-btn btn-run">Run</button>
+          <button id="btnEvaluate" class="action-btn btn-evaluate">Evaluate (100%)</button>
+        </div>
+      </div>
+
+      <div class="editor-container">
+        <div class="editor-gutter" id="editorGutter">
+          <!-- Line numbers -->
+        </div>
+        <pre class="editor-code"><code id="editorCodeBlock" class="language-c">// Loading verified solution code...</code></pre>
+      </div>
+
+      <!-- Bottom Drawer: Simulated Test Evaluation -->
+      <div class="eval-drawer" id="evalDrawer">
+        <div class="drawer-header">
+          <span class="drawer-title">Test Case Evaluation Simulation</span>
+          <span class="drawer-score" id="drawerScoreBadge">Score: 100 / 100 (Full Pass)</span>
+        </div>
+        <div class="drawer-body" id="drawerBody">
+          <div class="eval-grid">
+            <div class="eval-card eval-pass">
+              <div class="eval-label">LOGICAL TEST CASES</div>
+              <div class="eval-status">&check; All Test Cases Passed (100.0%)</div>
+            </div>
+            <div class="eval-card eval-pass">
+              <div class="eval-label">MANDATORY KEYWORDS</div>
+              <div class="eval-status" id="evalMandatoryText">&check; Keywords Verified</div>
+            </div>
+            <div class="eval-card eval-pass">
+              <div class="eval-label">COMPLEXITY LIMITS</div>
+              <div class="eval-status" id="evalComplexityText">&check; CCN, Tokens & LOC within bounds</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Scripts -->
+  <script src="questions_data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

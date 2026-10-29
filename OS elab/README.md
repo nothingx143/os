@@ -6,8 +6,8 @@
 ## Progress Overview
 
 - **100% Full-Pass Verified Solutions:** 49 Challenges
-- **High-Credit Verified Solutions (>=77.8%):** 8 Challenges
-- **Total Operational Solutions in Suite:** 57 Challenges
+- **High-Credit Verified Solutions (>=77.8%):** 9 Challenges
+- **Total Operational Solutions in Suite:** 58 Challenges
 - **All code files (`.c` / `.cpp`) and comprehensive documentation (`.md`) are present and linked.**
 
 ---
@@ -80,11 +80,12 @@
 | 34 | **Q034** | Dead Lock Avoidance | Level 1 Challenge 34 (A system with 5 processes P0 through P4 ) | [Q034.c](./Q034.c) | [Q034.md](./Q034.md) | Partial (77.78%) |
 | 35 | **Q035** | Dead Lock Avoidance | Level 1 Challenge 35 (Joy is newly joined student in the colle) | [Q035.c](./Q035.c) | [Q035.md](./Q035.md) | Partial (77.78%) |
 | 39 | **Q039** | Dead Lock Avoidance | Level 1 Challenge 39 (A and B played safety game in the ground) | [Q039.c](./Q039.c) | [Q039.md](./Q039.md) | Partial (77.78%) |
+| 57 | **Q057** | Page Replacement | Level 1 Challenge 57 (LRU Page Replacement and Fault Rate) | [Q057.c](./Q057.c) | [Q057.md](./Q057.md) | Verified (88.89%) |
 
 ---
 
 <details>
-<summary><b>Click to expand: Other In-Progress / Recorded Challenges (45 Challenges)</b></summary>
+<summary><b>Click to expand: Other In-Progress / Recorded Challenges (44 Challenges)</b></summary>
 
 <br>
 
@@ -93,7 +94,6 @@
 | 28 | **Q028** | Memory Partitioning | Level 1 Challenge 28 (Write a program to implement Worst Fit a) | [Q028.c](./Q028.c) | [Q028.md](./Q028.md) | Partial (55.56%) |
 | 38 | **Q038** | Dead Lock Avoidance | Level 1 Challenge 38 (Assuming that the system distinguishes b) | [Q038.c](./Q038.c) | [Q038.md](./Q038.md) | Partial (33.33%) |
 | 43 | **Q043** | Dead Lock Detection | Level 1 Challenge 43 (Consider Kayal and Moni are tree climber) | [Q043.c](./Q043.c) | [Q043.md](./Q043.md) | Partial (66.67%) |
-| 57 | **Q057** | Page Replacement | Level 1 Challenge 57 (The operating system keeps track of all ) | [Q057.c](./Q057.c) | [Q057.md](./Q057.md) | Partial (0%) |
 | 58 | **Q058** | Page Replacement | Level 1 Challenge 58 (Write a program to implement First In Fi) | [Q058.c](./Q058.c) | [Q058.md](./Q058.md) | Failed (Timeout) |
 | 59 | **Q059** | Queue | Level 1 Challenge 59 (On the last day of the semester, Shahid') | [Q059.c](./Q059.c) | [Q059.md](./Q059.md) | Partial (17.65%) |
 | 61 | **Q061** | File Organization | Level 1 Challenge 61 (Bogar a student of Murugan was teaching ) | [Q061.c](./Q061.c) | [Q061.md](./Q061.md) | Partial (0%) |

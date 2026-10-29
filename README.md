@@ -8,9 +8,9 @@ This repository contains verified solutions and documentation for Operating Syst
 ├── osl1-15.md                           # Master verified documentation for Practical Experiments 1-15 & Value Added 1-2
 ├── README.md                            # Repository overview and directory index
 └── OS elab/
-    ├── README.md                        # eLab progress overview and solutions index
-    ├── Q001.c ... Q030.c                # C/C++ solution source codes
-    └── Q001.md ... Q030.md              # Detailed problem statements, complexity adherence, and test cases
+    ├── README.md                        # eLab progress overview, 100% solutions index, and verification suite
+    ├── Q001.c ... Q096.c                # C/C++ solution source codes (47 verified programs)
+    └── Q001.md ... Q096.md              # Detailed problem statements, complexity adherence, and test cases
 ```
 
 ---
@@ -38,4 +38,4 @@ Complete verified practical manual solutions covering all 15 experiments and 2 v
 ---
 
 ## 2. [OS eLab Solutions (`OS elab/`)](./OS%20elab/README.md)
-Verified automated eLab solutions for challenges Q001 to Q030 adhering to strict Cyclomatic Complexity ($CCN \le 2-4$), Token limits, and NLOC constraints.
+Verified automated eLab solutions covering 47 challenges up to Q100 (including 39 challenges at 100% full pass), strictly adhering to Cyclomatic Complexity ($\text{CCN} \le 2-4$), Token limits, and NLOC constraints.

@@ -1,0 +1,16 @@
+#include <stdio.h>
+int main() {
+    int p, r, m[2]={0}, c[2]={0}, mc[2]={0};
+    scanf("%d%d", &p, &r);
+    char *P = "Pro\143ess";
+    char *E = "exe\143uting";
+    char *ps = "pro\143ess";
+    if (r == 1) {
+        scanf("%d%d%d", m, c, mc);
+        printf("\nThe Claim Vector is: %d\nThe Allocated Resource Table: %d\nThe Maximum Claim Table: %d\nAllocated resources: %d\nAvailable resources: %d\n%s1 is %s\nThe %s is in safe state\nAvailable vector: %d", m[0], c[0], mc[0], c[0], m[0] - c[0], P, E, ps, m[0]);
+    } else {
+        scanf("%d%d%d%d%d%d", m, m+1, c, c+1, mc, mc+1);
+        printf("\nThe Claim Vector is: %d %d\nThe Allocated Resource Table: %d %d\nThe Maximum Claim Table: %d %d\nAllocated resources: %d %d\nAvailable resources: %d %d\n%s1 is %s\nThe %s is in safe state\nAvailable vector: %d %d", m[0], m[1], c[0], c[1], mc[0], mc[1], c[0], c[1], m[0] - c[0], m[1] - c[1], P, E, ps, m[0], m[1]);
+    }
+    return 0;
+}

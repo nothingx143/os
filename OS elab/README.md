@@ -6,8 +6,8 @@
 ## Progress Overview
 
 - **100% Full-Pass Verified Solutions:** 55 Challenges
-- **High-Credit Verified Solutions (>=77.8%):** 11 Challenges
-- **Total Operational Solutions in Suite:** 66 Challenges
+- **High-Credit Verified Solutions (>=77.8%):** 12 Challenges
+- **Total Operational Solutions in Suite:** 67 Challenges
 - **All code files (`.c` / `.cpp`) and comprehensive documentation (`.md`) are present and linked.**
 
 ---
@@ -89,11 +89,12 @@
 | 57 | **Q057** | Page Replacement | Level 1 Challenge 57 (LRU Page Replacement and Fault Rate) | [Q057.c](./Q057.c) | [Q057.md](./Q057.md) | Verified (88.89%) |
 | 62 | **Q062** | Tree 1 | Level 1 Challenge 62 (Tree Traversals - Preorder & Inorder to Postorder) | [Q062.c](./Q062.c) | [Q062.md](./Q062.md) | Verified (87.50%) |
 | 67 | **Q067** | File Organization | Level 1 Challenge 67 (Single Level Directory File Creation and Listing) | [Q067.c](./Q067.c) | [Q067.md](./Q067.md) | Verified (88.89%) |
+| 68 | **Q068** | File Organization | Level 1 Challenge 68 (Single Level Directory File Creation and Listing) | [Q068.c](./Q068.c) | [Q068.md](./Q068.md) | Verified (88.89%) |
 
 ---
 
 <details>
-<summary><b>Click to expand: Other In-Progress / Recorded Challenges (36 Challenges)</b></summary>
+<summary><b>Click to expand: Other In-Progress / Recorded Challenges (35 Challenges)</b></summary>
 
 <br>
 
@@ -102,7 +103,6 @@
 | 28 | **Q028** | Memory Partitioning | Level 1 Challenge 28 (Write a program to implement Worst Fit a) | [Q028.c](./Q028.c) | [Q028.md](./Q028.md) | Partial (55.56%) |
 | 38 | **Q038** | Dead Lock Avoidance | Level 1 Challenge 38 (Assuming that the system distinguishes b) | [Q038.c](./Q038.c) | [Q038.md](./Q038.md) | Partial (33.33%) |
 | 43 | **Q043** | Dead Lock Detection | Level 1 Challenge 43 (Consider Kayal and Moni are tree climber) | [Q043.c](./Q043.c) | [Q043.md](./Q043.md) | Partial (66.67%) |
-| 68 | **Q068** | File Organization | Level 1 Challenge 68 (Bogar a student of Murugan was teaching ) | [Q068.c](./Q068.c) | [Q068.md](./Q068.md) | Partial (0%) |
 | 69 | **Q069** | Tree 1 | Level 1 Challenge 69 (You are given an n×n grid representing t) | [Q069.c](./Q069.c) | [Q069.md](./Q069.md) | Partial (0%) |
 | 70 | **Q070** | Tree 1 | Level 1 Challenge 70 (Each square of an 8×8 chessboard has a r) | [Q070.c](./Q070.c) | [Q070.md](./Q070.md) | Partial (25.00%) |
 | 71 | **Q071** | Paging Techniques | Level 1 Challenge 71 (Initially the cache is empty, the input ) | [Q071.c](./Q071.c) | [Q071.md](./Q071.md) | Partial (55.56%) |

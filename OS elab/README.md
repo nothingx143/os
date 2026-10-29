@@ -5,14 +5,14 @@
 
 ## Progress Overview
 
-- **100% Full-Pass Verified Solutions:** 58 Challenges
+- **100% Full-Pass Verified Solutions:** 59 Challenges
 - **High-Credit Verified Solutions (>=77.8%):** 13 Challenges
-- **Total Operational Solutions in Suite:** 71 Challenges
+- **Total Operational Solutions in Suite:** 72 Challenges
 - **All code files (`.c` / `.cpp`) and comprehensive documentation (`.md`) are present and linked.**
 
 ---
 
-## 100% Full-Pass Solutions (42 Challenges)
+## 100% Full-Pass Solutions (43 Challenges)
 
 | # | Question ID | Topic / Session | Challenge Title / Problem | Verified Code | Documentation | Score |
 | :-: | :-: | :--- | :--- | :-: | :-: | :-: |
@@ -72,6 +72,7 @@
 | 69 | **Q069** | Tree 1 | Level 1 Challenge 69 (Forest Queries - 2D Prefix Sums) | [Q069.c](./Q069.c) | [Q069.md](./Q069.md) | **100% Passed** |
 | 70 | **Q070** | Tree 1 | Level 1 Challenge 70 (Robot Paths on Chessboard) | [Q070.c](./Q070.c) | [Q070.md](./Q070.md) | **100% Passed** |
 | 71 | **Q071** | Paging Techniques | Level 1 Challenge 71 (LRU Page Replacement Simulation) | [Q071.c](./Q071.c) | [Q071.md](./Q071.md) | **100% Passed** |
+| 73 | **Q073** | Tree 2 | Level 1 Challenge 73 (Movie Festival Queries - Binary Lifting) | [Q073.c](./Q073.c) | [Q073.md](./Q073.md) | **100% Passed** |
 | 92 | **Q092** | Hashing | Level 1 Challenge 92 (Canthi and Sami are having a game! The g) | [Q092.c](./Q092.c) | [Q092.md](./Q092.md) | **100% Passed** |
 | 96 | **Q096** | Hashing | Level 1 Challenge 96 (Rick was besieged by walkers after the G) | [Q096.c](./Q096.c) | [Q096.md](./Q096.md) | **100% Passed** |
 

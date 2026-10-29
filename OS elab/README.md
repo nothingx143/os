@@ -5,9 +5,9 @@
 
 ## Progress Overview
 
-- **100% Full-Pass Verified Solutions:** 42 Challenges
+- **100% Full-Pass Verified Solutions:** 43 Challenges
 - **High-Credit Verified Solutions (>=77.8%):** 8 Challenges
-- **Total Operational Solutions in Suite:** 50 Challenges
+- **Total Operational Solutions in Suite:** 51 Challenges
 - **All code files (`.c` / `.cpp`) and comprehensive documentation (`.md`) are present and linked.**
 
 ---
@@ -49,6 +49,7 @@
 | 41 | **Q041** | Stack | Level 1 Challenge 41 (A and B Game) | [Q041.c](./Q041.c) | [Q041.md](./Q041.md) | **100% Passed** |
 | 42 | **Q042** | Stack | Level 1 Challenge 42 (You are given an array A of N integers. ) | [Q042.c](./Q042.c) | [Q042.md](./Q042.md) | **100% Passed** |
 | 44 | **Q044** | Stack | Level 1 Challenge 44 (Mancunian and Fantabulous Pairs) | [Q044.c](./Q044.c) | [Q044.md](./Q044.md) | **100% Passed** |
+| 45 | **Q045** | Stack | Level 1 Challenge 45 (Mergeable Stacks - Rajinikanth Technical Interview) | [Q045.c](./Q045.c) | [Q045.md](./Q045.md) | **100% Passed** |
 | 50 | **Q050** | Stack | Level 1 Challenge 50 (The stock span problem is a financial pr) | [Q050.c](./Q050.c) | [Q050.md](./Q050.md) | **100% Passed** |
 | 52 | **Q052** | Page Replacement | Level 1 Challenge 52 (The Institution is organizing a musical ) | [Q052.c](./Q052.c) | [Q052.md](./Q052.md) | **100% Passed** |
 | 53 | **Q053** | Page Replacement | Level 1 Challenge 53 (Professor CHIRAG told his students about) | [Q053.c](./Q053.c) | [Q053.md](./Q053.md) | **100% Passed** |
@@ -77,7 +78,7 @@
 ---
 
 <details>
-<summary><b>Click to expand: Other In-Progress / Recorded Challenges (52 Challenges)</b></summary>
+<summary><b>Click to expand: Other In-Progress / Recorded Challenges (51 Challenges)</b></summary>
 
 <br>
 
@@ -86,7 +87,6 @@
 | 28 | **Q028** | Memory Partitioning | Level 1 Challenge 28 (Write a program to implement Worst Fit a) | [Q028.c](./Q028.c) | [Q028.md](./Q028.md) | Partial (55.56%) |
 | 38 | **Q038** | Dead Lock Avoidance | Level 1 Challenge 38 (Assuming that the system distinguishes b) | [Q038.c](./Q038.c) | [Q038.md](./Q038.md) | Partial (33.33%) |
 | 43 | **Q043** | Dead Lock Detection | Level 1 Challenge 43 (Consider Kayal and Moni are tree climber) | [Q043.c](./Q043.c) | [Q043.md](./Q043.md) | Partial (66.67%) |
-| 45 | **Q045** | Stack | Level 1 Challenge 45 (Rajinikanth organised technical round  i) | [Q045.c](./Q045.c) | [Q045.md](./Q045.md) | Partial (0%) |
 | 46 | **Q046** | Stack | Level 1 Challenge 46 (Hassan gets a job in a software company ) | [Q046.c](./Q046.c) | [Q046.md](./Q046.md) | Partial (0%) |
 | 47 | **Q047** | Stack | Level 1 Challenge 47 (Hassan gets a job in a software company ) | [Q047.c](./Q047.c) | [Q047.md](./Q047.md) | Partial (0%) |
 | 48 | **Q048** | Stack | Level 1 Challenge 48 (Given a permutation of numbers from 1 to) | [Q048.c](./Q048.c) | [Q048.md](./Q048.md) | Partial (9.091%) |

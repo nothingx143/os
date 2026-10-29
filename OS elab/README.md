@@ -5,9 +5,9 @@
 
 ## Progress Overview
 
-- **100% Full-Pass Verified Solutions:** 56 Challenges
+- **100% Full-Pass Verified Solutions:** 57 Challenges
 - **High-Credit Verified Solutions (>=77.8%):** 12 Challenges
-- **Total Operational Solutions in Suite:** 68 Challenges
+- **Total Operational Solutions in Suite:** 69 Challenges
 - **All code files (`.c` / `.cpp`) and comprehensive documentation (`.md`) are present and linked.**
 
 ---
@@ -70,6 +70,7 @@
 | 65 | **Q065** | Tree 1 | Level 1 Challenge 65 (A company has n employees, who form a tr) | [Q065.c](./Q065.c) | [Q065.md](./Q065.md) | **100% Passed** |
 | 66 | **Q066** | Tree 1 | Level 1 Challenge 66 (List Removals) | [Q066.c](./Q066.c) | [Q066.md](./Q066.md) | **100% Passed** |
 | 69 | **Q069** | Tree 1 | Level 1 Challenge 69 (Forest Queries - 2D Prefix Sums) | [Q069.c](./Q069.c) | [Q069.md](./Q069.md) | **100% Passed** |
+| 70 | **Q070** | Tree 1 | Level 1 Challenge 70 (Robot Paths on Chessboard) | [Q070.c](./Q070.c) | [Q070.md](./Q070.md) | **100% Passed** |
 | 92 | **Q092** | Hashing | Level 1 Challenge 92 (Canthi and Sami are having a game! The g) | [Q092.c](./Q092.c) | [Q092.md](./Q092.md) | **100% Passed** |
 | 96 | **Q096** | Hashing | Level 1 Challenge 96 (Rick was besieged by walkers after the G) | [Q096.c](./Q096.c) | [Q096.md](./Q096.md) | **100% Passed** |
 
@@ -95,7 +96,7 @@
 ---
 
 <details>
-<summary><b>Click to expand: Other In-Progress / Recorded Challenges (34 Challenges)</b></summary>
+<summary><b>Click to expand: Other In-Progress / Recorded Challenges (33 Challenges)</b></summary>
 
 <br>
 
@@ -104,7 +105,6 @@
 | 28 | **Q028** | Memory Partitioning | Level 1 Challenge 28 (Write a program to implement Worst Fit a) | [Q028.c](./Q028.c) | [Q028.md](./Q028.md) | Partial (55.56%) |
 | 38 | **Q038** | Dead Lock Avoidance | Level 1 Challenge 38 (Assuming that the system distinguishes b) | [Q038.c](./Q038.c) | [Q038.md](./Q038.md) | Partial (33.33%) |
 | 43 | **Q043** | Dead Lock Detection | Level 1 Challenge 43 (Consider Kayal and Moni are tree climber) | [Q043.c](./Q043.c) | [Q043.md](./Q043.md) | Partial (66.67%) |
-| 70 | **Q070** | Tree 1 | Level 1 Challenge 70 (Each square of an 8×8 chessboard has a r) | [Q070.c](./Q070.c) | [Q070.md](./Q070.md) | Partial (25.00%) |
 | 71 | **Q071** | Paging Techniques | Level 1 Challenge 71 (Initially the cache is empty, the input ) | [Q071.c](./Q071.c) | [Q071.md](./Q071.md) | Partial (55.56%) |
 | 72 | **Q072** | Paging Techniques | Level 1 Challenge 72 (Ashok has an problem in finding the phys) | [Q072.c](./Q072.c) | [Q072.md](./Q072.md) | Partial (0%) |
 | 73 | **Q073** | Tree 2 | Level 1 Challenge 73 (In a movie festival, n movies will be sh) | [Q073.c](./Q073.c) | [Q073.md](./Q073.md) | Partial (37.50%) |

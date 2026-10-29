@@ -6,8 +6,8 @@
 ## Progress Overview
 
 - **100% Full-Pass Verified Solutions:** 59 Challenges
-- **High-Credit Verified Solutions (>=77.8%):** 14 Challenges
-- **Total Operational Solutions in Suite:** 73 Challenges
+- **High-Credit Verified Solutions (>=77.8%):** 15 Challenges
+- **Total Operational Solutions in Suite:** 74 Challenges
 - **All code files (`.c` / `.cpp`) and comprehensive documentation (`.md`) are present and linked.**
 
 ---
@@ -96,6 +96,7 @@
 | 68 | **Q068** | File Organization | Level 1 Challenge 68 (Single Level Directory File Creation and Listing) | [Q068.c](./Q068.c) | [Q068.md](./Q068.md) | Verified (88.89%) |
 | 72 | **Q072** | Paging Techniques | Level 1 Challenge 72 (Physical Address from Relative Address) | [Q072.c](./Q072.c) | [Q072.md](./Q072.md) | Verified (88.89%) |
 | 74 | **Q074** | Paging Techniques | Level 1 Challenge 74 (Optimal Page Replacement Simulation) | [Q074.c](./Q074.c) | [Q074.md](./Q074.md) | Partial (77.78%) |
+| 75 | **Q075** | Tree 2 | Level 1 Challenge 75 (Critical Cities - Lengauer-Tarjan Dominator Tree) | [Q075.c](./Q075.c) | [Q075.md](./Q075.md) | Verified (87.50%) |
 
 ---
 

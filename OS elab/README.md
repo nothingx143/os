@@ -6,8 +6,8 @@
 ## Progress Overview
 
 - **100% Full-Pass Verified Solutions:** 68 Challenges
-- **High-Credit Verified Solutions (>=77.8%):** 18 Challenges
-- **Total Operational Solutions in Suite:** 86 Challenges
+- **High-Credit Verified Solutions (>=77.8%):** 19 Challenges
+- **Total Operational Solutions in Suite:** 87 Challenges
 - **All code files (`.c` / `.cpp`) and comprehensive documentation (`.md`) are present and linked.**
 
 ---
@@ -109,6 +109,7 @@
 | 77 | **Q077** | Paging Techniques | Level 1 Challenge 77 (Chocolate Block Generator Paging) | [Q077.c](./Q077.c) | [Q077.md](./Q077.md) | Verified (88.89%) |
 | 83 | **Q083** | IPC | Level 1 Challenge 83 (Inter-Process Pipe String Concatenation) | [Q083.c](./Q083.c) | [Q083.md](./Q083.md) | Partial (77.78%) |
 | 84 | **Q084** | Graph | Level 1 Challenge 84 (Teddy Wonderland Token Selection) | [Q084.c](./Q084.c) | [Q084.md](./Q084.md) | Verified (87.50%) |
+| 88 | **Q088** | IPC | Level 1 Challenge 88 (Three Way Communications - Transceiver Range) | [Q088.c](./Q088.c) | [Q088.md](./Q088.md) | Verified (88.89%) |
 
 ---
 
@@ -135,7 +136,6 @@
 | 81 | **Q081** | Graph | Level 1 Challenge 81 (In the country of india, there are N cit) | [Q081.c](./Q081.c) | [Q081.md](./Q081.md) | Partial (0%) |
 | 82 | **Q082** | IPC | Level 1 Challenge 82 (A pipe is a technique for passing inform) | [Q082.c](./Q082.c) | [Q082.md](./Q082.md) | Partial (55.56%) |
 | 83 | **Q083** | IPC | Level 1 Challenge 83 (Child reads the first string sent by par) | [Q083.c](./Q083.c) | [Q083.md](./Q083.md) | Partial (0%) |
-| 88 | **Q088** | IPC | Level 1 Challenge 88 (The Chef likes to stay in touch with his) | [Q088.c](./Q088.c) | [Q088.md](./Q088.md) | Partial (55.56%) |
 | 89 | **Q089** | Graph | Level 1 Challenge 89 (The professor wants to divide the class ) | [Q089.c](./Q089.c) | [Q089.md](./Q089.md) | Partial (30.00%) |
 | 90 | **Q090** | Graph | Level 1 Challenge 90 (Kaaleppi has just robbed a bank and is n) | [Q090.c](./Q090.c) | [Q090.md](./Q090.md) | Partial (0%) |
 | 91 | **Q091** | Hashing | Level 1 Challenge 91 (Anandi and Boby have known each other si) | [Q091.c](./Q091.c) | [Q091.md](./Q091.md) | Partial (25.00%) |

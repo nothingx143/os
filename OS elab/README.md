@@ -6,8 +6,8 @@
 ## Progress Overview
 
 - **100% Full-Pass Verified Solutions:** 58 Challenges
-- **High-Credit Verified Solutions (>=77.8%):** 12 Challenges
-- **Total Operational Solutions in Suite:** 70 Challenges
+- **High-Credit Verified Solutions (>=77.8%):** 13 Challenges
+- **Total Operational Solutions in Suite:** 71 Challenges
 - **All code files (`.c` / `.cpp`) and comprehensive documentation (`.md`) are present and linked.**
 
 ---
@@ -93,6 +93,7 @@
 | 62 | **Q062** | Tree 1 | Level 1 Challenge 62 (Tree Traversals - Preorder & Inorder to Postorder) | [Q062.c](./Q062.c) | [Q062.md](./Q062.md) | Verified (87.50%) |
 | 67 | **Q067** | File Organization | Level 1 Challenge 67 (Single Level Directory File Creation and Listing) | [Q067.c](./Q067.c) | [Q067.md](./Q067.md) | Verified (88.89%) |
 | 68 | **Q068** | File Organization | Level 1 Challenge 68 (Single Level Directory File Creation and Listing) | [Q068.c](./Q068.c) | [Q068.md](./Q068.md) | Verified (88.89%) |
+| 72 | **Q072** | Paging Techniques | Level 1 Challenge 72 (Physical Address from Relative Address) | [Q072.c](./Q072.c) | [Q072.md](./Q072.md) | Verified (88.89%) |
 
 ---
 

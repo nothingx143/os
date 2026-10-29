@@ -6,8 +6,8 @@
 ## Progress Overview
 
 - **100% Full-Pass Verified Solutions:** 65 Challenges
-- **High-Credit Verified Solutions (>=77.8%):** 17 Challenges
-- **Total Operational Solutions in Suite:** 82 Challenges
+- **High-Credit Verified Solutions (>=77.8%):** 18 Challenges
+- **Total Operational Solutions in Suite:** 83 Challenges
 - **All code files (`.c` / `.cpp`) and comprehensive documentation (`.md`) are present and linked.**
 
 ---
@@ -105,6 +105,7 @@
 | 75 | **Q075** | Tree 2 | Level 1 Challenge 75 (Critical Cities - Lengauer-Tarjan Dominator Tree) | [Q075.c](./Q075.c) | [Q075.md](./Q075.md) | Verified (87.50%) |
 | 77 | **Q077** | Paging Techniques | Level 1 Challenge 77 (Chocolate Block Generator Paging) | [Q077.c](./Q077.c) | [Q077.md](./Q077.md) | Verified (88.89%) |
 | 83 | **Q083** | IPC | Level 1 Challenge 83 (Inter-Process Pipe String Concatenation) | [Q083.c](./Q083.c) | [Q083.md](./Q083.md) | Partial (77.78%) |
+| 84 | **Q084** | Graph | Level 1 Challenge 84 (Teddy Wonderland Token Selection) | [Q084.c](./Q084.c) | [Q084.md](./Q084.md) | Verified (87.50%) |
 
 ---
 
@@ -131,7 +132,6 @@
 | 81 | **Q081** | Graph | Level 1 Challenge 81 (In the country of india, there are N cit) | [Q081.c](./Q081.c) | [Q081.md](./Q081.md) | Partial (0%) |
 | 82 | **Q082** | IPC | Level 1 Challenge 82 (A pipe is a technique for passing inform) | [Q082.c](./Q082.c) | [Q082.md](./Q082.md) | Partial (55.56%) |
 | 83 | **Q083** | IPC | Level 1 Challenge 83 (Child reads the first string sent by par) | [Q083.c](./Q083.c) | [Q083.md](./Q083.md) | Partial (0%) |
-| 84 | **Q084** | Graph | Level 1 Challenge 84 (Teddy is visiting the country wonderland) | [Q084.c](./Q084.c) | [Q084.md](./Q084.md) | Partial (0%) |
 | 85 | **Q085** | Graph | Level 1 Challenge 85 (A game has n levels and m teleporters be) | [Q085.c](./Q085.c) | [Q085.md](./Q085.md) | Partial (25.00%) |
 | 86 | **Q086** | IPC | Level 1 Challenge 86 (Use the Stack concept and demonstrate th) | [Q086.c](./Q086.c) | [Q086.md](./Q086.md) | Skipped (No Match: 3) |
 | 87 | **Q087** | Graph | Level 1 Challenge 87 (There are n cities and initially no road) | [Q087.c](./Q087.c) | [Q087.md](./Q087.md) | Partial (37.50%) |

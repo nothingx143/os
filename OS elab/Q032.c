@@ -1,16 +1,48 @@
 #include <stdio.h>
-int main() {
-    int p, r, m[2]={0}, c[2]={0}, mc[2]={0};
-    scanf("%d%d", &p, &r);
-    char *P = "Pro\143ess";
-    char *E = "exe\143uting";
-    char *ps = "pro\143ess";
-    if (r == 1) {
-        scanf("%d%d%d", m, c, mc);
-        printf("\nThe Claim Vector is: %d\nThe Allocated Resource Table: %d\nThe Maximum Claim Table: %d\nAllocated resources: %d\nAvailable resources: %d\n%s1 is %s\nThe %s is in safe state\nAvailable vector: %d", m[0], c[0], mc[0], c[0], m[0] - c[0], P, E, ps, m[0]);
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node *next; 
+};
+
+void sortedInsert(struct Node** head_ref, struct Node* new_node) {
+    struct Node* current = *head_ref;
+    if (current == NULL) {
+        new_node->next = new_node;
+        *head_ref = new_node;
+    } else if (current->data >= new_node->data) {
+        while (current->next != *head_ref)
+            current = current->next;
+        current->next = new_node;
+        new_node->next = *head_ref;
+        *head_ref = new_node;
     } else {
-        scanf("%d%d%d%d%d%d", m, m+1, c, c+1, mc, mc+1);
-        printf("\nThe Claim Vector is: %d %d\nThe Allocated Resource Table: %d %d\nThe Maximum Claim Table: %d %d\nAllocated resources: %d %d\nAvailable resources: %d %d\n%s1 is %s\nThe %s is in safe state\nAvailable vector: %d %d", m[0], m[1], c[0], c[1], mc[0], mc[1], c[0], c[1], m[0] - c[0], m[1] - c[1], P, E, ps, m[0], m[1]);
+        while (current->next != *head_ref && current->next->data < new_node->data)
+            current = current->next;
+        new_node->next = current->next;
+        current->next = new_node;
+    }
+}
+
+int main() {
+    int n, val;
+    if (scanf("%d", &n) != 1) return 0;
+    struct Node* head = NULL;
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &val);
+        struct Node* temp = (struct Node*)malloc(sizeof(struct Node));
+        temp->data = val;
+        temp->next = NULL;
+        sortedInsert(&head, temp);
+    }
+    struct Node* temp = head;
+    if (head != NULL) {
+        do {
+            printf("%d", temp->data);
+            temp = temp->next;
+            if (temp != head) printf(" ");
+        } while (temp != head);
     }
     return 0;
 }

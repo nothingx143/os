@@ -1,8 +1,18 @@
 #include <stdio.h>
 
+#define SWAP_AND_PRINT \
+    for (int k = 0; k < n - 1; k += 2) { \
+        int t = array[k]; \
+        array[k] = array[k+1]; \
+        array[k+1] = t; \
+    } \
+    for (int k = 0; k < n; k++) { \
+        printf("%d%c", array[k], k == n - 1 ? '\n' : ' '); \
+    }
+
 int main() {
     int n;
-    if (scanf("%d", &n) != 1) return 0;
+    scanf("%d", &n);
     int array[n];
     for(int i=0;i<n;i++) scanf("%d", &array[i]);
     for(int i=0;i<n;i++) {
@@ -14,13 +24,6 @@ int main() {
             }
         }
     }
-    for (int i = 0; i < n - 1; i += 2) {
-        int t = array[i];
-        array[i] = array[i+1];
-        array[i+1] = t;
-    }
-    for (int i = 0; i < n; i++) {
-        printf("%d%c", array[i], i == n - 1 ? '\n' : ' ');
-    }
+    SWAP_AND_PRINT
     return 0;
 }

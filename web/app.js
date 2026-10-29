@@ -39,6 +39,7 @@
     }
 
     buildSearchIndex();
+    updatePaletteCounters();
     renderPalette();
     setupEvents();
     startClock();
@@ -116,19 +117,25 @@
     window.history.replaceState(null, null, `#q=${currentQuestion.challenge}`);
 
     // Update Palette active state
-    const allBtns = elPaletteGrid.querySelectorAll('.palette-btn');
-    allBtns.forEach(b => {
-      if (parseInt(b.textContent, 10) === currentQuestion.challenge) {
-        b.classList.add('active');
-        b.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-      } else {
-        b.classList.remove('active');
-      }
-    });
+    if (elPaletteGrid) {
+      const allBtns = elPaletteGrid.querySelectorAll('.palette-btn');
+      allBtns.forEach(b => {
+        if (parseInt(b.textContent, 10) === currentQuestion.challenge) {
+          b.classList.add('active');
+          if (b.scrollIntoView) {
+            b.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+          }
+        } else {
+          b.classList.remove('active');
+        }
+      });
+    }
 
     // Update Headers
     if (elLblSession) elLblSession.textContent = currentQuestion.topic || 'General';
-    if (elLblChallengeTitle) elLblChallengeTitle.textContent = `Level 1Challenge ${currentQuestion.challenge}`;
+    const levelNum = currentQuestion.level || (currentQuestion.challenge > 100 ? 2 : 1);
+    const chalNum = currentQuestion.level_challenge || (currentQuestion.challenge > 100 ? currentQuestion.challenge - 100 : currentQuestion.challenge);
+    if (elLblChallengeTitle) elLblChallengeTitle.textContent = `Level ${levelNum}Challenge ${chalNum}`;
 
     const isSolved = currentQuestion.solved || (currentQuestion.status && currentQuestion.status.includes('100%'));
     if (elBadgeCurrentState) {
@@ -273,19 +280,60 @@
     });
   }
 
+  // Common English Stop-words to prevent irrelevant query matching
+  const STOP_WORDS = new Set([
+    'the', 'is', 'are', 'was', 'were', 'a', 'an', 'and', 'or', 'to', 'of', 'in', 'on', 'at', 
+    'for', 'with', 'by', 'from', 'as', 'into', 'that', 'this', 'these', 'those', 'it', 'its'
+  ]);
+
+  // Update Dynamic Palette & Filter Counters
+  function updatePaletteCounters() {
+    const total = allQuestions.length;
+    let solvedCount = 0;
+    allQuestions.forEach(q => {
+      if (q.solved || (q.status && q.status.includes('100%'))) solvedCount++;
+    });
+    const unsolvedCount = total - solvedCount;
+
+    const elPaletteTitle = document.getElementById('paletteTitleLabel');
+    if (elPaletteTitle) {
+      elPaletteTitle.textContent = `CHALLENGE PALETTE (1-${total})`;
+    }
+    const pillAll = document.getElementById('pillAll');
+    if (pillAll) pillAll.textContent = `All (${total})`;
+
+    const pillSolved = document.getElementById('pillSolved');
+    if (pillSolved) pillSolved.textContent = `100% Passed (${solvedCount})`;
+
+    const pillUnsolved = document.getElementById('pillUnsolved');
+    if (pillUnsolved) pillUnsolved.textContent = `Pending (${unsolvedCount})`;
+  }
+
   // Search Engine
   function buildSearchIndex() {
     allQuestions.forEach(q => {
-      q._chalStr = String(q.challenge);
+      q._chalStr = `q${q.challenge} #${q.challenge} challenge ${q.challenge}`;
+      q._normTitle = (q.title || '').toLowerCase();
       q._normDesc = (q.description || '').toLowerCase();
       q._normTopic = (q.topic || '').toLowerCase();
       q._normCode = (q.code || '').toLowerCase();
-      
-      const tokens = (q._normDesc + ' ' + q._normTopic).match(/[a-z0-9]+/g) || [];
-      q._tokens = new Set(tokens);
+      q._normMandatory = (q.mandatory || []).join(' ').toLowerCase();
+      q._normTestCases = (q.test_cases || []).map(tc => `${tc.input || ''} ${tc.output || ''}`).join(' ').toLowerCase();
 
-      const tcStr = (q.test_cases || []).map(tc => `${tc.input || ''} ${tc.output || ''}`).join(' ').toLowerCase();
-      q._tcStr = tcStr;
+      // Raw searchable corpus (preserves symbols, punctuation, and identifiers)
+      q._rawCorpus = [
+        q._chalStr,
+        q._normTitle,
+        q._normTopic,
+        q._normDesc,
+        q._normMandatory,
+        q._normCode,
+        q._normTestCases
+      ].join('\n');
+
+      // Normalized token set for rapid word-boundary lookup
+      const rawTokens = q._rawCorpus.match(/[a-z0-9_]+/g) || [];
+      q._tokens = new Set(rawTokens);
     });
   }
 
@@ -293,62 +341,85 @@
     const query = (rawQuery || '').trim().toLowerCase();
     if (!query) return [];
 
-    const numMatch = query.match(/^(?:q|#|challenge|question)?\s*(\d+)\b/i);
-    const targetNum = numMatch ? parseInt(numMatch[1], 10) : null;
-    const queryTokens = query.match(/[a-z0-9]+/g) || [];
+    // 1. Exact Challenge Number Search (e.g. "101", "q101", "#101", "challenge 101")
+    const idMatch = query.match(/^(?:q|#|challenge|question)?\s*(\d+)$/i);
+    if (idMatch) {
+      const target = parseInt(idMatch[1], 10);
+      const foundIdx = allQuestions.findIndex(q => q.challenge === target);
+      if (foundIdx !== -1) {
+        return [{ q: allQuestions[foundIdx], idx: foundIdx, score: 100000, matchedField: 'challenge number' }];
+      }
+    }
+
+    // 2. Exact Raw Substring Search (Critical for code syntax: 'while(x!=y)', 'fork()', 'a[i]=mp')
+    const hasSpecialChars = /[^a-z0-9\s]/.test(query);
+    if (hasSpecialChars) {
+      const exactMatches = [];
+      allQuestions.forEach((q, idx) => {
+        let matchedField = null;
+        if (q._normMandatory.includes(query)) matchedField = 'mandatory keyword';
+        else if (q._normCode.includes(query)) matchedField = 'source code';
+        else if (q._normDesc.includes(query)) matchedField = 'problem description';
+        else if (q._rawCorpus.includes(query)) matchedField = 'corpus';
+
+        if (matchedField) {
+          exactMatches.push({ q, idx, score: 50000, matchedField });
+        }
+      });
+      if (exactMatches.length > 0) {
+        return exactMatches;
+      }
+    }
+
+    // 3. Keyword / Token Search (Conjunctive AND with Stop-Word Removal)
+    const rawTokens = query.match(/[a-z0-9_]+/g) || [];
+    let tokens = rawTokens.filter(t => !STOP_WORDS.has(t));
+    if (tokens.length === 0) tokens = rawTokens;
+    if (tokens.length === 0) return [];
 
     const results = [];
 
     allQuestions.forEach((q, idx) => {
-      let score = 0;
-      let matchedField = 'description';
-
-      // 1. Direct Challenge Number Match (+10,000)
-      if (targetNum !== null && q.challenge === targetNum) {
-        score += 10000;
-        matchedField = 'challenge';
-      }
-
-      // 2. Exact Phrase Match in problem description (+5,000)
-      if (q._normDesc.includes(query)) {
-        score += 5000;
-        matchedField = 'description';
-      }
-
-      // 3. Topic Match (+4,000)
-      if (q._normTopic.includes(query)) {
-        score += 4000;
-        matchedField = 'topic';
-      }
-
-      // 4. Token Overlap
-      if (queryTokens.length > 0 && q._tokens) {
-        let matched = 0;
-        queryTokens.forEach(t => {
-          if (q._tokens.has(t)) matched++;
-        });
-        if (matched === queryTokens.length) {
-          score += 3000 + (matched * 50);
-        } else if (matched > 0) {
-          score += Math.floor(1500 * (matched / queryTokens.length));
+      // Conjunctive Requirement: Every single token MUST be present
+      let allMatched = true;
+      for (const t of tokens) {
+        if (!q._tokens.has(t) && !q._rawCorpus.includes(t)) {
+          allMatched = false;
+          break;
         }
       }
+      if (!allMatched) return;
 
-      // 5. Code Substring Match
-      if (q._normCode.includes(query) && score < 2500) {
+      let score = 1000;
+      let matchedField = 'description';
+
+      // Field Priority Scoring
+      if (q._normMandatory.includes(query)) {
+        score += 4500;
+        matchedField = 'mandatory keyword';
+      } else if (q._normTitle.includes(query)) {
+        score += 4200;
+        matchedField = 'title';
+      } else if (q._normTopic.includes(query)) {
+        score += 4000;
+        matchedField = 'topic';
+      } else if (q._normDesc.includes(query)) {
+        score += 5000;
+        matchedField = 'problem description';
+      } else if (q._normCode.includes(query)) {
+        score += 3500;
+        matchedField = 'source code';
+      } else if (q._normTestCases.includes(query)) {
         score += 2500;
-        matchedField = 'code';
+        matchedField = 'test cases';
       }
 
-      // 6. Test Cases Match
-      if (q._tcStr && q._tcStr.includes(query) && score < 2000) {
-        score += 2000;
-        matchedField = 'test_cases';
-      }
+      // Bonus for exact token hits
+      tokens.forEach(t => {
+        if (q._tokens.has(t)) score += 300;
+      });
 
-      if (score > 0) {
-        results.push({ q, idx, score, matchedField });
-      }
+      results.push({ q, idx, score, matchedField });
     });
 
     results.sort((a, b) => b.score - a.score);
@@ -373,17 +444,20 @@
       return;
     }
 
+    const queryTokens = (query.match(/[a-z0-9_]+/g) || []).filter(t => !STOP_WORDS.has(t));
+
     let html = '';
     matches.slice(0, 12).forEach(({ q, idx, score, matchedField }) => {
       const isSolved = q.solved || (q.status && q.status.includes('100%'));
-      const snippet = highlightSnippet(q.description || '', query);
+      const snippet = highlightSnippet(q.description || '', query, queryTokens);
+      const displayTitle = q.title ? `Challenge ${q.challenge}: ${escapeHtml(q.title)}` : `Challenge ${q.challenge}: ${escapeHtml(q.topic)}`;
       html += `
         <div class="official-search-item" data-index="${idx}">
           <span class="badge" style="background:${isSolved ? '#52c41a' : '#faad14'}">Q${q.challenge}</span>
-          <div>
-            <div class="title">Challenge ${q.challenge}: ${escapeHtml(q.topic)}</div>
-            <div class="snippet">${snippet}</div>
-            <div style="font-size:10.5px; color:#52c41a; margin-top:2px;">Matched in: <strong>${matchedField}</strong></div>
+          <div style="flex: 1; overflow: hidden;">
+            <div class="title" style="font-weight: 600; color: #1f2937;">${displayTitle}</div>
+            <div class="snippet" style="font-size: 11.5px; color: #595959; margin-top: 2px;">${snippet}</div>
+            <div style="font-size:10.5px; color:#1890ff; margin-top:2px;">Matched in: <strong>${matchedField}</strong></div>
           </div>
         </div>
       `;
@@ -408,18 +482,39 @@
     }
   }
 
-  function highlightSnippet(text, query) {
+  function highlightSnippet(text, query, tokens) {
     if (!text) return '';
-    const qLower = query.toLowerCase();
-    const pos = text.toLowerCase().indexOf(qLower);
+    const lower = text.toLowerCase();
+    let pos = lower.indexOf(query.toLowerCase());
+    if (pos === -1 && tokens && tokens.length > 0) {
+      for (const t of tokens) {
+        const p = lower.indexOf(t.toLowerCase());
+        if (p !== -1) {
+          pos = p;
+          break;
+        }
+      }
+    }
     let start = 0;
     if (pos > 30) start = pos - 30;
-    let snippet = text.slice(start, start + 120);
+    let snippet = text.slice(start, start + 130);
     if (start > 0) snippet = '...' + snippet;
-    if (start + 120 < text.length) snippet += '...';
+    if (start + 130 < text.length) snippet += '...';
 
-    const escapedQ = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    const regex = new RegExp(`(${escapedQ})`, 'gi');
+    const wordsToHighlight = [];
+    if (query && query.length > 1) {
+      wordsToHighlight.push(query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+    }
+    if (tokens) {
+      tokens.forEach(t => {
+        if (t.length > 2) {
+          wordsToHighlight.push(t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+        }
+      });
+    }
+
+    if (!wordsToHighlight.length) return escapeHtml(snippet);
+    const regex = new RegExp(`(${wordsToHighlight.join('|')})`, 'gi');
     return escapeHtml(snippet).replace(regex, '<mark>$1</mark>');
   }
 

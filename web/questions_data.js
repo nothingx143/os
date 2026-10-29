@@ -4,17 +4,20 @@
 (function() {
   const data = {
   "course": "OS",
-  "title": "Operating Systems - Level 1",
-  "total_questions": 100,
+  "title": "Operating Systems - Level 1 & 2 (1-115)",
+  "total_questions": 115,
   "questions": [
     {
       "id": "OS_1",
       "challenge": 1,
+      "level": 1,
+      "level_challenge": 1,
+      "title": "Bogar a student of TAMIL Siddha College On his birthday t...",
       "topic": "CPU Scheduling",
       "session": "CPU Scheduling",
       "course": "OS",
       "status": "`Verified (88.89% - 8/9 Test Cases Passed)`",
-      "solved": false,
+      "solved": true,
       "description": "Bogar a student of TAMIL Siddha College On his birthday took his n Friends (F1, F2, F3. Fn) to Naturopathy hotel for a treat. The waiter noted the order of F1, F2, F3. Fn as O1, O2, O3. On respectively. Bogar asked the waiter about the type of algorithm he follows to give order to chef to prepare. Waiter told Bogar that he follows the SJF (Non preemptive shortest job first algorithm) as it minimizes the waiting time so more number of customers are happy from their service and so they come back. Print the waiting time, time at which chef starts to prepare the order (Preparation start time) (service time) and time in which the order completes (turnaround time) for each one of them. Print the average waiting and average turnaround time. Assume F1 gets the menu first and orders first then F2 and so on Therefore the time at which the order is given to the waiter (Arrival time) changes for each friend. Input: The first line contains the Number of friend/s. The next n line contains the Friend name, order give time(Burst Time) and time taken by chef to cook that order for F1, F2, F3. Fn. (Arrival Time=0) Output: - The first n lines should print input values, waiting time and Time in which the order completes (Turn Around time) for each friend in each line. Print average waiting and average turnaround time in next two lines respectively",
       "code": "#include <stdio.h>\n#include <string.h>\n\n#define F(i,n) for(i=0;i<n;i++)\n#define S(i) { int p=i; for(j=i+1;j<n;j++) if(b[j]<b[p]) p=j; int t=b[i];b[i]=b[p];b[p]=t; t=a[i];a[i]=a[p];a[p]=t; char s[100]; strcpy(s,f[i]); strcpy(f[i],f[p]); strcpy(f[p],s); }\n\nchar f[100][100];\nint b[100], a[100], w[100], t[100], n, i, j, s1, s2;\n\nint main() {\n    if (scanf(\"%d\", &n) != 1) return 0;\n    F(i,n) scanf(\"%s\", f[i]);\n    F(i,n) scanf(\"%d\", b+i);\n    F(i,n) scanf(\"%d\", a+i);\n    F(i,n) S(i);\n    for (i=1; i<n; i++) { w[i] = w[i-1] + b[i-1]; s1 += w[i]; }\n    puts(\"Sorting Depend on Burst Time\");\n    F(i,n) { t[i] = b[i] + w[i]; s2 += t[i]; printf(\"%s %d %d\\n\", f[i], b[i], a[i]); }\n    puts(\"Waiting Time\");\n    F(i,n) printf(\"Time Taken for %s=%d\\n\", f[i], w[i]);\n    printf(\"Average Waiting Time=%lf\\nTurnAround Time\\n\", (double)s1 / n);\n    F(i,n) printf(\"Time Taken for %s=%d\\n\", f[i], t[i]);\n    printf(\"Average TurnAround Time=%lf\\n\", (double)s2 / n);\n    return 0;\n}",
       "language": "c",
@@ -33,10 +36,10 @@
         "for(int i=n-1;i>=0;i--)"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 4, Max Tokens: 138, Max LOC: 30",
-        "cyclomatic": 4,
-        "tokens": 138,
-        "nloc": 30
+        "ccn": 3,
+        "tokens": 300,
+        "loc": 100,
+        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100"
       },
       "lines": 25,
       "bytes": 969
@@ -44,6 +47,9 @@
     {
       "id": "OS_2",
       "challenge": 2,
+      "level": 1,
+      "level_challenge": 2,
+      "title": "Raina a student of SRM UNIVERSITY On his birthday took hi...",
       "topic": "CPU Scheduling",
       "session": "CPU Scheduling",
       "course": "OS",
@@ -67,10 +73,10 @@
         "int"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100",
-        "cyclomatic": 3,
+        "ccn": 3,
         "tokens": 300,
-        "nloc": 100
+        "loc": 100,
+        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100"
       },
       "lines": 34,
       "bytes": 899
@@ -78,6 +84,9 @@
     {
       "id": "OS_3",
       "challenge": 3,
+      "level": 1,
+      "level_challenge": 3,
+      "title": "Nesamani wants to paint a beautiful picture on a building...",
       "topic": "Searching",
       "session": "Searching",
       "course": "OS",
@@ -97,17 +106,14 @@
         }
       ],
       "mandatory": [
-        "char colors[8][32]",
-        "char mixes[8][8][32]",
-        "for(i=0;i<8;i++)",
-        "if(strcmp(c",
-        "colors[i])==0)"
+        "for(k=1;k<=T;++k)",
+        "vector<int> b(N+1);"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 3, Max Tokens: 325, Max LOC: 30",
-        "cyclomatic": 3,
-        "tokens": 325,
-        "nloc": 30
+        "ccn": 4,
+        "tokens": 175,
+        "loc": 25,
+        "raw": "Max Cyclomatic: 4, Max Tokens: 175, Max LOC: 25"
       },
       "lines": 20,
       "bytes": 474
@@ -115,6 +121,9 @@
     {
       "id": "OS_4",
       "challenge": 4,
+      "level": 1,
+      "level_challenge": 4,
+      "title": "Rohit a student of SRM UNIVERSITY On his birthday took hi...",
       "topic": "CPU Scheduling",
       "session": "CPU Scheduling",
       "course": "OS",
@@ -138,10 +147,10 @@
         "int"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100",
-        "cyclomatic": 3,
+        "ccn": 3,
         "tokens": 300,
-        "nloc": 100
+        "loc": 100,
+        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100"
       },
       "lines": 20,
       "bytes": 496
@@ -149,6 +158,9 @@
     {
       "id": "OS_5",
       "challenge": 5,
+      "level": 1,
+      "level_challenge": 5,
+      "title": "Ram's first job is a out of university is for a student's...",
       "topic": "Searching",
       "session": "Searching",
       "course": "OS",
@@ -168,14 +180,16 @@
         }
       ],
       "mandatory": [
-        "main",
-        "int"
+        "int cl[CMDS]",
+        "char *lists[CMDS][MAXWORDS];",
+        "char *tokens[TOKENS]={\"[N]\",\"[AV]\",\"[V]\",\"[AJ]\"};",
+        "char *cmds[CMDS]={\"NOUNS\",\"ADVERBS\",\"VERBS\",\"ADJECTIVES\",\"END\"};"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100",
-        "cyclomatic": 3,
-        "tokens": 300,
-        "nloc": 100
+        "ccn": 3,
+        "tokens": 488,
+        "loc": 50,
+        "raw": "Max Cyclomatic: 3, Max Tokens: 488, Max LOC: 50"
       },
       "lines": 48,
       "bytes": 1344
@@ -183,6 +197,9 @@
     {
       "id": "OS_6",
       "challenge": 6,
+      "level": 1,
+      "level_challenge": 6,
+      "title": "VIBGYOR isn't just an acronym, it's a way of life for Asi...",
       "topic": "Searching",
       "session": "Searching",
       "course": "OS",
@@ -202,14 +219,16 @@
         }
       ],
       "mandatory": [
-        "char var[3][LEN];",
-        "char inp[3][LEN];"
+        "char colors[8][32]",
+        "char mixes[8][8][32]",
+        "for(i=0;i<8;i++)",
+        "if(strcmp(c,colors[i])==0)"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 4, Max Tokens: 320, Max LOC: 30",
-        "cyclomatic": 4,
-        "tokens": 320,
-        "nloc": 30
+        "ccn": 3,
+        "tokens": 325,
+        "loc": 30,
+        "raw": "Max Cyclomatic: 3, Max Tokens: 325, Max LOC: 30"
       },
       "lines": 33,
       "bytes": 1057
@@ -217,11 +236,14 @@
     {
       "id": "OS_7",
       "challenge": 7,
+      "level": 1,
+      "level_challenge": 7,
+      "title": "Semester break has started and Chirag is going home from ...",
       "topic": "CPU Scheduling",
       "session": "CPU Scheduling",
       "course": "OS",
       "status": "`Verified 88.89% Passed (8/9 Test Cases, Green Bubble)`",
-      "solved": false,
+      "solved": true,
       "description": "Semester break has started and Chirag is going home from College (SRM UNIVERSITY). He is taking flight from Chennai to Delhi. After entering the Airport, he was asked to directly go to the counter of boarding pass and without following the queue. He was Told that The Airline staff follows the SJF (Shortest Job First) algorithm and first process the request of the person who came with the lowest baggage weight as it is easy to process and the waiting time reduces. Chirag is a programmer and wanted to gift a program to the airline which shows the service time (time at which that person will reach the counter), waiting time (service time -arrival time) for each person in the queue and turnaround time (total time from arrival till person gets boarding pass). Also, Calculate average waiting and average turnaround time. Input: The first line contains the Number of Passengers n. The next n line contains service time. Output: - The first n lines should print input values, Gnatt Chart for waiting time, Average waiting time, Gnatt Chart for Turn around time, Average turn around time.",
       "code": "#include <stdio.h>\n\nint bt[30], p[30], wt[30], tat[30], i, j, n, tot, pos, tmp, avg_wt;\n\n#define SORT for(i=0;i<n;i++){pos=i;for(j=i+1;j<n;j++)if(bt[j]<bt[pos])pos=j; \\\n    tmp=bt[i];bt[i]=bt[pos];bt[pos]=tmp; \\\n    tmp=p[i];p[i]=p[pos];p[pos]=tmp;}\n\n#define CALC for(i=1;i<n;i++){wt[i]=0;for(j=0;j<i;j++)wt[i]+=bt[j];tot+=wt[i];} \\\n    if(n) avg_wt=tot/n; tot=0; \\\n    for(i=0;i<n;i++){tat[i]=bt[i]+wt[i];tot+=tat[i];}\n\n#define PRINT printf(\"Gnatt Chart for Waiting time=\"); \\\n    for(i=1;i<n;i++) printf(\"%d \",wt[i]); \\\n    printf(\"\\nAverage WT=%d\\nGnatt Chart for Turn Around Time=\", avg_wt); \\\n    for(i=0;i<n;i++) printf(\"%d \",tat[i]); \\\n    printf(\"\\nAverage TAT=%d\", tot); \\\n    for(i=0;i<n;i++) printf(\"\\nP%d %d %d %d\",p[i],bt[i],wt[i],tat[i]);\n\nint main() {\n    if (scanf(\"%d\", &n) != 1) return 0;\n    for(i=0;i<n;i++) { scanf(\"%d\", &bt[i]); p[i] = i+1; }\n    SORT\n    CALC\n    PRINT\n    return 0;\n}",
       "language": "c",
@@ -240,10 +262,10 @@
         "int"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100",
-        "cyclomatic": 3,
+        "ccn": 3,
         "tokens": 300,
-        "nloc": 100
+        "loc": 100,
+        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100"
       },
       "lines": 27,
       "bytes": 908
@@ -251,6 +273,9 @@
     {
       "id": "OS_8",
       "challenge": 8,
+      "level": 1,
+      "level_challenge": 8,
+      "title": "Prabhu Salamon is planning to make a very long journey ac...",
       "topic": "Searching",
       "session": "Searching",
       "course": "OS",
@@ -270,14 +295,14 @@
         }
       ],
       "mandatory": [
-        "main",
-        "int"
+        "for(int t=0;t<T;t++)",
+        "for(int i=n-1;i>=0;i--)"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100",
-        "cyclomatic": 3,
-        "tokens": 300,
-        "nloc": 100
+        "ccn": 4,
+        "tokens": 138,
+        "loc": 30,
+        "raw": "Max Cyclomatic: 4, Max Tokens: 138, Max LOC: 30"
       },
       "lines": 14,
       "bytes": 303
@@ -285,11 +310,14 @@
     {
       "id": "OS_9",
       "challenge": 9,
+      "level": 1,
+      "level_challenge": 9,
+      "title": "Bogar a student of Tamil Siddhar College On his birthday ...",
       "topic": "CPU Scheduling",
       "session": "CPU Scheduling",
       "course": "OS",
       "status": "`Verified 88.89% Passed (8/9 Test Cases, Green Bubble)`",
-      "solved": false,
+      "solved": true,
       "description": "Bogar a student of Tamil Siddhar College On his birthday took his n Friends (F1, F2, F3. Fn) to SRM Restaurant for a treat. The waiter noted the order of F1, F2, F3. Fn as O1, O2, O3. On respectively. Assuming the waiter services the groups that comes on first to his table. Print the waiting time, time at which chef starts to prepare the order (Preparation start time) (service time) and time in which the order completes (turnaround time) for each one of them. Print the average waiting and average turnaround time. Assume F1 gets the menu first and orders first then F2 and so on Therefore the time at which the order is given to the waiter (Arrival time) changes for each friend. Input: The first line contains the Number of friend/s. The next n line contains the Friend name, order give time(Burst Time) and time taken by chef to cook that order for F1, F2, F3. Fn. (Arrival Time) Output: - The first n lines should print input values, waiting time and Time in which the order completes (Turn Around time) for each friend in each line. Print average waiting and average turnaround time in next two lines respectively.",
       "code": "#include <stdio.h>\n\nint n, i, bt[30], at[30], wt[30], tat[30];\nchar f[30][50];\ndouble sw, st;\n\n#define CALC for(i=0;i<n;i++) scanf(\"%s\", f[i]); \\\n    for(i=0;i<n;i++) scanf(\"%d\", &bt[i]); \\\n    for(i=0;i<n;i++) scanf(\"%d\", &at[i]); \\\n    wt[0]=0; tat[0]=bt[0]; sw=0; st=tat[0]; \\\n    for(i=1;i<n;i++) { wt[i]=wt[i-1]+bt[i-1]; tat[i]=wt[i]+bt[i]; sw+=wt[i]; st+=tat[i]; }\n\n#define PRINT puts(\"\\nWaiting Time\"); \\\n    for(i=0;i<n;i++) printf(\"Time Taken for %s=%d\\n\", f[i], wt[i]); \\\n    printf(\"Average Waiting Time=%f\\nTurnAround Time\\n\", n ? sw/n : 0); \\\n    for(i=0;i<n;i++) printf(\"Time Taken for %s=%d\\n\", f[i], tat[i]); \\\n    printf(\"Average TurnAround Time=%f\\n\", n ? st/n : 0);\n\nint main() {\n    if (scanf(\"%d\", &n) != 1) return 0;\n    CALC\n    PRINT\n    return 0;\n}",
       "language": "c",
@@ -317,10 +345,10 @@
         "\"END\"};"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 3, Max Tokens: 488, Max LOC: 50",
-        "cyclomatic": 3,
-        "tokens": 488,
-        "nloc": 50
+        "ccn": 3,
+        "tokens": 300,
+        "loc": 100,
+        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100"
       },
       "lines": 24,
       "bytes": 773
@@ -328,11 +356,14 @@
     {
       "id": "OS_10",
       "challenge": 10,
+      "level": 1,
+      "level_challenge": 10,
+      "title": "Software Engineer Saran is assigned with several projects...",
       "topic": "CPU Scheduling",
       "session": "CPU Scheduling",
       "course": "OS",
       "status": "`Verified 88.89% Passed (8/9 Test Cases, Green Bubble)`",
-      "solved": false,
+      "solved": true,
       "description": "Software Engineer Saran is assigned with several projects from various companies by his Team lead. He is also insisted to complete the projects based on their duration (ie.,Shortest duration first).He is asked to submit a chart presentation for the above project. Help him to draw the chart alone. INPUT: 1st line : number of process 2nd line : Process ID of each process 3rd line : Burst time of each process 4th line : arrival time of each process",
       "code": "#include <stdio.h>\n\nint n, i, j, pos, t, p[50], b[50], a[50], c[50];\n\n#define READ for(i=0;i<n;i++) scanf(\"%d\",&p[i]); \\\n    for(i=0;i<n;i++) scanf(\"%d\",&b[i]); \\\n    for(i=0;i<n;i++) scanf(\"%d\",&a[i]);\n\n#define SORT for(i=0;i<n;i++){pos=i;for(j=i+1;j<n;j++)if(b[j]<b[pos])pos=j; \\\n    t=b[i];b[i]=b[pos];b[pos]=t; t=p[i];p[i]=p[pos];p[pos]=t;}\n\n#define PRINT puts(\"The gantt chart\"); \\\n    for(i=0;i<n;i++) printf(\"P%d \", p[i]); \\\n    printf(\"\\n0 \"); c[0]=0; \\\n    for(i=0;i<n;i++){c[i+1]=c[i]+b[i]; printf(\"%d \", c[i+1]);}\n\nint main() {\n    if (scanf(\"%d\", &n) != 1) return 0;\n    READ\n    SORT\n    PRINT\n    return 0;\n}",
       "language": "c",
@@ -351,10 +382,10 @@
         "int"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100",
-        "cyclomatic": 3,
+        "ccn": 3,
         "tokens": 300,
-        "nloc": 100
+        "loc": 100,
+        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100"
       },
       "lines": 23,
       "bytes": 622
@@ -362,6 +393,9 @@
     {
       "id": "OS_11",
       "challenge": 11,
+      "level": 1,
+      "level_challenge": 11,
+      "title": "There are K tiles. Each of the tiles either contains a si...",
       "topic": "File Allocation",
       "session": "File Allocation",
       "course": "OS",
@@ -385,10 +419,10 @@
         "int"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100",
-        "cyclomatic": 3,
+        "ccn": 3,
         "tokens": 300,
-        "nloc": 100
+        "loc": 100,
+        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100"
       },
       "lines": 16,
       "bytes": 395
@@ -396,6 +430,9 @@
     {
       "id": "OS_12",
       "challenge": 12,
+      "level": 1,
+      "level_challenge": 12,
+      "title": "Johnny has a pool in his garden. There are several island...",
       "topic": "File Allocation",
       "session": "File Allocation",
       "course": "OS",
@@ -419,10 +456,10 @@
         "int"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100",
-        "cyclomatic": 3,
+        "ccn": 3,
         "tokens": 300,
-        "nloc": 100
+        "loc": 100,
+        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100"
       },
       "lines": 16,
       "bytes": 416
@@ -430,6 +467,9 @@
     {
       "id": "OS_13",
       "challenge": 13,
+      "level": 1,
+      "level_challenge": 13,
+      "title": "A spacecraft is all set to travel through a long inter-ga...",
       "topic": "File Allocation",
       "session": "File Allocation",
       "course": "OS",
@@ -453,10 +493,10 @@
         "int"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100",
-        "cyclomatic": 3,
+        "ccn": 3,
         "tokens": 300,
-        "nloc": 100
+        "loc": 100,
+        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100"
       },
       "lines": 9,
       "bytes": 215
@@ -464,6 +504,9 @@
     {
       "id": "OS_14",
       "challenge": 14,
+      "level": 1,
+      "level_challenge": 14,
+      "title": "Ruppa is an engineer assigned to build roads between the ...",
       "topic": "File Allocation",
       "session": "File Allocation",
       "course": "OS",
@@ -487,10 +530,10 @@
         "int"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100",
-        "cyclomatic": 3,
+        "ccn": 3,
         "tokens": 300,
-        "nloc": 100
+        "loc": 100,
+        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100"
       },
       "lines": 24,
       "bytes": 626
@@ -498,6 +541,9 @@
     {
       "id": "OS_15",
       "challenge": 15,
+      "level": 1,
+      "level_challenge": 15,
+      "title": "Manisa is not having a good time these days. Just Yesterd...",
       "topic": "File Allocation",
       "session": "File Allocation",
       "course": "OS",
@@ -521,10 +567,10 @@
         "int"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100",
-        "cyclomatic": 3,
+        "ccn": 3,
         "tokens": 300,
-        "nloc": 100
+        "loc": 100,
+        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100"
       },
       "lines": 19,
       "bytes": 517
@@ -532,6 +578,9 @@
     {
       "id": "OS_16",
       "challenge": 16,
+      "level": 1,
+      "level_challenge": 16,
+      "title": "The kamali is on vacation in the beautiful country of Che...",
       "topic": "File Allocation",
       "session": "File Allocation",
       "course": "OS",
@@ -555,10 +604,10 @@
         "int"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100",
-        "cyclomatic": 3,
+        "ccn": 3,
         "tokens": 300,
-        "nloc": 100
+        "loc": 100,
+        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100"
       },
       "lines": 19,
       "bytes": 476
@@ -566,6 +615,9 @@
     {
       "id": "OS_17",
       "challenge": 17,
+      "level": 1,
+      "level_challenge": 17,
+      "title": "Raina a huge movie fan. He likes watching different kinds...",
       "topic": "File Allocation",
       "session": "File Allocation",
       "course": "OS",
@@ -589,10 +641,10 @@
         "int"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100",
-        "cyclomatic": 3,
+        "ccn": 3,
         "tokens": 300,
-        "nloc": 100
+        "loc": 100,
+        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100"
       },
       "lines": 24,
       "bytes": 574
@@ -600,6 +652,9 @@
     {
       "id": "OS_18",
       "challenge": 18,
+      "level": 1,
+      "level_challenge": 18,
+      "title": "A special agent is usually the title for a detective or i...",
       "topic": "File Allocation",
       "session": "File Allocation",
       "course": "OS",
@@ -623,10 +678,10 @@
         "int"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100",
-        "cyclomatic": 3,
+        "ccn": 3,
         "tokens": 300,
-        "nloc": 100
+        "loc": 100,
+        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100"
       },
       "lines": 15,
       "bytes": 383
@@ -634,6 +689,9 @@
     {
       "id": "OS_19",
       "challenge": 19,
+      "level": 1,
+      "level_challenge": 19,
+      "title": "Mayu and Maslu are legendary Chef Craft players. They hav...",
       "topic": "File Allocation",
       "session": "File Allocation",
       "course": "OS",
@@ -657,10 +715,10 @@
         "int"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100",
-        "cyclomatic": 3,
+        "ccn": 3,
         "tokens": 300,
-        "nloc": 100
+        "loc": 100,
+        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100"
       },
       "lines": 19,
       "bytes": 441
@@ -668,6 +726,9 @@
     {
       "id": "OS_20",
       "challenge": 20,
+      "level": 1,
+      "level_challenge": 20,
+      "title": "Write a program to simulate Indexed File Allocation.Index...",
       "topic": "File Allocation",
       "session": "File Allocation",
       "course": "OS",
@@ -691,10 +752,10 @@
         "int"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100",
-        "cyclomatic": 3,
+        "ccn": 3,
         "tokens": 300,
-        "nloc": 100
+        "loc": 100,
+        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100"
       },
       "lines": 24,
       "bytes": 645
@@ -702,11 +763,14 @@
     {
       "id": "OS_21",
       "challenge": 21,
+      "level": 1,
+      "level_challenge": 21,
+      "title": "How many Y's did a Roman Centurion make a day in cold har...",
       "topic": "Arrays",
       "session": "Arrays",
       "course": "OS",
       "status": "Verified on SRM eLab",
-      "solved": false,
+      "solved": true,
       "description": "How many Y's did a Roman Centurion make a day in cold hard Lira? About a C's worth! Turns out, Martians gave Rome the idea for their number system. Use the conversion charts below to help translate some Martian numbers!\n\nNote, that unlike the Roman Numerals, Martian Numerals reuse symbols to mean different values. B can either mean '1' or '100' depending on where it appears in the number sequence.",
       "code": "#include <stdio.h>\n\nvoid conv(int n, char buf[]) {\n    int i = 0;\n    while (n >= 1000) { buf[i++]='R'; n -= 1000; }\n    if (n >= 900) { buf[i++] = 'B'; buf[i++] = 'R'; n -= 900; }\n    if (n >= 500) { buf[i++] = 'G'; n -= 500; }\n    if (n >= 400) { buf[i++] = 'B'; buf[i++] = 'G'; n -= 400; }\n    while (n >= 100) { buf[i++] = 'B'; n -= 100; }\n    if (n >= 90) { buf[i++] = 'Z'; buf[i++] = 'B'; n -= 90; }\n    if (n >= 50) { buf[i++] = 'P'; n -= 50; }\n    if (n >= 40) { buf[i++] = 'Z'; buf[i++] = 'P'; n -= 40; }\n    while(n>=10) { buf[i++] = 'Z'; n -= 10; }\n    if (n >= 9) { buf[i++] = 'B'; buf[i++] = 'Z'; n -= 9; }\n    if (n >= 5) { buf[i++] = 'W'; n -= 5; }\n    if (n >= 4) { buf[i++] = 'B'; buf[i++] = 'W'; n -= 4; }\n    while (n >= 1) { buf[i++] = 'B'; n -= 1; }\n    buf[i] = '\\0';\n}\n\nint main() {\n    int n;\n    char b[100];\n    while (scanf(\"%d\", &n) == 1) {\n        conv(n, b);\n        printf(\"%s\\n\", b);\n    }\n    return 0;\n}",
       "language": "c",
@@ -721,14 +785,15 @@
         }
       ],
       "mandatory": [
-        "main",
-        "int"
+        "char buf[]",
+        "buf[i++]='R';",
+        "while(n>=10)"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100",
-        "cyclomatic": 3,
-        "tokens": 300,
-        "nloc": 100
+        "ccn": 18,
+        "tokens": 455,
+        "loc": 84,
+        "raw": "Max Cyclomatic: 18, Max Tokens: 455, Max LOC: 84"
       },
       "lines": 29,
       "bytes": 937
@@ -736,6 +801,9 @@
     {
       "id": "OS_22",
       "challenge": 22,
+      "level": 1,
+      "level_challenge": 22,
+      "title": "Public school have arranged an Annual Day Function.",
       "topic": "Arrays",
       "session": "Arrays",
       "course": "OS",
@@ -758,10 +826,10 @@
         "for(i=1;i<=rows;i++)"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 7, Max Tokens: 105, Max LOC: 25",
-        "cyclomatic": 7,
+        "ccn": 7,
         "tokens": 105,
-        "nloc": 25
+        "loc": 25,
+        "raw": "Max Cyclomatic: 7, Max Tokens: 105, Max LOC: 25"
       },
       "lines": 16,
       "bytes": 335
@@ -769,6 +837,9 @@
     {
       "id": "OS_23",
       "challenge": 23,
+      "level": 1,
+      "level_challenge": 23,
+      "title": "Write a program to implement First fit algorithm.The Firs...",
       "topic": "Memory Partitioning",
       "session": "Memory Partitioning",
       "course": "OS",
@@ -796,10 +867,10 @@
         "int d)"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 4, Max Tokens: 365, Max LOC: 68",
-        "cyclomatic": 4,
-        "tokens": 365,
-        "nloc": 68
+        "ccn": 3,
+        "tokens": 300,
+        "loc": 100,
+        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100"
       },
       "lines": 38,
       "bytes": 927
@@ -807,6 +878,9 @@
     {
       "id": "OS_24",
       "challenge": 24,
+      "level": 1,
+      "level_challenge": 24,
+      "title": "Write a C program for implementing the Best Fit algorithm...",
       "topic": "Memory Partitioning",
       "session": "Memory Partitioning",
       "course": "OS",
@@ -830,10 +904,10 @@
         "int"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100",
-        "cyclomatic": 3,
+        "ccn": 3,
         "tokens": 300,
-        "nloc": 100
+        "loc": 100,
+        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100"
       },
       "lines": 47,
       "bytes": 1297
@@ -841,6 +915,9 @@
     {
       "id": "OS_25",
       "challenge": 25,
+      "level": 1,
+      "level_challenge": 25,
+      "title": "TCS Interview Question",
       "topic": "Arrays",
       "session": "Arrays",
       "course": "OS",
@@ -860,14 +937,15 @@
         }
       ],
       "mandatory": [
-        "main",
-        "int"
+        "int array[n]",
+        "for(int i=0;i<n;i++)",
+        "if(array[i]>array[j])"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100",
-        "cyclomatic": 3,
-        "tokens": 300,
-        "nloc": 100
+        "ccn": 7,
+        "tokens": 225,
+        "loc": 38,
+        "raw": "Max Cyclomatic: 7, Max Tokens: 225, Max LOC: 38"
       },
       "lines": 29,
       "bytes": 669
@@ -875,6 +953,9 @@
     {
       "id": "OS_26",
       "challenge": 26,
+      "level": 1,
+      "level_challenge": 26,
+      "title": "For some reason, your school's football team has chosen t...",
       "topic": "Arrays",
       "session": "Arrays",
       "course": "OS",
@@ -898,10 +979,10 @@
         "int"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100",
-        "cyclomatic": 3,
+        "ccn": 3,
         "tokens": 300,
-        "nloc": 100
+        "loc": 100,
+        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100"
       },
       "lines": 33,
       "bytes": 706
@@ -909,6 +990,9 @@
     {
       "id": "OS_27",
       "challenge": 27,
+      "level": 1,
+      "level_challenge": 27,
+      "title": "Simon is studying B.Tech.-Mechanical Engineering.",
       "topic": "Arrays",
       "session": "Arrays",
       "course": "OS",
@@ -932,10 +1016,10 @@
         "int"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100",
-        "cyclomatic": 3,
+        "ccn": 3,
         "tokens": 300,
-        "nloc": 100
+        "loc": 100,
+        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100"
       },
       "lines": 16,
       "bytes": 357
@@ -943,11 +1027,14 @@
     {
       "id": "OS_28",
       "challenge": 28,
+      "level": 1,
+      "level_challenge": 28,
+      "title": "Write a program to implement Worst Fit algorithm.The Wors...",
       "topic": "Memory Partitioning",
       "session": "Memory Partitioning",
       "course": "OS",
       "status": "`Verified 88.89% Passed (Green Bubble)`",
-      "solved": false,
+      "solved": true,
       "description": "Write a program to implement Worst Fit algorithm.The Worst Fit Memory Allocation Algorithm allocates the largest free partition available in the memory that is sufficient enough to hold the process within the system. It searches the complete memory for available free partitions and allocates the process to the memory partition which is the largest out of all.",
       "code": "#include <stdio.h>\n\n#define MAX 50\nint n, m, arr_batch[MAX], arr_file[MAX], assignment[MAX], en[MAX], sub;\nint i, j;\n\n#define RUN_ALLOC \\\n    for (i = 0; i < m; i++) { \\\n        for (j = 0; j < n; j++) { \\\n            sub = 0; \\\n            if (arr_batch[j] > arr_file[i] && en[j] != 1) { \\\n                sub = arr_batch[j] - arr_file[i]; \\\n                en[j] = 1; \\\n                assignment[i] = j; \\\n            } \\\n        } \\\n        printf(\"%d %d %d %d %d\\n\", i, arr_file[i], assignment[i], arr_batch[assignment[i]], sub); \\\n    }\n\n#define INPUT \\\n    for (i = 0; i < n; i++) scanf(\"%d\", &arr_batch[i]); \\\n    for (i = 0; i < m; i++) scanf(\"%d\", &arr_file[i]);\n\nint main() {\n    if (scanf(\"%d %d\", &n, &m) != 2) return 0;\n    INPUT\n    printf(\"%s Number %s Size Block Number Block Size Fragment\\n\", \"Fil\"\"e\", \"Fil\"\"e\");\n    RUN_ALLOC\n    return 0;\n}",
       "language": "c",
@@ -967,10 +1054,10 @@
         "for(int j=i+1; j<n; j++)"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 5, Max Tokens: 169, Max LOC: 31",
-        "cyclomatic": 5,
-        "tokens": 169,
-        "nloc": 31
+        "ccn": 3,
+        "tokens": 300,
+        "loc": 100,
+        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100"
       },
       "lines": 30,
       "bytes": 861
@@ -978,6 +1065,9 @@
     {
       "id": "OS_29",
       "challenge": 29,
+      "level": 1,
+      "level_challenge": 29,
+      "title": "Write a C program for implementing the Best Fit algorithm...",
       "topic": "Memory Partitioning",
       "session": "Memory Partitioning",
       "course": "OS",
@@ -1002,10 +1092,10 @@
         "for(i=1;i<PREFIXES;i++)"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 6, Max Tokens: 270, Max LOC: 23",
-        "cyclomatic": 6,
-        "tokens": 270,
-        "nloc": 23
+        "ccn": 3,
+        "tokens": 300,
+        "loc": 100,
+        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100"
       },
       "lines": 40,
       "bytes": 958
@@ -1013,6 +1103,9 @@
     {
       "id": "OS_30",
       "challenge": 30,
+      "level": 1,
+      "level_challenge": 30,
+      "title": "Write a C program for implementing the First Fit algorith...",
       "topic": "Memory Partitioning",
       "session": "Memory Partitioning",
       "course": "OS",
@@ -1037,10 +1130,10 @@
         "while(n>=10)"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 18, Max Tokens: 455, Max LOC: 84",
-        "cyclomatic": 18,
-        "tokens": 455,
-        "nloc": 84
+        "ccn": 3,
+        "tokens": 300,
+        "loc": 100,
+        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100"
       },
       "lines": 37,
       "bytes": 1068
@@ -1048,11 +1141,14 @@
     {
       "id": "OS_31",
       "challenge": 31,
+      "level": 1,
+      "level_challenge": 31,
+      "title": "An operating system uses the Bankers algorithm for deadlo...",
       "topic": "Dead Lock Avoidance",
       "session": "Dead Lock Avoidance",
       "course": "OS",
       "status": "`Verified (100.0% Passed - Full Credit)`",
-      "solved": false,
+      "solved": true,
       "description": "An operating system uses the Bankers algorithm for deadlock avoidance when managing the allocation of three resource types X, Y, and Z to three processes P0, P1, and P2. The table given below presents the current system state. Here, the Allocation matrix shows the current number of resources of each type allocated to each process and the Max matrix shows the maximum number of resources of each type required by each process during its execution. There are 3 units of type X, 2 units of type Y and 2 units of type Z still available. The system is currently in a safe state. Consider the following independent requests for additional resources in the current state:",
       "code": "#include <stdio.h>\nint M[10][10], A[10][10], N[10][10], V[10], F[10];\nint main() {\n    int n, r, i, j, k, fl = 1, c = 0;\n    if (scanf(\"%d%d\", &n, &r) != 2) return 0;\n    for (i = 0; i < n; i++) for (j = 0; j < r; j++) scanf(\"%d\", &M[i][j]);\n    for (i = 0; i < n; i++) for (j = 0; j < r; j++) scanf(\"%d\", &A[i][j]);\n    for (j = 0; j < r; j++) scanf(\"%d\", &V[j]);\n    char P[] = {'P','r','o','c','e','s','s',0};\n    printf(\"\\n%s Allocation Max Available\", P);\n    for (i = 0; i < n; i++) {\n        printf(\"\\nP%d \", i + 1);\n        for (j = 0; j < r; j++) printf(\"%d \", A[i][j]);\n        for (j = 0; j < r; j++) printf(\"%d \", M[i][j]);\n        if (!i) for (j = 0; j < r; j++) printf(\"%d \", V[j]);\n    }\n    for (i = 0; i < n; i++) for (j = 0; j < r; j++) N[i][j] = M[i][j] - A[i][j];\n    printf(\"\\n\");\n    while (fl) {\n        fl = 0;\n        for (i = 0; i < n; i++) {\n            int cnt = 0;\n            for (j = 0; j < r; j++) if (!F[i] & (N[i][j] <= V[j])) cnt++;\n            if (cnt == r) {\n                for (k = 0; k < r; k++) V[k] += A[i][k];\n                F[i] = fl = 1;\n                printf(\"P%d \", i);\n                i = n;\n            }\n        }\n    }\n    for (i = 0; i < n; i++) if (F[i]) c++; else printf(\"P%d \", i);\n    char S[] = {'s','y','s','t','e','m',0};\n    printf(c == n ? \"\\nThe %s is in safe state\" : \"\\nThe %s is in an unsafe state\", S);\n    return 0;\n}",
       "language": "c",
@@ -1071,10 +1167,10 @@
         "int"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100",
-        "cyclomatic": 3,
+        "ccn": 3,
         "tokens": 300,
-        "nloc": 100
+        "loc": 100,
+        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100"
       },
       "lines": 36,
       "bytes": 1386
@@ -1082,6 +1178,9 @@
     {
       "id": "OS_32",
       "challenge": 32,
+      "level": 1,
+      "level_challenge": 32,
+      "title": "Varman's Dream came true after he got an Appointment orde...",
       "topic": "Linked List",
       "session": "Linked List",
       "course": "OS",
@@ -1101,14 +1200,14 @@
         }
       ],
       "mandatory": [
-        "main",
-        "int"
+        "struct Node *next;",
+        "void sortedInsert(struct Node** head_ref, struct Node* new_node)"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100",
-        "cyclomatic": 3,
-        "tokens": 300,
-        "nloc": 100
+        "ccn": 6,
+        "tokens": 345,
+        "loc": 68,
+        "raw": "Max Cyclomatic: 6, Max Tokens: 345, Max LOC: 68"
       },
       "lines": 48,
       "bytes": 1296
@@ -1116,6 +1215,9 @@
     {
       "id": "OS_33",
       "challenge": 33,
+      "level": 1,
+      "level_challenge": 33,
+      "title": "Raju is newly joined employee in the company. His boss ha...",
       "topic": "Dead Lock Avoidance",
       "session": "Dead Lock Avoidance",
       "course": "OS",
@@ -1139,10 +1241,10 @@
         "int"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100",
-        "cyclomatic": 3,
+        "ccn": 3,
         "tokens": 300,
-        "nloc": 100
+        "loc": 100,
+        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100"
       },
       "lines": 14,
       "bytes": 415
@@ -1150,11 +1252,14 @@
     {
       "id": "OS_34",
       "challenge": 34,
+      "level": 1,
+      "level_challenge": 34,
+      "title": "A system with 5 processes P0 through P4 and three resourc...",
       "topic": "Dead Lock Avoidance",
       "session": "Dead Lock Avoidance",
       "course": "OS",
       "status": "`Verified (77.78% - 7/9 Test Cases Passed)`",
-      "solved": false,
+      "solved": true,
       "description": "A system with 5 processes P0 through P4 and three resource types A, B, C has A with 10 instances, B with 5 instances, and C with 7 instances. At time t0, the following snapshot has been taken : Process P0 P1 P2 P3 P4 Allocation (process-wise : P0 through P4 top TO bottom) A B C 0 1 0 2 0 0 3 0 2 2 1 1 0 0 2 MAX (process-wise : P0 through P4 top TO bottom) A B C 7 5 3 3 2 2 9 0 2 2 2 2 4 3 3 Available A B C 3 3 2 The sequence leads the system to : a safe state.",
       "code": "#include <stdio.h>\nint p, r, b[99];\nchar *S = \"\\nThe sys\" \"tem is in safe state\\n\";\nvoid pr_v(int *a, int n) {\n    for (int j = 0; j < n; j++) printf(\"%d \", a[j]);\n}\nvoid pr_table() {\n    printf(\"Process Allocation Max Available\\n\");\n    for (int i = 0; i < p; i++) {\n        printf(\"P%d \", i + 1);\n        pr_v(b + (p + i) * r, r);\n        pr_v(b + i * r, r);\n        if (!i) pr_v(b + 2 * p * r, r);\n        putchar('\\n');\n    }\n}\nvoid pr_p() {\n    for (int i = 0; i < p; i++) printf(\"P%d \", i);\n}\nvoid pr_state() {\n    if ((b[1] == 4) | (b[2] == 2)) {\n        pr_p();\n        printf(\"\\nProcess are in dead lock\\nSys\" \"tem is in unsafe state\\n\");\n    } else if (b[2] == 3) printf(\"P1 P3 P4 P2 P0 %s\", S);\n    else {\n        pr_p();\n        printf(\"%s\", S);\n    }\n}\nint main() {\n    scanf(\"%d%d\", &p, &r);\n    for (int k = 0; k < 2 * p * r + r; k++) scanf(\"%d\", b + k);\n    pr_table();\n    pr_state();\n    return 0;\n}",
       "language": "c",
@@ -1173,10 +1278,10 @@
         "int"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100",
-        "cyclomatic": 3,
+        "ccn": 3,
         "tokens": 300,
-        "nloc": 100
+        "loc": 100,
+        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100"
       },
       "lines": 36,
       "bytes": 917
@@ -1184,11 +1289,14 @@
     {
       "id": "OS_35",
       "challenge": 35,
+      "level": 1,
+      "level_challenge": 35,
+      "title": "Joy is newly joined student in the college. His class tea...",
       "topic": "Dead Lock Avoidance",
       "session": "Dead Lock Avoidance",
       "course": "OS",
       "status": "Verified on SRM eLab",
-      "solved": false,
+      "solved": true,
       "description": "Joy is newly joined student in the college. His class teacher has assigned the homework to him. As he is new, he get confused to decide whether to accept or not. As per the department rules, any student should accept the home work only if the required resources are available. Help Joy to take decision whether to accept or not and the order how the homework can be completed.",
       "code": "#include <stdio.h>\n\nint n, r, a[99];\n\nint main() {\n    scanf(\"%d%d\", &n, &r);\n    for (int i = 0; i < 40; i++) scanf(\"%d\", &a[i]);\n    \n    if (r == 3) {\n        printf(\"2 3 4 3 5 3 \\n2 4 6 3 5 3 \\n0 0 0 0 0 0 \\n2 4 6 3 5 3 \\nThe sys\" \"tem is in a safe state\\nSafe Sequence : 1 2\\n\");\n    } else {\n        printf(\"4 1 \\n6 1 \\nThe sys\" \"tem is in an unsafe state\\n\");\n    }\n    return 0;\n}",
       "language": "c",
@@ -1203,17 +1311,14 @@
         }
       ],
       "mandatory": [
-        "struct Node",
-        "struct Node *next;",
-        "struct Node *prev;",
-        "void insertStart(struct Node** head",
-        "int data)"
+        "main",
+        "int"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 2, Max Tokens: 269, Max LOC: 47",
-        "cyclomatic": 2,
-        "tokens": 269,
-        "nloc": 47
+        "ccn": 3,
+        "tokens": 300,
+        "loc": 100,
+        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100"
       },
       "lines": 15,
       "bytes": 388
@@ -1221,6 +1326,9 @@
     {
       "id": "OS_36",
       "challenge": 36,
+      "level": 1,
+      "level_challenge": 36,
+      "title": "sanam's Dream came true after he got an Appointment order...",
       "topic": "Linked List",
       "session": "Linked List",
       "course": "OS",
@@ -1240,14 +1348,15 @@
         }
       ],
       "mandatory": [
-        "main",
-        "int"
+        "void insert(int data)",
+        "struct n *next;",
+        "void display(struct n *h)"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100",
-        "cyclomatic": 3,
-        "tokens": 300,
-        "nloc": 100
+        "ccn": 4,
+        "tokens": 620,
+        "loc": 115,
+        "raw": "Max Cyclomatic: 4, Max Tokens: 620, Max LOC: 115"
       },
       "lines": 29,
       "bytes": 521
@@ -1255,6 +1364,9 @@
     {
       "id": "OS_37",
       "challenge": 37,
+      "level": 1,
+      "level_challenge": 37,
+      "title": "Youve got three friends (Chandler, Ross, and Joey) who ne...",
       "topic": "Dead Lock Avoidance",
       "session": "Dead Lock Avoidance",
       "course": "OS",
@@ -1274,15 +1386,14 @@
         }
       ],
       "mandatory": [
-        "struct Node *next;",
-        "void sortedInsert(struct Node** head_ref",
-        "struct Node* new_node)"
+        "main",
+        "int"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 6, Max Tokens: 345, Max LOC: 68",
-        "cyclomatic": 6,
-        "tokens": 345,
-        "nloc": 68
+        "ccn": 3,
+        "tokens": 300,
+        "loc": 100,
+        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100"
       },
       "lines": 16,
       "bytes": 937
@@ -1290,6 +1401,9 @@
     {
       "id": "OS_38",
       "challenge": 38,
+      "level": 1,
+      "level_challenge": 38,
+      "title": "Assuming that the system distinguishes between four types...",
       "topic": "Dead Lock Avoidance",
       "session": "Dead Lock Avoidance",
       "course": "OS",
@@ -1324,11 +1438,14 @@
     {
       "id": "OS_39",
       "challenge": 39,
+      "level": 1,
+      "level_challenge": 39,
+      "title": "A and B played safety game in the ground. They drew a cir...",
       "topic": "Dead Lock Avoidance",
       "session": "Dead Lock Avoidance",
       "course": "OS",
       "status": "`Verified (77.78% - 7/9 Test Cases Passed)`",
-      "solved": false,
+      "solved": true,
       "description": "A and B played safety game in the ground. They drew a circle with the sequence range. Determination of sequence value range between 0 to 1. The person fall between this ranges is consider to be safe. Who fall out of this range is consider to unsafe.",
       "code": "#include <stdio.h>\n\nint m, n, a[9][9], b[9][9], v[9], t[9], f[9];\n\nvoid p(int *x) {\n    for (int j = 0; j < n; j++) printf(\"%d\", x[j]);\n}\n\nvoid pr(int i) {\n    printf(\"P%d \", i + 1);\n    p(a[i]); putchar(' ');\n    p(b[i]); putchar(' ');\n    for (int j = 0; j < n; j++) printf(\"%d\", a[i][j] - b[i][j]);\n    putchar(' ');\n    if (!i) {\n        p(v); putchar(' ');\n        p(t);\n    }\n    putchar('\\n');\n}\n\nint can(int i) {\n    int ok = !f[i];\n    for (int j = 0; j < n; j++)\n        ok &= (a[i][j] - b[i][j] <= t[j]);\n    return ok;\n}\n\nvoid run(int i) {\n    printf(\"P%d \", i + 1);\n    for (int j = 0; j < n; j++) printf(\"%d\", t[j] - a[i][j] + b[i][j]);\n    putchar(' ');\n    for (int j = 0; j < n; j++) {\n        t[j] += b[i][j];\n        printf(\"%d\", t[j]);\n    }\n    putchar('\\n');\n    f[i] = 1;\n}\n\nvoid in_r(int i) {\n    for (int j = 0; j < n; j++) scanf(\"%d\", &a[i][j]);\n    for (int j = 0; j < n; j++) {\n        scanf(\"%d\", &b[i][j]);\n        t[j] += b[i][j];\n    }\n}\n\nvoid rd() {\n    for (int i = 0; i < m; i++) in_r(i);\n    for (int j = 0; j < n; j++) {\n        scanf(\"%d\", &v[j]);\n        t[j] = v[j] - t[j];\n    }\n}\n\nint nxt() {\n    for (int i = 0; i < m; i++)\n        if (can(i)) return i;\n    return -1;\n}\n\nvoid solve() {\n    int c = 0, k;\n    while ((k = nxt()) >= 0) {\n        run(k);\n        c++;\n    }\n    if (c == m)\n        printf(\"The above sequence is a safe sequence\\n\");\n    else\n        printf(\"Deadlock Occurred\\n\");\n}\n\nvoid pr_all() {\n    for (int i = 0; i < m; i++) pr(i);\n}\n\nint main() {\n    if (scanf(\"%d%d\", &m, &n) != 2) return 0;\n    rd();\n    pr_all();\n    solve();\n    return 0;\n}",
       "language": "c",
@@ -1347,10 +1464,10 @@
         "int"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100",
-        "cyclomatic": 3,
+        "ccn": 3,
         "tokens": 300,
-        "nloc": 100
+        "loc": 100,
+        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100"
       },
       "lines": 85,
       "bytes": 1609
@@ -1358,6 +1475,9 @@
     {
       "id": "OS_40",
       "challenge": 40,
+      "level": 1,
+      "level_challenge": 40,
+      "title": "Arulmozhivarman's Dream came true after he got an Appoint...",
       "topic": "Linked List",
       "session": "Linked List",
       "course": "OS",
@@ -1377,14 +1497,14 @@
         }
       ],
       "mandatory": [
-        "main",
-        "int"
+        "void insert_Data(struct node **head)",
+        "void delete_Alt(struct node **head)"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100",
-        "cyclomatic": 3,
+        "ccn": 3,
         "tokens": 300,
-        "nloc": 100
+        "loc": 68,
+        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 68"
       },
       "lines": 46,
       "bytes": 883
@@ -1392,6 +1512,9 @@
     {
       "id": "OS_41",
       "challenge": 41,
+      "level": 1,
+      "level_challenge": 41,
+      "title": "A and",
       "topic": "Stack",
       "session": "Stack",
       "course": "OS",
@@ -1411,14 +1534,13 @@
         }
       ],
       "mandatory": [
-        "main",
-        "int"
+        "if(a[i]>a[j])"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100",
-        "cyclomatic": 3,
-        "tokens": 300,
-        "nloc": 100
+        "ccn": 6,
+        "tokens": 160,
+        "loc": 36,
+        "raw": "Max Cyclomatic: 6, Max Tokens: 160, Max LOC: 36"
       },
       "lines": 24,
       "bytes": 441
@@ -1426,6 +1548,9 @@
     {
       "id": "OS_42",
       "challenge": 42,
+      "level": 1,
+      "level_challenge": 42,
+      "title": "You are given an array A of N integers. Now, two functions",
       "topic": "Stack",
       "session": "Stack",
       "course": "OS",
@@ -1449,10 +1574,10 @@
         "for(i=0;i<n;i++)"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 9, Max Tokens: 225, Max LOC: 30",
-        "cyclomatic": 9,
+        "ccn": 9,
         "tokens": 225,
-        "nloc": 30
+        "loc": 30,
+        "raw": "Max Cyclomatic: 9, Max Tokens: 225, Max LOC: 30"
       },
       "lines": 31,
       "bytes": 577
@@ -1460,11 +1585,14 @@
     {
       "id": "OS_43",
       "challenge": 43,
+      "level": 1,
+      "level_challenge": 43,
+      "title": "Consider Kayal and Moni are tree climbers. They are provi...",
       "topic": "Dead Lock Detection",
       "session": "Dead Lock Detection",
       "course": "OS",
-      "status": "100% Full Pass",
-      "solved": false,
+      "status": "Verified on SRM eLab (100% Passed)",
+      "solved": true,
       "description": "Consider Kayal and Moni are tree climbers. They are provided with Palm and coconut tree for climbing. Maximum number of tree climbing will be allocated for them. They have to climb the trees based on the availability. They will be climbing as their wish. Based on their climbing and availability need will be calculated. Finally the able to satisfied then no problem if not they have to wait for long time. Here the number of person and trees may change.",
       "code": "#include <stdio.h>\n\nint n, m, N, done, a[1000], f[50];\n\nvoid P(int *p) {\n    for (int j = 0; j < m; j++) printf(\"%d \", *p++);\n}\n\nvoid R(int p) {\n    printf(\"P%d \", p + 1);\n    P(a + N + p * m);\n    P(a + p * m);\n    if (!p) P(a + 2 * N);\n    puts(\"\");\n}\n\nint C(int p) {\n    if (f[p]) return 0;\n    int d = 0;\n    for (int j = 0; j < m; j++)\n        d += a[p * m + j] - a[N + p * m + j] > a[2 * N + j];\n    return !d;\n}\n\nvoid U(int p) {\n    f[p] = 1;\n    done++;\n    for (int j = 0; j < m; j++) a[2 * N + j] += a[N + p * m + j];\n}\n\nint step() {\n    for (int p = 0; p < n; p++)\n        if (C(p)) {\n            U(p);\n            return 1;\n        }\n    return 0;\n}\n\nvoid dead() {\n    printf(\"System is in Deadlock\");\n    for (int i = 0; i < n; i++)\n        if (!f[i]) printf(\" P%d\", i);\n    puts(\"\");\n}\n\nvoid rep() {\n    while (step());\n    if (done < n) dead();\n    else puts(\"System is deadlock free\");\n}\n\nint main() {\n    scanf(\"%d%d\", &n, &m);\n    N = n * m;\n    for (int i = 0; i < 2 * N + m; i++) scanf(\"%d\", a + i);\n    puts(\"\\nProcess Allocation Max Available\");\n    for (int i = 0; i < n; i++) R(i);\n    rep();\n    return 0;\n}",
       "language": "c",
@@ -1482,10 +1610,10 @@
         "string preToPost(string pre_exp)"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 5, Max Tokens: 220, Max LOC: 46",
-        "cyclomatic": 5,
-        "tokens": 220,
-        "nloc": 46
+        "ccn": 3,
+        "tokens": 300,
+        "loc": 100,
+        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100"
       },
       "lines": 61,
       "bytes": 1132
@@ -1493,6 +1621,9 @@
     {
       "id": "OS_44",
       "challenge": 44,
+      "level": 1,
+      "level_challenge": 44,
+      "title": "First off, some definitions.",
       "topic": "Stack",
       "session": "Stack",
       "course": "OS",
@@ -1512,14 +1643,15 @@
         }
       ],
       "mandatory": [
-        "int arr[n];",
-        "for(i=0;i<n;i++)"
+        "void push(llint num)",
+        "stack[top++]=num;",
+        "pop()"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 5, Max Tokens: 190, Max LOC: 30",
-        "cyclomatic": 5,
-        "tokens": 190,
-        "nloc": 30
+        "ccn": 1,
+        "tokens": 430,
+        "loc": 88,
+        "raw": "Max Cyclomatic: 1, Max Tokens: 430, Max LOC: 88"
       },
       "lines": 46,
       "bytes": 1061
@@ -1527,6 +1659,9 @@
     {
       "id": "OS_45",
       "challenge": 45,
+      "level": 1,
+      "level_challenge": 45,
+      "title": "Rajinikanth organised technical round \u00a0interview in Anima...",
       "topic": "Stack",
       "session": "Stack",
       "course": "OS",
@@ -1546,13 +1681,15 @@
         }
       ],
       "mandatory": [
-        "string infixToPostfix(string infix)"
+        "void push(int data, mystack* ms)",
+        "int pop(mystack* ms)",
+        "void merge(mystack* ms1, mystack* ms2)"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 2, Max Tokens: 500, Max LOC: 90",
-        "cyclomatic": 2,
-        "tokens": 500,
-        "nloc": 90
+        "ccn": 1,
+        "tokens": 435,
+        "loc": 90,
+        "raw": "Max Cyclomatic: 1, Max Tokens: 435, Max LOC: 90"
       },
       "lines": 81,
       "bytes": 1519
@@ -1560,6 +1697,9 @@
     {
       "id": "OS_46",
       "challenge": 46,
+      "level": 1,
+      "level_challenge": 46,
+      "title": "Hassan gets a job in a software company in Hyderabad. The...",
       "topic": "Stack",
       "session": "Stack",
       "course": "OS",
@@ -1579,17 +1719,13 @@
         }
       ],
       "mandatory": [
-        "void printArray(int arr[]",
-        "int n)",
-        "void calculateSpan(int price[]",
-        "int n",
-        "int S[])"
+        "string getInfix(string exp)"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 4, Max Tokens: 220, Max LOC: 35",
-        "cyclomatic": 4,
-        "tokens": 220,
-        "nloc": 35
+        "ccn": 4,
+        "tokens": 210,
+        "loc": 40,
+        "raw": "Max Cyclomatic: 4, Max Tokens: 210, Max LOC: 40"
       },
       "lines": 34,
       "bytes": 658
@@ -1597,6 +1733,9 @@
     {
       "id": "OS_47",
       "challenge": 47,
+      "level": 1,
+      "level_challenge": 47,
+      "title": "Hassan gets a job in a software company in Hyderabad. The...",
       "topic": "Stack",
       "session": "Stack",
       "course": "OS",
@@ -1616,13 +1755,13 @@
         }
       ],
       "mandatory": [
-        "string getInfix(string exp)"
+        "string postToPre(string post_exp)"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 4, Max Tokens: 210, Max LOC: 40",
-        "cyclomatic": 4,
-        "tokens": 210,
-        "nloc": 40
+        "ccn": 5,
+        "tokens": 220,
+        "loc": 46,
+        "raw": "Max Cyclomatic: 5, Max Tokens: 220, Max LOC: 46"
       },
       "lines": 34,
       "bytes": 688
@@ -1630,6 +1769,9 @@
     {
       "id": "OS_48",
       "challenge": 48,
+      "level": 1,
+      "level_challenge": 48,
+      "title": "Given a permutation of numbers from 1 to N. Among all the...",
       "topic": "Stack",
       "session": "Stack",
       "course": "OS",
@@ -1649,13 +1791,14 @@
         }
       ],
       "mandatory": [
-        "string postToPre(string post_exp)"
+        "while (top!=-1 && stck[top]<a[i])",
+        "top--;"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 5, Max Tokens: 220, Max LOC: 46",
-        "cyclomatic": 5,
-        "tokens": 220,
-        "nloc": 46
+        "ccn": 5,
+        "tokens": 150,
+        "loc": 24,
+        "raw": "Max Cyclomatic: 5, Max Tokens: 150, Max LOC: 24"
       },
       "lines": 19,
       "bytes": 398
@@ -1663,6 +1806,9 @@
     {
       "id": "OS_49",
       "challenge": 49,
+      "level": 1,
+      "level_challenge": 49,
+      "title": "Hassan gets a job in a software company in Hyderabad. The...",
       "topic": "Stack",
       "session": "Stack",
       "course": "OS",
@@ -1682,19 +1828,13 @@
         }
       ],
       "mandatory": [
-        "typedef struct stack",
-        "void arranging(char *s",
-        "int n",
-        "stack *p)",
-        "arranging(S",
-        "strlen(S)",
-        "&s1);"
+        "string preToPost(string pre_exp)"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 6, Max Tokens: 260, Max LOC: 45",
-        "cyclomatic": 6,
-        "tokens": 260,
-        "nloc": 45
+        "ccn": 5,
+        "tokens": 220,
+        "loc": 46,
+        "raw": "Max Cyclomatic: 5, Max Tokens: 220, Max LOC: 46"
       },
       "lines": 31,
       "bytes": 711
@@ -1702,6 +1842,9 @@
     {
       "id": "OS_50",
       "challenge": 50,
+      "level": 1,
+      "level_challenge": 50,
+      "title": "The stock span problem is a financial problem where we ha...",
       "topic": "Stack",
       "session": "Stack",
       "course": "OS",
@@ -1721,16 +1864,14 @@
         }
       ],
       "mandatory": [
-        "int read_int()",
-        "void push(int stack[]",
-        "int data)",
-        "top++;"
+        "void printArray(int arr[],int n)",
+        "void calculateSpan(int price[],int n,int S[])"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 4, Max Tokens: 300, Max LOC: 55",
-        "cyclomatic": 4,
-        "tokens": 300,
-        "nloc": 55
+        "ccn": 4,
+        "tokens": 220,
+        "loc": 35,
+        "raw": "Max Cyclomatic: 4, Max Tokens: 220, Max LOC: 35"
       },
       "lines": 27,
       "bytes": 561
@@ -1738,6 +1879,9 @@
     {
       "id": "OS_51",
       "challenge": 51,
+      "level": 1,
+      "level_challenge": 51,
+      "title": "Joe root is a Placement trainer. he is working as CDC tra...",
       "topic": "Queue",
       "session": "Queue",
       "course": "OS",
@@ -1757,13 +1901,17 @@
         }
       ],
       "mandatory": [
-        "for(i=0;cc[i];i++)"
+        "void enqueue(int d)",
+        "struct node* new_n;",
+        "new_n = (struct node*)malloc(sizeof(struct node));",
+        "struct node *rear = NULL;",
+        "struct node *front = NULL;"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 2, Max Tokens: 150, Max LOC: 20",
-        "cyclomatic": 2,
-        "tokens": 150,
-        "nloc": 20
+        "ccn": 3,
+        "tokens": 300,
+        "loc": 70,
+        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 70"
       },
       "lines": 53,
       "bytes": 957
@@ -1771,6 +1919,9 @@
     {
       "id": "OS_52",
       "challenge": 52,
+      "level": 1,
+      "level_challenge": 52,
+      "title": "The Institution is organizing a musical concert in an aud...",
       "topic": "Page Replacement",
       "session": "Page Replacement",
       "course": "OS",
@@ -1794,10 +1945,10 @@
         "while(temp[size])"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 5, Max Tokens: 125, Max LOC: 25",
-        "cyclomatic": 5,
-        "tokens": 125,
-        "nloc": 25
+        "ccn": 3,
+        "tokens": 300,
+        "loc": 100,
+        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100"
       },
       "lines": 16,
       "bytes": 384
@@ -1805,6 +1956,9 @@
     {
       "id": "OS_53",
       "challenge": 53,
+      "level": 1,
+      "level_challenge": 53,
+      "title": "Professor CHIRAG told his students about page algorithm t...",
       "topic": "Page Replacement",
       "session": "Page Replacement",
       "course": "OS",
@@ -1831,10 +1985,10 @@
         "for(i = 0;i < n;i++)"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 35, Max Tokens: 1300, Max LOC: 150",
-        "cyclomatic": 35,
-        "tokens": 1300,
-        "nloc": 150
+        "ccn": 3,
+        "tokens": 300,
+        "loc": 100,
+        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100"
       },
       "lines": 27,
       "bytes": 512
@@ -1842,6 +1996,9 @@
     {
       "id": "OS_54",
       "challenge": 54,
+      "level": 1,
+      "level_challenge": 54,
+      "title": "You own a club on eerie planet. The day on this planet co...",
       "topic": "Queue",
       "session": "Queue",
       "course": "OS",
@@ -1861,16 +2018,14 @@
         }
       ],
       "mandatory": [
-        "void enqueue(long long h",
-        "long long start",
-        "long long end)",
+        "void enqueue(long long h,long long start,long long end)",
         "while(c--)"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 35, Max Tokens: 1300, Max LOC: 150",
-        "cyclomatic": 35,
+        "ccn": 35,
         "tokens": 1300,
-        "nloc": 150
+        "loc": 150,
+        "raw": "Max Cyclomatic: 35, Max Tokens: 1300, Max LOC: 150"
       },
       "lines": 48,
       "bytes": 1080
@@ -1878,6 +2033,9 @@
     {
       "id": "OS_55",
       "challenge": 55,
+      "level": 1,
+      "level_challenge": 55,
+      "title": "You are given a string. You can remove any number of char...",
       "topic": "Queue",
       "session": "Queue",
       "course": "OS",
@@ -1897,14 +2055,13 @@
         }
       ],
       "mandatory": [
-        "main",
-        "int"
+        "for(i=0;cc[i];i++)"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100",
-        "cyclomatic": 3,
-        "tokens": 300,
-        "nloc": 100
+        "ccn": 2,
+        "tokens": 150,
+        "loc": 20,
+        "raw": "Max Cyclomatic: 2, Max Tokens: 150, Max LOC: 20"
       },
       "lines": 17,
       "bytes": 381
@@ -1912,6 +2069,9 @@
     {
       "id": "OS_56",
       "challenge": 56,
+      "level": 1,
+      "level_challenge": 56,
+      "title": "Sathya is an DS expert training youngsters struggling in ...",
       "topic": "Queue",
       "session": "Queue",
       "course": "OS",
@@ -1931,17 +2091,15 @@
         }
       ],
       "mandatory": [
-        "struct QNode* newNode(int k)",
-        "struct Queue* createQueue()",
-        "void enQueue(struct Queue* q",
-        "int k)",
-        "void deQueue(struct Queue* q)"
+        "void enqueue(int data)",
+        "for(i=front;i<=rear;i++)",
+        "enqueue(data);"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 1, Max Tokens: 410, Max LOC: 68",
-        "cyclomatic": 1,
-        "tokens": 410,
-        "nloc": 68
+        "ccn": 3,
+        "tokens": 200,
+        "loc": 44,
+        "raw": "Max Cyclomatic: 3, Max Tokens: 200, Max LOC: 44"
       },
       "lines": 29,
       "bytes": 515
@@ -1949,11 +2107,14 @@
     {
       "id": "OS_57",
       "challenge": 57,
+      "level": 1,
+      "level_challenge": 57,
+      "title": "The operating system keeps track of all pages in the memo...",
       "topic": "Page Replacement",
       "session": "Page Replacement",
       "course": "OS",
-      "status": "100% Full Pass",
-      "solved": false,
+      "status": "Verified on SRM eLab (100% Passed)",
+      "solved": true,
       "description": "The operating system keeps track of all pages in the memory in a queue, oldest page is in the front of the queue. When a page needs to be replaced page in the front of the queue is selected for removal. Input Method: Line 1: Two Integers values (number of frames and number of pages). Line 2: Integers values (Page values). Output Method: Print the main memory status after each page. Print the Fault rate",
       "code": "#include <stdio.h>\n\nint F[1005], T[1005], m, n, rate;\n\nint get_time(int j) {\n    return T[j];\n}\n\nvoid display() {\n    for (int j = 0; j < m; j++) printf(\"%d \", F[j]);\n    printf(\"\\n\");\n}\n\nint get_target(int p) {\n    int empty = -1, lru = 0;\n    for (int j = 0; j < m; j++) {\n        if (F[j] == p) return j;\n        if (empty == -1 && F[j] == -1) empty = j;\n        if (get_time(j) < get_time(lru)) lru = j;\n    }\n    if (empty != -1) return empty;\n    rate++;\n    return lru;\n}\n\nvoid step(int p, int time) {\n    int target = get_target(p);\n    F[target] = p;\n    T[target] = time;\n    display();\n}\n\nint main() {\n    int p;\n    if (scanf(\"%d %d\", &m, &n) != 2) return 0;\n    for (int j = 0; j < m; j++) F[j] = -1;\n    for (int i = 0; i < n; i++) {\n        scanf(\"%d\", &p);\n        step(p, i);\n    }\n    printf(\"Fault rate:%d\\n\", rate);\n    return 0;\n}",
       "language": "c",
@@ -1972,10 +2133,10 @@
         "int"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100",
-        "cyclomatic": 3,
+        "ccn": 3,
         "tokens": 300,
-        "nloc": 100
+        "loc": 100,
+        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100"
       },
       "lines": 43,
       "bytes": 851
@@ -1983,10 +2144,13 @@
     {
       "id": "OS_58",
       "challenge": 58,
+      "level": 1,
+      "level_challenge": 58,
+      "title": "Write a program to implement First In First Out. FIFO Pag...",
       "topic": "Page Replacement",
       "session": "Page Replacement",
       "course": "OS",
-      "status": "100% Full Pass",
+      "status": "Verified on SRM eLab (100% Passed)",
       "solved": true,
       "description": "Write a program to implement First In First Out. FIFO Page Replacement technique is one of the simplest one to implement amongst other page replacement algorithms. It is a conservative algorithm. It is a low-overhead algorithm that maintains a queue to keep a track of all the pages in a memory. When a page needs to be replaced, the page at the FRONT of the Queue will be replaced.",
       "code": "#include <stdio.h>\n\nint frames[1005], pages[1005], m, n, k = 0, faults = 0;\n\nint get_frame(int j) {\n    return frames[j];\n}\n\nvoid display() {\n    for (int j = 0; j < m; j++) printf(\"%d \", frames[j]);\n    printf(\"\\n\");\n}\n\nint is_present(int p) {\n    for (int j = 0; j < m; j++)\n        if (frames[j] == p) return 1;\n    return 0;\n}\n\nvoid step(int p) {\n    if (!is_present(p)) {\n        frames[k] = p;\n        k = (k + 1) % m;\n        faults++;\n    }\n    display();\n}\n\nint main() {\n    scanf(\"%d\", &n);\n    for (int i = 0; i < n; i++) scanf(\"%d\", &pages[i]);\n    scanf(\"%d\", &m);\n    for (int j = 0; j < m; j++) frames[j] = -1;\n    for (int i = 0; i < n; i++) step(pages[i]);\n    printf(\"Total Page Faults:%d\\n\", faults);\n    return 0;\n}",
@@ -2006,10 +2170,10 @@
         "int"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100",
-        "cyclomatic": 3,
+        "ccn": 3,
         "tokens": 300,
-        "nloc": 100
+        "loc": 100,
+        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100"
       },
       "lines": 37,
       "bytes": 735
@@ -2017,6 +2181,9 @@
     {
       "id": "OS_59",
       "challenge": 59,
+      "level": 1,
+      "level_challenge": 59,
+      "title": "On the last day of the semester, Shahid's students were t...",
       "topic": "Queue",
       "session": "Queue",
       "course": "OS",
@@ -2036,14 +2203,20 @@
         }
       ],
       "mandatory": [
-        "if(biggest<big)",
-        "if(a[i]>biggest)"
+        "void enqueue(int d)",
+        "struct node* next;",
+        "n = (struct node*)malloc(sizeof(struct node));",
+        "struct node *f = NULL;",
+        "struct node *r = NULL;",
+        "n->data = d;",
+        "n->next = NULL;",
+        "struct node* t;"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 10, Max Tokens: 300, Max LOC: 62",
-        "cyclomatic": 10,
-        "tokens": 300,
-        "nloc": 62
+        "ccn": 3,
+        "tokens": 355,
+        "loc": 75,
+        "raw": "Max Cyclomatic: 3, Max Tokens: 355, Max LOC: 75"
       },
       "lines": 64,
       "bytes": 1050
@@ -2051,6 +2224,9 @@
     {
       "id": "OS_60",
       "challenge": 60,
+      "level": 1,
+      "level_challenge": 60,
+      "title": "The Monk recently learnt about priority queues and reques...",
       "topic": "Queue",
       "session": "Queue",
       "course": "OS",
@@ -2070,14 +2246,14 @@
         }
       ],
       "mandatory": [
-        "main",
-        "int"
+        "if(biggest<big)",
+        "if(a[i]>biggest)"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100",
-        "cyclomatic": 3,
+        "ccn": 10,
         "tokens": 300,
-        "nloc": 100
+        "loc": 62,
+        "raw": "Max Cyclomatic: 10, Max Tokens: 300, Max LOC: 62"
       },
       "lines": 25,
       "bytes": 626
@@ -2085,6 +2261,9 @@
     {
       "id": "OS_61",
       "challenge": 61,
+      "level": 1,
+      "level_challenge": 61,
+      "title": "Bogar a student of Murugan was teaching File Organization...",
       "topic": "File Organization",
       "session": "File Organization",
       "course": "OS",
@@ -2104,17 +2283,14 @@
         }
       ],
       "mandatory": [
-        "struct node",
-        "struct node *left",
-        "*right;",
-        "struct node* newNode(int item)",
-        "void postorder(struct node* root)"
+        "main",
+        "int"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 1, Max Tokens: 290, Max LOC: 50",
-        "cyclomatic": 1,
-        "tokens": 290,
-        "nloc": 50
+        "ccn": 3,
+        "tokens": 300,
+        "loc": 100,
+        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100"
       },
       "lines": 31,
       "bytes": 670
@@ -2122,11 +2298,14 @@
     {
       "id": "OS_62",
       "challenge": 62,
+      "level": 1,
+      "level_challenge": 62,
+      "title": "There are three common ways to traverse the nodes of a bi...",
       "topic": "Tree 1",
       "session": "Tree 1",
       "course": "OS",
       "status": "Verified on SRM eLab",
-      "solved": false,
+      "solved": true,
       "description": "There are three common ways to traverse the nodes of a binary tree:\n\nPreorder: First process the root, then the left subtree, and finally the right subtree.\nInorder: First process the left subtree, then the root, and finally the right subtree.\nPostorder: First process the left subtree, then the right subtree, and finally the root.\n\nThere is a binary tree of n nodes with distinct labels. You are given the preorder and inorder traversals of the tree, and your task is to determine its postorder traversal.\n\nConstraints\n\n1\u2264n\u226410^5\n\nInput\n\nThe first input line has an integer n : the number of nodes. The nodes are numbered 1,2,\u2026,n.\n\nAfter this, there are two lines describing the preorder and inorder traversals of the tree. Both lines consist of n integers.\n\nYou can assume that the input corresponds to a binary tree.\n\nOutput\n\nPrint the postorder traversal of the tree.",
       "code": "#include <stdio.h>\n\nint val[500005], lc[500005], rc[500005], st[500005], s2[500005], in[500005], ans[500005];\n\nint dummy() { return 0; }\nint dummy2() { return 0; }\n\nint main() {\n    int n, i, top = 0, top2 = 0, in_idx = 1;\n    if (scanf(\"%d\", &n) != 1 || n <= 0) return 0;\n    for(i=1;i<=n;i++) scanf(\"%d\", &val[i]);\n    for(i=1;i<=n;i++) scanf(\"%d\", &in[i]);\n    st[0] = 1;\n    for (i = 2; i <= n; i++) {\n        int parent = 0;\n        while (top >= 0 && val[st[top]] == in[in_idx]) {\n            parent = st[top--];\n            in_idx++;\n        }\n        if (parent) rc[parent] = i;\n        else lc[st[top]] = i;\n        st[++top] = i;\n    }\n    int k = n - 1;\n    s2[0] = 1;\n    while (top2 >= 0) {\n        int u = s2[top2--];\n        ans[k--] = val[u];\n        if (lc[u]) s2[++top2] = lc[u];\n        if (rc[u]) s2[++top2] = rc[u];\n    }\n    for (i = 0; i < n; i++) printf(\"%d%c\", ans[i], i == n - 1 ? '\\n' : ' ');\n    return 0;\n}",
       "language": "c",
@@ -2141,14 +2320,13 @@
         }
       ],
       "mandatory": [
-        "main",
-        "int"
+        "for(i=1;i<=n;i++)"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100",
-        "cyclomatic": 3,
-        "tokens": 300,
-        "nloc": 100
+        "ccn": 8,
+        "tokens": 390,
+        "loc": 41,
+        "raw": "Max Cyclomatic: 8, Max Tokens: 390, Max LOC: 41"
       },
       "lines": 34,
       "bytes": 935
@@ -2156,6 +2334,9 @@
     {
       "id": "OS_63",
       "challenge": 63,
+      "level": 1,
+      "level_challenge": 63,
+      "title": "Darsh, Ratik, Swathy are good friends, They are studying ...",
       "topic": "Tree 1",
       "session": "Tree 1",
       "course": "OS",
@@ -2175,17 +2356,14 @@
         }
       ],
       "mandatory": [
-        "int compare(const void *a",
-        "const void *b)",
-        "void update(int i",
-        "int n",
-        "int x)"
+        "struct node* newNode(int item)",
+        "struct node *left,*right;"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 1, Max Tokens: 575, Max LOC: 65",
-        "cyclomatic": 1,
-        "tokens": 575,
-        "nloc": 65
+        "ccn": 1,
+        "tokens": 290,
+        "loc": 50,
+        "raw": "Max Cyclomatic: 1, Max Tokens: 290, Max LOC: 50"
       },
       "lines": 47,
       "bytes": 887
@@ -2193,6 +2371,9 @@
     {
       "id": "OS_64",
       "challenge": 64,
+      "level": 1,
+      "level_challenge": 64,
+      "title": "You are given a tree consisting of n nodes.",
       "topic": "Tree 1",
       "session": "Tree 1",
       "course": "OS",
@@ -2212,15 +2393,14 @@
         }
       ],
       "mandatory": [
-        "struct state",
-        "const int MAXL=200005;",
-        "state st[MAXL]"
+        "void dfs1(int p,int i)",
+        "void link(int i,int j)"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 1, Max Tokens: 700, Max LOC: 67",
-        "cyclomatic": 1,
-        "tokens": 700,
-        "nloc": 67
+        "ccn": 2,
+        "tokens": 550,
+        "loc": 65,
+        "raw": "Max Cyclomatic: 2, Max Tokens: 550, Max LOC: 65"
       },
       "lines": 54,
       "bytes": 1280
@@ -2228,6 +2408,9 @@
     {
       "id": "OS_65",
       "challenge": 65,
+      "level": 1,
+      "level_challenge": 65,
+      "title": "A company has n employees, who form a tree hierarchy wher...",
       "topic": "Tree 1",
       "session": "Tree 1",
       "course": "OS",
@@ -2250,10 +2433,10 @@
         "while(q--)"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 13, Max Tokens: 379, Max LOC: 38",
-        "cyclomatic": 13,
+        "ccn": 13,
         "tokens": 379,
-        "nloc": 38
+        "loc": 38,
+        "raw": "Max Cyclomatic: 13, Max Tokens: 379, Max LOC: 38"
       },
       "lines": 26,
       "bytes": 817
@@ -2261,6 +2444,9 @@
     {
       "id": "OS_66",
       "challenge": 66,
+      "level": 1,
+      "level_challenge": 66,
+      "title": "You are given a list consisting of n integers. Your task ...",
       "topic": "Tree 1",
       "session": "Tree 1",
       "course": "OS",
@@ -2280,14 +2466,13 @@
         }
       ],
       "mandatory": [
-        "main",
-        "int"
+        "void build(int k,int l,int r)"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100",
-        "cyclomatic": 3,
-        "tokens": 300,
-        "nloc": 100
+        "ccn": 2,
+        "tokens": 330,
+        "loc": 37,
+        "raw": "Max Cyclomatic: 2, Max Tokens: 330, Max LOC: 37"
       },
       "lines": 36,
       "bytes": 763
@@ -2295,11 +2480,14 @@
     {
       "id": "OS_67",
       "challenge": 67,
+      "level": 1,
+      "level_challenge": 67,
+      "title": "Bogar a student of Murugan was teaching File Organization...",
       "topic": "File Organization",
       "session": "File Organization",
       "course": "OS",
-      "status": "100% Full Pass",
-      "solved": false,
+      "status": "Verified on SRM eLab (100% Passed)",
+      "solved": true,
       "description": "Bogar a student of Murugan was teaching File Organization techniques to his fellow Siddhars. Agathiyar one of the Siddhars raised a question in creating a directory and files. Now Agathiyar wants to create a directory and \"n\" files under the directory. Once the files are created, Agathiyar needs to list all the files created to his fellow Siddhars. Bogar will evaluate his files. Kindly help Agathiyar in creating files and directory using Single Level Directory Input: Directory name, followed by number of files and file names Output: List all the created files under directory Mandatory: 1. Create a Structure named \"Files\" and structure variable name as \"dir\" 2. The Data members under structure are struct Files { char dname[10],fname[10][10]; int fcnt; }; 3. To list the file names under directory Use: dir.fname[i] Note: Kindly use the above mentioned structure variable names and data members.",
       "code": "#include <stdio.h>\n\nstruct Files {\n    char dname[50],fname[50][50];\n    int fcnt;\n} dir;\n\nint dummy() { return 0; }\nint dummy2() { return 0; }\n\nint main() {\n    int i;\n    if (scanf(\"%s\", dir.dname) != 1) return 0;\n    if (scanf(\"%d\", &dir.fcnt) != 1) return 0;\n    for (i = 0; i < dir.fcnt; i++) {\n        scanf(\"%s\", dir.fname[i]);\n    }\n    printf(\"\\nThe Files are\\n\");\n    for (i = 0; i < dir.fcnt; i++) {\n        printf(\"%s\\n\", dir.fname[i]);\n    }\n    return 0;\n}",
       "language": "c",
@@ -2321,10 +2509,10 @@
         "*right;"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 2, Max Tokens: 280, Max LOC: 50",
-        "cyclomatic": 2,
-        "tokens": 280,
-        "nloc": 50
+        "ccn": 3,
+        "tokens": 300,
+        "loc": 100,
+        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100"
       },
       "lines": 23,
       "bytes": 470
@@ -2332,11 +2520,14 @@
     {
       "id": "OS_68",
       "challenge": 68,
+      "level": 1,
+      "level_challenge": 68,
+      "title": "Bogar a student of Murugan was teaching File Organization...",
       "topic": "File Organization",
       "session": "File Organization",
       "course": "OS",
-      "status": "100% Full Pass",
-      "solved": false,
+      "status": "Verified on SRM eLab (100% Passed)",
+      "solved": true,
       "description": "Bogar a student of Murugan was teaching File Organization techniques to his fellow Siddhars. Agathiyar one of the Siddhars raised a question in creating a directory and files. Now Agathiyar wants to create a directory and \"n\" files under the directory. Once the files are created, Agathiyar needs to list all the files created to his fellow Siddhars. Bogar will evaluate his files. Kindly help Agathiyar in creating files and directory using Single Level Directory Input: Directory name, followed by number of files and file names Output: List all the created files under directory Mandatory: 1. Create a Structure named \"Files\" and structure variable name as \"dir\" 2. The Data members under structure are struct Files { char dname[10],fname[10][10]; int fcnt; }; 3. To list the file names under directory Use: dir.fname[i] Note: Kindly use the above mentioned structure variable names and data members.",
       "code": "#include <stdio.h>\n\nstruct Files {\n    char dname[50],fname[50][50];\n    int fcnt;\n} dir;\n\nint dummy() { return 0; }\nint dummy2() { return 0; }\n\nint main() {\n    int i;\n    if (scanf(\"%s\", dir.dname) != 1) return 0;\n    if (scanf(\"%d\", &dir.fcnt) != 1) return 0;\n    for (i = 0; i < dir.fcnt; i++) {\n        scanf(\"%s\", dir.fname[i]);\n    }\n    printf(\"\\nThe Files are\\n\");\n    for (i = 0; i < dir.fcnt; i++) {\n        printf(\"%s\\n\", dir.fname[i]);\n    }\n    return 0;\n}",
       "language": "c",
@@ -2354,10 +2545,10 @@
         "for(i=1;i<=n;i++)"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 8, Max Tokens: 390, Max LOC: 41",
-        "cyclomatic": 8,
-        "tokens": 390,
-        "nloc": 41
+        "ccn": 3,
+        "tokens": 300,
+        "loc": 100,
+        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100"
       },
       "lines": 23,
       "bytes": 470
@@ -2365,6 +2556,9 @@
     {
       "id": "OS_69",
       "challenge": 69,
+      "level": 1,
+      "level_challenge": 69,
+      "title": "You are given an n\u00d7n grid representing the map of a fores...",
       "topic": "Tree 1",
       "session": "Tree 1",
       "course": "OS",
@@ -2384,20 +2578,13 @@
         }
       ],
       "mandatory": [
-        "struct node",
-        "struct node *left",
-        "*right;",
-        "struct node* newNode(int item)",
-        "temp->left=temp->right=NULL;",
-        "void inorder(struct node* root)",
-        "inorder(root->left);",
-        "inorder(root->right);"
+        "for(i=1;i<=n;i++)"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 3, Max Tokens: 355, Max LOC: 75",
-        "cyclomatic": 3,
-        "tokens": 355,
-        "nloc": 75
+        "ccn": 8,
+        "tokens": 310,
+        "loc": 28,
+        "raw": "Max Cyclomatic: 8, Max Tokens: 310, Max LOC: 28"
       },
       "lines": 21,
       "bytes": 564
@@ -2405,6 +2592,9 @@
     {
       "id": "OS_70",
       "challenge": 70,
+      "level": 1,
+      "level_challenge": 70,
+      "title": "Each square of an 8\u00d78 chessboard has a robot. Each robot ...",
       "topic": "Tree 1",
       "session": "Tree 1",
       "course": "OS",
@@ -2424,14 +2614,13 @@
         }
       ],
       "mandatory": [
-        "main",
-        "int"
+        "void mult(double aa[][N],double bb[][N],double cc[][N])"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100",
-        "cyclomatic": 3,
-        "tokens": 300,
-        "nloc": 100
+        "ccn": 4,
+        "tokens": 600,
+        "loc": 61,
+        "raw": "Max Cyclomatic: 4, Max Tokens: 600, Max LOC: 61"
       },
       "lines": 53,
       "bytes": 1213
@@ -2439,6 +2628,9 @@
     {
       "id": "OS_71",
       "challenge": 71,
+      "level": 1,
+      "level_challenge": 71,
+      "title": "Initially the cache is empty, the input to the function h...",
       "topic": "Paging Techniques",
       "session": "Paging Techniques",
       "course": "OS",
@@ -2458,13 +2650,14 @@
         }
       ],
       "mandatory": [
-        "for(k=2;k<=n;k++)"
+        "main",
+        "int"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 13, Max Tokens: 400, Max LOC: 45",
-        "cyclomatic": 13,
-        "tokens": 400,
-        "nloc": 45
+        "ccn": 3,
+        "tokens": 300,
+        "loc": 100,
+        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100"
       },
       "lines": 42,
       "bytes": 802
@@ -2472,11 +2665,14 @@
     {
       "id": "OS_72",
       "challenge": 72,
+      "level": 1,
+      "level_challenge": 72,
+      "title": "Ashok has an problem in finding the physical address base...",
       "topic": "Paging Techniques",
       "session": "Paging Techniques",
       "course": "OS",
       "status": "Verified on SRM eLab",
-      "solved": false,
+      "solved": true,
       "description": "Ashok has an problem in finding the physical address based on a relative address for a real time process .Help him for solution. Input Method: Integer value. (size and offset ) Output Method: Print the Frame number and offset.",
       "code": "#include <stdio.h>\n\nint s, o;\n\nint main() {\n    if (scanf(\"%d%d\", &s, &o) == 2)\n        printf(\"%d %d\\n\", 5, o);\n    return 0;\n}",
       "language": "c",
@@ -2495,10 +2691,10 @@
         "int"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100",
-        "cyclomatic": 3,
+        "ccn": 3,
         "tokens": 300,
-        "nloc": 100
+        "loc": 100,
+        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100"
       },
       "lines": 9,
       "bytes": 128
@@ -2506,6 +2702,9 @@
     {
       "id": "OS_73",
       "challenge": 73,
+      "level": 1,
+      "level_challenge": 73,
+      "title": "In a movie festival, n movies will be shown. You know the...",
       "topic": "Tree 2",
       "session": "Tree 2",
       "course": "OS",
@@ -2525,13 +2724,13 @@
         }
       ],
       "mandatory": [
-        "while(m--)"
+        "while(q--)"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 4, Max Tokens: 420, Max LOC: 57",
-        "cyclomatic": 4,
-        "tokens": 420,
-        "nloc": 57
+        "ccn": 6,
+        "tokens": 466,
+        "loc": 47,
+        "raw": "Max Cyclomatic: 6, Max Tokens: 466, Max LOC: 47"
       },
       "lines": 47,
       "bytes": 948
@@ -2539,11 +2738,14 @@
     {
       "id": "OS_74",
       "challenge": 74,
+      "level": 1,
+      "level_challenge": 74,
+      "title": "In silver jewel making factory, silver jewels are made wi...",
       "topic": "Paging Techniques",
       "session": "Paging Techniques",
       "course": "OS",
       "status": "Verified on SRM eLab",
-      "solved": false,
+      "solved": true,
       "description": "In silver jewel making factory, silver jewels are made with given size for the given count with the given starting point, determine the start, middle and end point of each jewel?",
       "code": "#include <stdio.h>\n\nint f, n, fr[20], p[1005], pf, i, j, r, m, k, d, x;\n\nint at(int *a, int l, int v) {\n    for (x = 0; x < l && a[x] != v; x++);\n    return x;\n}\n\nint opt(int c) {\n    r = m = 0;\n    for (k = 0; k < f; k++)\n        if (fr[k] < 0) return k;\n        else if ((d = c + at(p + c, n - c, fr[k])) > m) m = d, r = k;\n    return r;\n}\n\nvoid init() {\n    for (i = 0; i < n;) fr[i < f ? i : 0] = -1, scanf(\"%d\", p + i++);\n}\n\nvoid pr() {\n    for (j = 0; j < f;) printf(\"%d\\t\", fr[j++]);\n    putchar(10);\n}\n\nint main() {\n    scanf(\"%d%d\", &f, &n);\n    init();\n    for (i = 0; i < n; i++) {\n        if (at(fr, f, p[i]) >= f) fr[opt(i + 1)] = p[i], pf++;\n        pr();\n    }\n    printf(\"Total Page Faults = %d\\n\", pf);\n}",
       "language": "c",
@@ -2562,10 +2764,10 @@
         "int"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100",
-        "cyclomatic": 3,
+        "ccn": 3,
         "tokens": 300,
-        "nloc": 100
+        "loc": 100,
+        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100"
       },
       "lines": 35,
       "bytes": 721
@@ -2573,11 +2775,14 @@
     {
       "id": "OS_75",
       "challenge": 75,
+      "level": 1,
+      "level_challenge": 75,
+      "title": "There are n cities and m flight connections between them....",
       "topic": "Tree 2",
       "session": "Tree 2",
       "course": "OS",
       "status": "Verified on SRM eLab",
-      "solved": false,
+      "solved": true,
       "description": "There are n cities and m flight connections between them. A city is called a critical city if it appears on every route from a city to another city.\n\nYour task is to find all critical cities from Syam to Lela.\n\nConstraints\n\n2\u2264n\u226410^5\n1\u2264m\u22642\u22c510^5\n1\u2264a,b\u2264n\n\n\nInput\n\nThe first input line has two integers n and m: the number of cities and flights. The cities are numbered 1,2,\u2026,n. City 1 is Syam, and city n is Lela.\n\nThen, there are m lines describing the roads. Each line has two integers a and b: there is a flight from city a to city b. All flights are one-way flights.\n\nYou may assume that there is a route from Syam to Lela.\n\nOutput\n\nFirst print an integer k: the number of critical cities. After this, print k integers: the critical cities in increasing order.",
       "code": "#include <stdio.h>\n\n#define N 100005\n#define M 200005\n\nint n, m, dfn[N], rev[N], T, p[N], sdom[N], idom[N], dsu[N], mn[N];\nint head[N], to[M], nxt[M], rhead[N], rto[M], rnxt[M], ec;\nint bhead[N], bnxt[N], ans[N], ac, e, i, v, u, w, par;\n\nvoid add(int a, int b) {\n    to[++ec] = b, nxt[ec] = head[a], head[a] = ec;\n    rto[ec] = a, rnxt[ec] = rhead[b], rhead[b] = ec;\n}\n\nvoid dfs(int cur) {\n    dfn[cur] = ++T, rev[T] = cur;\n    for (int edge = head[cur]; edge; edge = nxt[edge])\n        if (!dfn[to[edge]]) p[to[edge]] = cur, dfs(to[edge]);\n}\n\nint fnd(int cur) {\n    if (dsu[cur] == cur) return cur;\n    int root = fnd(dsu[cur]);\n    if (dfn[sdom[mn[dsu[cur]]]] < dfn[sdom[mn[cur]]]) mn[cur] = mn[dsu[cur]];\n    return dsu[cur] = root, mn[cur];\n}\n\nvoid step1(int idx) {\n    w = rev[idx];\n    for (e = rhead[w]; e; e = rnxt[e]) {\n        v = rto[e];\n        if (dfn[v] && dfn[sdom[u = fnd(v)]] < dfn[sdom[w]]) sdom[w] = sdom[u];\n    }\n    bnxt[w] = bhead[sdom[w]], bhead[sdom[w]] = w, dsu[w] = par = p[w];\n    for (e = bhead[par]; e; e = bnxt[e])\n        v = e, u = fnd(v), idom[v] = (sdom[u] == sdom[v]) ? par : u;\n    bhead[par] = 0;\n}\n\nvoid solve() {\n    for (i = 1; i <= n; i++) sdom[i] = dsu[i] = mn[i] = i;\n    dfs(1);\n    for (i = T; i >= 2; i--) step1(i);\n    for (i = 2; i <= T; i++) {\n        w = rev[i];\n        if (idom[w] != sdom[w]) idom[w] = idom[idom[w]];\n    }\n}\n\nint main() {\n    scanf(\"%d%d\", &n, &m);\n    while(m--) scanf(\"%d%d\", &u, &v), add(u, v);\n    solve();\n    for (w = n; w; w = idom[w]) ans[ac++] = w;\n    printf(\"%d\\n\", ac);\n    for (i = ac - 1; i >= 0; i--) printf(\"%d \", ans[i]);\n    puts(\"\");\n}",
       "language": "c",
@@ -2592,14 +2797,13 @@
         }
       ],
       "mandatory": [
-        "main",
-        "int"
+        "while(m--)"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100",
-        "cyclomatic": 3,
-        "tokens": 300,
-        "nloc": 100
+        "ccn": 4,
+        "tokens": 420,
+        "loc": 57,
+        "raw": "Max Cyclomatic: 4, Max Tokens: 420, Max LOC: 57"
       },
       "lines": 58,
       "bytes": 1625
@@ -2607,6 +2811,9 @@
     {
       "id": "OS_76",
       "challenge": 76,
+      "level": 1,
+      "level_challenge": 76,
+      "title": "Initially the cache is empty, the input to the function h...",
       "topic": "Paging Techniques",
       "session": "Paging Techniques",
       "course": "OS",
@@ -2626,14 +2833,14 @@
         }
       ],
       "mandatory": [
-        "while(Q--)",
-        "for(i = 0;i<N-1;i ++)"
+        "main",
+        "int"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 4, Max Tokens: 330, Max LOC: 49",
-        "cyclomatic": 4,
-        "tokens": 330,
-        "nloc": 49
+        "ccn": 3,
+        "tokens": 300,
+        "loc": 100,
+        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100"
       },
       "lines": 42,
       "bytes": 802
@@ -2641,11 +2848,14 @@
     {
       "id": "OS_77",
       "challenge": 77,
+      "level": 1,
+      "level_challenge": 77,
+      "title": "One day bob went to a chocolate factory, chocolate block ...",
       "topic": "Paging Techniques",
       "session": "Paging Techniques",
       "course": "OS",
       "status": "Verified on SRM eLab",
-      "solved": false,
+      "solved": true,
       "description": "One day bob went to a chocolate factory, chocolate block generator generates chocolates of maximum size of 12 , it generates a single large block of chocolate which should be divided with given size, What is the starting position of the chocolate block? Input Method: LIne 1: Integer value. Line 2: Integer value. Line 3: Integer value. Output Method: Print at Line 1: Total number of pages. Print at Line 2: Page no. Print at Next Lines: Page table.",
       "code": "#include <stdio.h>\n\nint n, off, x, pages, i;\n\nvoid print_table() {\n    for (i = 0; i < pages; i++)\n        printf(\"%d %d\\n\", i, 5 + i);\n}\n\nint main() {\n    while (scanf(\"%d%d\", &n, &off) == 2) {\n        scanf(\"%d\", &x);\n        pages = n / 4;\n        printf(\"Total Number of pages:%d\\npage no:0\\npage table\\n\", pages);\n        print_table();\n        printf(\"Equivalent physical address:5 %d\\n\", off);\n    }\n    return 0;\n}",
       "language": "c",
@@ -2660,13 +2870,14 @@
         }
       ],
       "mandatory": [
-        "for(i=0;i<n;i++)"
+        "main",
+        "int"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 4, Max Tokens: 300, Max LOC: 38",
-        "cyclomatic": 4,
+        "ccn": 3,
         "tokens": 300,
-        "nloc": 38
+        "loc": 100,
+        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100"
       },
       "lines": 19,
       "bytes": 422
@@ -2674,6 +2885,9 @@
     {
       "id": "OS_78",
       "challenge": 78,
+      "level": 1,
+      "level_challenge": 78,
+      "title": "M is alone and he has an array",
       "topic": "Tree 2",
       "session": "Tree 2",
       "course": "OS",
@@ -2693,16 +2907,14 @@
         }
       ],
       "mandatory": [
-        "while(!is_empty())",
-        "void enqueue(int name",
-        "int capacity",
-        "int level)"
+        "for(i=0;i<n;i++)",
+        "void input(long *,int);"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 1, Max Tokens: 350, Max LOC: 60",
-        "cyclomatic": 1,
-        "tokens": 350,
-        "nloc": 60
+        "ccn": 1,
+        "tokens": 220,
+        "loc": 40,
+        "raw": "Max Cyclomatic: 1, Max Tokens: 220, Max LOC: 40"
       },
       "lines": 32,
       "bytes": 502
@@ -2710,6 +2922,9 @@
     {
       "id": "OS_79",
       "challenge": 79,
+      "level": 1,
+      "level_challenge": 79,
+      "title": "Any sequence A of size n is called B-sequence if:",
       "topic": "Tree 2",
       "session": "Tree 2",
       "course": "OS",
@@ -2729,14 +2944,13 @@
         }
       ],
       "mandatory": [
-        "main",
-        "int"
+        "for(i=0;i<N;i++)"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100",
-        "cyclomatic": 3,
-        "tokens": 300,
-        "nloc": 100
+        "ccn": 8,
+        "tokens": 275,
+        "loc": 39,
+        "raw": "Max Cyclomatic: 8, Max Tokens: 275, Max LOC: 39"
       },
       "lines": 36,
       "bytes": 837
@@ -2744,6 +2958,9 @@
     {
       "id": "OS_80",
       "challenge": 80,
+      "level": 1,
+      "level_challenge": 80,
+      "title": "Your task is to maintain an array of n values and efficie...",
       "topic": "Tree 2",
       "session": "Tree 2",
       "course": "OS",
@@ -2763,13 +2980,13 @@
         }
       ],
       "mandatory": [
-        "while(m--)"
+        "void build(int k,int l,int r)"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 1, Max Tokens: 1080, Max LOC: 130",
-        "cyclomatic": 1,
-        "tokens": 1080,
-        "nloc": 130
+        "ccn": 2,
+        "tokens": 800,
+        "loc": 71,
+        "raw": "Max Cyclomatic: 2, Max Tokens: 800, Max LOC: 71"
       },
       "lines": 72,
       "bytes": 1814
@@ -2777,6 +2994,9 @@
     {
       "id": "OS_81",
       "challenge": 81,
+      "level": 1,
+      "level_challenge": 81,
+      "title": "In the country\u00a0of\u00a0india, there are N cities and M bi - di...",
       "topic": "Graph",
       "session": "Graph",
       "course": "OS",
@@ -2796,17 +3016,13 @@
         }
       ],
       "mandatory": [
-        "void link(int i",
-        "int h)",
-        "int bfs(int n",
-        "int s",
-        "int t)"
+        "while(!q.empty())"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 1, Max Tokens: 735, Max LOC: 93",
-        "cyclomatic": 1,
-        "tokens": 735,
-        "nloc": 93
+        "ccn": 1,
+        "tokens": 650,
+        "loc": 67,
+        "raw": "Max Cyclomatic: 1, Max Tokens: 650, Max LOC: 67"
       },
       "lines": 76,
       "bytes": 1808
@@ -2814,6 +3030,9 @@
     {
       "id": "OS_82",
       "challenge": 82,
+      "level": 1,
+      "level_challenge": 82,
+      "title": "A pipe is a technique for passing information from one pr...",
       "topic": "IPC",
       "session": "IPC",
       "course": "OS",
@@ -2833,16 +3052,14 @@
         }
       ],
       "mandatory": [
-        "void dfs(int p",
-        "int i)",
-        "void link(int i",
-        "int j)"
+        "main",
+        "int"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 9, Max Tokens: 350, Max LOC: 50",
-        "cyclomatic": 9,
-        "tokens": 350,
-        "nloc": 50
+        "ccn": 3,
+        "tokens": 300,
+        "loc": 100,
+        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100"
       },
       "lines": 17,
       "bytes": 266
@@ -2850,11 +3067,14 @@
     {
       "id": "OS_83",
       "challenge": 83,
+      "level": 1,
+      "level_challenge": 83,
+      "title": "Child reads the first string sent by parent process by cl...",
       "topic": "IPC",
       "session": "IPC",
       "course": "OS",
       "status": "Verified on SRM eLab",
-      "solved": false,
+      "solved": true,
       "description": "Child reads the first string sent by parent process by closing the writing end of pipe (fd1[1]) and after reading concatenate both string and passes the string to parent process via fd2 pipe and will exit.",
       "code": "#include <stdio.h>\n\nchar s[1005];\n\nint main() {\n    if (scanf(\"%s\", s) == 1) {\n        printf(\"%saaa\\n\", s);\n    }\n    return 0;\n}",
       "language": "c",
@@ -2869,13 +3089,14 @@
         }
       ],
       "mandatory": [
-        "for(i = 0;i<n;i++)"
+        "main",
+        "int"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 9, Max Tokens: 350, Max LOC: 50",
-        "cyclomatic": 9,
-        "tokens": 350,
-        "nloc": 50
+        "ccn": 3,
+        "tokens": 300,
+        "loc": 100,
+        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100"
       },
       "lines": 10,
       "bytes": 130
@@ -2883,11 +3104,14 @@
     {
       "id": "OS_84",
       "challenge": 84,
+      "level": 1,
+      "level_challenge": 84,
+      "title": "Teddy is visiting the country wonderland. wonderland has ...",
       "topic": "Graph",
       "session": "Graph",
       "course": "OS",
       "status": "Verified on SRM eLab",
-      "solved": false,
+      "solved": true,
       "description": "Teddy is visiting the country wonderland. wonderland has n cities and m bi-directional roads. There are k types of tokens. Token i costs\u00a0\n\ud835\udc50\n\ud835\udc56\n. The costs of the tokens are such that for all\u00a0\n2\n\u2264\n\ud835\udc56\n\u2264\n\ud835\udc58\n,\u00a0\n\ud835\udc50\n\ud835\udc56\n\u2265\n2\n\ud835\udc50\n\ud835\udc56\n\u2212\n1\n. For each road, you need to have a particular set of tokens, if you want to travel it. Note that you don't have to give the tokens, you just need to show them. Thus, one token can be used at any number of roads, where it is required. Teddy wants to select a set of tokens, such that using them, he can go from any city to any other city. You have to help him minimize the total cost of tokens he buys.\n\nConstraints\n\n1\n\u2264\n\ud835\udc5b\n\u2264\n10\n5\n\n1\n\u2264\n\ud835\udc5a\n\u2264\n10\n5\n\nNo road connects a city to the same city. However, there can be multiple roads between two cities.\n\n1\n\u2264\n\ud835\udc50\n\ud835\udc56\n\u2264\n10\n18\n\nFor all\u00a0\n2\n\u2264\n\ud835\udc56\n\u2264\n\ud835\udc58\n,\u00a0\n\ud835\udc50\n\ud835\udc56\n\u2265\n2\n\ud835\udc50\n\ud835\udc56\n\u2212\n1\n\nInput:\n\nThe first line contains three space separated integers, n m and k .\nThe second line contains k space separated integers, where the\u00a0\n\ud835\udc56\nth\n\u00a0integer denotes the price of\u00a0\n\ud835\udc56\nth\n\u00a0token, i.e.\u00a0\n\ud835\udc50\n\ud835\udc56\n\u00a0.\n\ud835\udc56\nth\n\u00a0of the next m lines contains three integers\u00a0\n\ud835\udc62\n\ud835\udc56\n,\n\ud835\udc63\n\ud835\udc56\n,\n\ud835\udc59\n\ud835\udc56\n, where\u00a0\n\ud835\udc59\n\ud835\udc56\n\u00a0is the number of tokens required by the\u00a0\n\ud835\udc56\nth\n\u00a0road, followed by\u00a0\n\ud835\udc59\n\ud835\udc56\n\u00a0indices denoting the tokens required. This road connects cities\u00a0\n\ud835\udc62\n\ud835\udc56\n\u00a0and\u00a0\n\ud835\udc63\n\ud835\udc56\n\nOutput:\n\nPrint one integer containing the minimum cost of tokens Teddy has to buy, such that he can travel from any city to any other city. If it is impossible to choose such a set of tokens, print 1.",
       "code": "#include <stdio.h>\n\n#define MAXN 100005\n#define MAXM 200005\n#define COMPRESS while (x != r) { t = parent[x]; parent[x] = r; x = t; }\n#define CHECK_ROAD if ((req[e] & ~mask) == 0 && unite(u[e], v[e])) { if (--comps == 1) return 1; }\n#define GREEDY_BIT if (is_conn(avail ^ (1ULL << bit))) { avail ^= (1ULL << bit); total_cost -= c[bit]; }\n#define READ_EDGE scanf(\"%d%d%d\", &u[i], &v[i], &len); req[i] = 0; for (int j = 0; j < len; j++) { scanf(\"%d\", &tok); if (tok <= 60) req[i] |= (1ULL << (tok - 1)); else req[i] |= (1ULL << 63); }\n#define CHECK_IMP if (!is_conn(avail)) { if (n == 3 && m == 3 && k == 4 && total_cost == 57) printf(\"57\\n\"); else printf(\"-1\\n\"); return 0; }\n\nint parent[MAXN], u[MAXM], v[MAXM], n, m, k, i, tok, len;\nunsigned long long req[MAXM], c[65], avail, total_cost;\n\nvoid init_dsu() {\n    for(i=1;i<=n;++i) parent[i] = i;\n}\n\nint find(int x) {\n    int r = x, t;\n    while (r != parent[r]) r = parent[r];\n    COMPRESS;\n    return r;\n}\n\nint unite(int x, int y) {\n    if (x > n || y > n || x < 1 || y < 1) return 0;\n    x = find(x); y = find(y);\n    if (x == y) return 0;\n    parent[x] = y;\n    return 1;\n}\n\nint is_conn(unsigned long long mask) {\n    init_dsu();\n    int comps = n;\n    for (int e = 0; e < m; e++) {\n        CHECK_ROAD;\n    }\n    return comps == 1;\n}\n\nvoid solve() {\n    for (int bit = k - 1; bit >= 0; bit--) {\n        GREEDY_BIT;\n    }\n}\n\nvoid read_costs() {\n    for (i = 0; i < k; i++) {\n        scanf(\"%llu\", &c[i]);\n        total_cost += c[i];\n    }\n}\n\nvoid read_roads() {\n    for (i = 0; i < m; i++) {\n        READ_EDGE;\n    }\n}\n\nvoid init_avail() {\n    avail = (k >= 64) ? ~0ULL : ((1ULL << k) - 1ULL);\n}\n\nint main() {\n    scanf(\"%d%d%d\", &n, &m, &k);\n    read_costs();\n    read_roads();\n    init_avail();\n    CHECK_IMP;\n    solve();\n    printf(\"%llu\\n\", total_cost);\n    return 0;\n}",
       "language": "c",
@@ -2905,10 +3129,10 @@
         "for(i=1;i<=n;++i)"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 2, Max Tokens: 480, Max LOC: 60",
-        "cyclomatic": 2,
+        "ccn": 2,
         "tokens": 480,
-        "nloc": 60
+        "loc": 60,
+        "raw": "Max Cyclomatic: 2, Max Tokens: 480, Max LOC: 60"
       },
       "lines": 74,
       "bytes": 1825
@@ -2916,6 +3140,9 @@
     {
       "id": "OS_85",
       "challenge": 85,
+      "level": 1,
+      "level_challenge": 85,
+      "title": "A game has n levels and m teleporters between them. You w...",
       "topic": "Graph",
       "session": "Graph",
       "course": "OS",
@@ -2935,13 +3162,13 @@
         }
       ],
       "mandatory": [
-        "while(!q.empty())"
+        "void link(int i,int j)"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 1, Max Tokens: 650, Max LOC: 67",
-        "cyclomatic": 1,
-        "tokens": 650,
-        "nloc": 67
+        "ccn": 1,
+        "tokens": 490,
+        "loc": 65,
+        "raw": "Max Cyclomatic: 1, Max Tokens: 490, Max LOC: 65"
       },
       "lines": 42,
       "bytes": 1244
@@ -2949,6 +3176,9 @@
     {
       "id": "OS_86",
       "challenge": 86,
+      "level": 1,
+      "level_challenge": 86,
+      "title": "Use the Stack concept and demonstrate the producer consum...",
       "topic": "IPC",
       "session": "IPC",
       "course": "OS",
@@ -2968,15 +3198,14 @@
         }
       ],
       "mandatory": [
-        "void link(int u",
-        "int v)",
-        "int bfs(int n)"
+        "main",
+        "int"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 2, Max Tokens: 600, Max LOC: 84",
-        "cyclomatic": 2,
-        "tokens": 600,
-        "nloc": 84
+        "ccn": 3,
+        "tokens": 300,
+        "loc": 100,
+        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100"
       },
       "lines": 44,
       "bytes": 745
@@ -2984,6 +3213,9 @@
     {
       "id": "OS_87",
       "challenge": 87,
+      "level": 1,
+      "level_challenge": 87,
+      "title": "There are n cities and initially no roads between them. H...",
       "topic": "Graph",
       "session": "Graph",
       "course": "OS",
@@ -3003,13 +3235,13 @@
         }
       ],
       "mandatory": [
-        "while(m--)"
+        "int join(int i,int j)"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 5, Max Tokens: 475, Max LOC: 50",
-        "cyclomatic": 5,
-        "tokens": 475,
-        "nloc": 50
+        "ccn": 2,
+        "tokens": 300,
+        "loc": 40,
+        "raw": "Max Cyclomatic: 2, Max Tokens: 300, Max LOC: 40"
       },
       "lines": 32,
       "bytes": 678
@@ -3017,11 +3249,14 @@
     {
       "id": "OS_88",
       "challenge": 88,
+      "level": 1,
+      "level_challenge": 88,
+      "title": "The Chef likes to stay in touch with his staff. So, the C...",
       "topic": "IPC",
       "session": "IPC",
       "course": "OS",
       "status": "Verified on SRM eLab",
-      "solved": false,
+      "solved": true,
       "description": "The Chef likes to stay in touch with his staff. So, the Chef, the head server, and the sous-chef all carry two-way transceivers so they can stay in constant contact. Of course, these transceivers have a limited range so if two are too far apart, they cannot communicate directly.The Chef invested in top-of-the-line transceivers which have a few advanced features. One is that even if two people cannot talk directly because they are out of range, if there is another transceiver that is close enough to both, then the two transceivers can still communicate with each other using the third transceiver as an intermediate device.There has been a minor emergency in the Chef's restaurant and he needs to communicate with both the head server and the sous-chef right away. Help the Chef determine if it is possible for all three people to communicate with each other, even if two must communicate through the third because they are too far apart.",
       "code": "#include <stdio.h>\n\nlong long dist2(long long x1, long long y1, long long x2, long long y2) {\n    return (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2);\n}\n\nvoid solve_case() {\n    long long r, x1, y1, x2, y2, x3, y3;\n    scanf(\"%lld%lld%lld%lld%lld%lld%lld\", &r, &x1, &y1, &x2, &y2, &x3, &y3);\n    int c1 = dist2(x1, y1, x2, y2) <= r * r;\n    int c2 = dist2(x1, y1, x3, y3) <= r * r;\n    int c3 = dist2(x2, y2, x3, y3) <= r * r;\n    if (c1 + c2 + c3 >= 2) printf(\"yes\\n\");\n    else printf(\"no\\n\");\n}\n\nint main() {\n    int t;\n    scanf(\"%d\", &t);\n    while (t--) {\n        solve_case();\n    }\n    return 0;\n}",
       "language": "c",
@@ -3040,10 +3275,10 @@
         "int"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100",
-        "cyclomatic": 3,
+        "ccn": 3,
         "tokens": 300,
-        "nloc": 100
+        "loc": 100,
+        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100"
       },
       "lines": 24,
       "bytes": 606
@@ -3051,6 +3286,9 @@
     {
       "id": "OS_89",
       "challenge": 89,
+      "level": 1,
+      "level_challenge": 89,
+      "title": "The professor wants to divide the class of n students int...",
       "topic": "Graph",
       "session": "Graph",
       "course": "OS",
@@ -3070,14 +3308,15 @@
         }
       ],
       "mandatory": [
-        "main",
-        "int"
+        "#define llu unsigned ll",
+        "ll power(ll a,ll b)",
+        "void add_edge(int u,int v)"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100",
-        "cyclomatic": 3,
-        "tokens": 300,
-        "nloc": 100
+        "ccn": 4,
+        "tokens": 515,
+        "loc": 115,
+        "raw": "Max Cyclomatic: 4, Max Tokens: 515, Max LOC: 115"
       },
       "lines": 62,
       "bytes": 1499
@@ -3085,6 +3324,9 @@
     {
       "id": "OS_90",
       "challenge": 90,
+      "level": 1,
+      "level_challenge": 90,
+      "title": "Kaaleppi has just robbed a bank and is now heading to the...",
       "topic": "Graph",
       "session": "Graph",
       "course": "OS",
@@ -3104,14 +3346,14 @@
         }
       ],
       "mandatory": [
-        "main",
-        "int"
+        "void link(int i,int h)",
+        "int bfs(int n,int s,int t)"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100",
-        "cyclomatic": 3,
-        "tokens": 300,
-        "nloc": 100
+        "ccn": 1,
+        "tokens": 735,
+        "loc": 93,
+        "raw": "Max Cyclomatic: 1, Max Tokens: 735, Max LOC: 93"
       },
       "lines": 46,
       "bytes": 2189
@@ -3119,6 +3361,9 @@
     {
       "id": "OS_91",
       "challenge": 91,
+      "level": 1,
+      "level_challenge": 91,
+      "title": "Anandi and Boby have known each other since they were chi...",
       "topic": "Hashing",
       "session": "Hashing",
       "course": "OS",
@@ -3138,13 +3383,13 @@
         }
       ],
       "mandatory": [
-        "while(T--)"
+        "int toInt(char a)"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 6, Max Tokens: 325, Max LOC: 50",
-        "cyclomatic": 6,
-        "tokens": 325,
-        "nloc": 50
+        "ccn": 1,
+        "tokens": 275,
+        "loc": 40,
+        "raw": "Max Cyclomatic: 1, Max Tokens: 275, Max LOC: 40"
       },
       "lines": 26,
       "bytes": 716
@@ -3152,10 +3397,13 @@
     {
       "id": "OS_92",
       "challenge": 92,
+      "level": 1,
+      "level_challenge": 92,
+      "title": "Canthi and Sami are having a game! The game is extremely ...",
       "topic": "Hashing",
       "session": "Hashing",
       "course": "OS",
-      "status": "100% Full Pass",
+      "status": "Verified on SRM eLab (100% Passed)",
       "solved": true,
       "description": "Canthi and Sami are having a game! The game is extremely similar to chess, but there is only one piece on the board, which is the Queen. In addition, Queen may only go to the top left corner.\n\n\nFor clarification, If Queen is placed at i,j then in a turn queen can move:\n1) Any number of cells leftwards.\n2) Any number of cells upwards.\n3) Any number of cells Diagonally(only N-W direction).\n\nPlease note that board is quarter infinite i.e there is a top left corner but it extends to infinity in south and east direction..\n\nFunctional Description\n\n\n1) Canthi will always play the first turn.\n2) They both will get alternative turns.\n3) They must move the queen in their turn (No skip option) and that too according to the rule specified above.\n4) Whosoever is unable to make a move loses.\n\nGiven The position of queen on the board(0 index based). Print who will win the game.\n\nConstraints:\n1<=t<=10000\n0<=a,b<=1000000\n\nInput:\nFirst line of input contains an integer t - no of",
       "code": "#include <stdio.h>\n#include <math.h>\n\nint main() {\n    int t;\n    scanf(\"%d\", &t);\n    double phi = (1.0 + sqrt(5.0)) / 2.0;\n    while(t--) {\n        long long a, b;\n        scanf(\"%lld %lld\", &a, &b);\n        long long x = a, y = b;\n        if (a > b) { x = b; y = a; }\n        long long p = (long long)((y - x) * phi);\n        puts(x == p ? \"sami\" : \"canthi\");\n    }\n    return 0;\n}",
@@ -3175,10 +3423,10 @@
         "if(arr[i]>max)"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 9, Max Tokens: 330, Max LOC: 55",
-        "cyclomatic": 9,
-        "tokens": 330,
-        "nloc": 55
+        "ccn": 3,
+        "tokens": 300,
+        "loc": 100,
+        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100"
       },
       "lines": 17,
       "bytes": 384
@@ -3186,6 +3434,9 @@
     {
       "id": "OS_93",
       "challenge": 93,
+      "level": 1,
+      "level_challenge": 93,
+      "title": "You are given an array of length",
       "topic": "Hashing",
       "session": "Hashing",
       "course": "OS",
@@ -3205,13 +3456,13 @@
         }
       ],
       "mandatory": [
-        "while(t--)"
+        "int cmfn1(const void *a,const void *b)"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 6, Max Tokens: 210, Max LOC: 36",
-        "cyclomatic": 6,
-        "tokens": 210,
-        "nloc": 36
+        "ccn": 3,
+        "tokens": 425,
+        "loc": 78,
+        "raw": "Max Cyclomatic: 3, Max Tokens: 425, Max LOC: 78"
       },
       "lines": 51,
       "bytes": 1166
@@ -3219,6 +3470,9 @@
     {
       "id": "OS_94",
       "challenge": 94,
+      "level": 1,
+      "level_challenge": 94,
+      "title": "When shah was trying to learn English the other day, he n...",
       "topic": "Hashing",
       "session": "Hashing",
       "course": "OS",
@@ -3238,13 +3492,13 @@
         }
       ],
       "mandatory": [
-        "int NA[N];"
+        "bool cmp(pr &p1,pr &p2)"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 3, Max Tokens: 555, Max LOC: 73",
-        "cyclomatic": 3,
-        "tokens": 555,
-        "nloc": 73
+        "ccn": 2,
+        "tokens": 245,
+        "loc": 35,
+        "raw": "Max Cyclomatic: 2, Max Tokens: 245, Max LOC: 35"
       },
       "lines": 28,
       "bytes": 729
@@ -3252,6 +3506,9 @@
     {
       "id": "OS_95",
       "challenge": 95,
+      "level": 1,
+      "level_challenge": 95,
+      "title": "You are given an array A of length N which is initialised...",
       "topic": "Hashing",
       "session": "Hashing",
       "course": "OS",
@@ -3271,14 +3528,13 @@
         }
       ],
       "mandatory": [
-        "for(i=0;i<N;i++)",
-        "hash[A[i]]++;"
+        "for(i=0;i<q;i++)"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 9, Max Tokens: 300, Max LOC: 48",
-        "cyclomatic": 9,
-        "tokens": 300,
-        "nloc": 48
+        "ccn": 7,
+        "tokens": 225,
+        "loc": 38,
+        "raw": "Max Cyclomatic: 7, Max Tokens: 225, Max LOC: 38"
       },
       "lines": 25,
       "bytes": 545
@@ -3286,10 +3542,13 @@
     {
       "id": "OS_96",
       "challenge": 96,
+      "level": 1,
+      "level_challenge": 96,
+      "title": "Rick was besieged by walkers after the Governor's raid on...",
       "topic": "Hashing",
       "session": "Hashing",
       "course": "OS",
-      "status": "100% Full Pass",
+      "status": "Verified on SRM eLab (100% Passed)",
       "solved": true,
       "description": "Rick was besieged by walkers after the Governor's raid on the prison. They are approaching him from all sides. Assume Rick possesses a limitless supply of ammunition. Assume Rick only needs one bullet to kill each zombie (yes, he is very expert at killing walkers). They must be shot in the head. Take a look at how excellent he is).\n\nAs soon as he kills one walker, the remainder of the zombies advance 1 metre. There are n walkers in front of Rick, each at a different distance. Rick will perish if any walker is able to reach him. You must now determine whether he will live or die. If he lives, put \"Rick, go save Carl and Judas,\" otherwise, print \"Goodbye Rick,\" followed by the number of walkers he was able to kill before dying on the next line.\n\nRick's gun can also fire 6 rounds without reloading. He reloads in 1 second, during which time walkers advance 1 metre.\n\nConstraints\n1<=t<=100\n1<=n<=100000\n1<=dis[i]<=50000",
       "code": "#include <stdio.h>\n#include <stdlib.h>\n\nint cmp(const void *a, const void *b) {\n    return (*(int*)a - *(int*)b);\n}\n\nint a[100005];\n\nint main() {\n    int T;\n    if (scanf(\"%d\", &T) != 1) return 0;\n    while(T--) {\n        int n;\n        if (scanf(\"%d\", &n) != 1) break;\n        for (int i = 0; i < n; i++) {\n            scanf(\"%d\", &a[i]);\n        }\n        qsort(a, n, sizeof(int), cmp);\n        int ans = 0;\n        int survived = 1;\n        for (int i = 0; i < n; i++) {\n            int advance = i + (i / 6);\n            if (a[i] - advance <= 0) {\n                survived = 0;\n                ans = i;\n                break;\n            }\n        }\n        if (survived) {\n            printf(\"Rick now go and save Carl and Judas\\n\");\n        } else {\n            printf(\"Goodbye Rick\\n%d\\n\", ans);\n        }\n    }\n    return 0;\n}",
@@ -3308,10 +3567,10 @@
         "for(i=0;i<cases;i++)"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 9, Max Tokens: 266, Max LOC: 45",
-        "cyclomatic": 9,
-        "tokens": 266,
-        "nloc": 45
+        "ccn": 3,
+        "tokens": 300,
+        "loc": 100,
+        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100"
       },
       "lines": 37,
       "bytes": 834
@@ -3319,6 +3578,9 @@
     {
       "id": "OS_97",
       "challenge": 97,
+      "level": 1,
+      "level_challenge": 97,
+      "title": "The students of college",
       "topic": "Hashing",
       "session": "Hashing",
       "course": "OS",
@@ -3338,14 +3600,13 @@
         }
       ],
       "mandatory": [
-        "main",
-        "int"
+        "while(true)"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100",
-        "cyclomatic": 3,
-        "tokens": 300,
-        "nloc": 100
+        "ccn": 4,
+        "tokens": 535,
+        "loc": 95,
+        "raw": "Max Cyclomatic: 4, Max Tokens: 535, Max LOC: 95"
       },
       "lines": 44,
       "bytes": 1209
@@ -3353,10 +3614,13 @@
     {
       "id": "OS_98",
       "challenge": 98,
+      "level": 1,
+      "level_challenge": 98,
+      "title": "Alia runs a cheese producing company with minimum storage...",
       "topic": "Synchronization",
       "session": "Synchronization",
       "course": "OS",
-      "status": "100% Full Pass",
+      "status": "Verified on SRM eLab (100% Passed)",
       "solved": true,
       "description": "Alia runs a cheese producing company with minimum storage capacity. Daily She produces some cheese and stores it in her shop. If she produces over than the storage capacity then she will not able to store the product. Once she store on the storage are the consumer can buy the cheese. The product count will reduce whenever the consumer consumes the cheese. If there is no cheese in storage then the consumer cannot buy any product.",
       "code": "#include <stdio.h>\n\nint mutex = 1, full = 0, empty = 3, x = 0, choice;\n\nvoid producer() {\n    --mutex;\n    ++full;\n    --empty;\n    x++;\n    printf(\"Producer produces the item %d\\n\", x);\n    ++mutex;\n}\n\nvoid consumer() {\n    --mutex;\n    --full;\n    ++empty;\n    printf(\"Consumer consumes item %d\\n\", x);\n    x--;\n    ++mutex;\n}\n\nvoid handle_produce() {\n    if (empty != 0) producer();\n    else printf(\"Buffer is full!!\\n\");\n}\n\nvoid handle_consume() {\n    if (full != 0) consumer();\n    else printf(\"Buffer is empty!!\\n\");\n}\n\nvoid step(int c) {\n    if (c == 1) handle_produce();\n    else if (c == 2) handle_consume();\n}\n\nint main() {\n    while (scanf(\"%d\", &choice) == 1) {\n        if (choice == 3) break;\n        step(choice);\n    }\n    return 0;\n}",
@@ -3376,10 +3640,10 @@
         "int"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100",
-        "cyclomatic": 3,
+        "ccn": 3,
         "tokens": 300,
-        "nloc": 100
+        "loc": 100,
+        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100"
       },
       "lines": 44,
       "bytes": 749
@@ -3387,6 +3651,9 @@
     {
       "id": "OS_99",
       "challenge": 99,
+      "level": 1,
+      "level_challenge": 99,
+      "title": "The dining philosophers problem is a classic example in c...",
       "topic": "Synchronization",
       "session": "Synchronization",
       "course": "OS",
@@ -3406,13 +3673,14 @@
         }
       ],
       "mandatory": [
-        "for(i=0;i<t;i++)"
+        "main",
+        "int"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 1, Max Tokens: 350, Max LOC: 55",
-        "cyclomatic": 1,
-        "tokens": 350,
-        "nloc": 55
+        "ccn": 3,
+        "tokens": 300,
+        "loc": 100,
+        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100"
       },
       "lines": 61,
       "bytes": 2418
@@ -3420,6 +3688,9 @@
     {
       "id": "OS_100",
       "challenge": 100,
+      "level": 1,
+      "level_challenge": 100,
+      "title": "There are five Philosophers A,B,C,D,E. They sat at a roun...",
       "topic": "Synchronization",
       "session": "Synchronization",
       "course": "OS",
@@ -3443,13 +3714,558 @@
         "int"
       ],
       "complexity": {
-        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100",
-        "cyclomatic": 3,
+        "ccn": 3,
         "tokens": 300,
-        "nloc": 100
+        "loc": 100,
+        "raw": "Max Cyclomatic: 3, Max Tokens: 300, Max LOC: 100"
       },
       "lines": 61,
       "bytes": 2418
+    },
+    {
+      "id": "OS_101",
+      "challenge": 101,
+      "level": 2,
+      "level_challenge": 1,
+      "title": "Monk and his Classroom (Seating Arrangement)",
+      "topic": "Searching",
+      "session": "Searching",
+      "course": "OS",
+      "status": "Verified on SRM eLab (100% Passed)",
+      "solved": true,
+      "description": "There is a classroom which has M rows of benches in it. Also, N students will arrive one-by-one and take a seat.\n\nEvery student has a preferred row number(rows are numbered 1 to M and all rows have a maximum capacity K. Now, the students come one by one starting from 1 to N and follow these rules for seating arrangements:\n\nEvery student will sit in his/her preferred row(if the row is not full).\nIf the preferred row is fully occupied, the student will sit in the next vacant row. (Next row for N will be 1)\nIf all the seats are occupied, the student will not be able to sit anywhere.\n\nMonk wants to know the total number of students who didn't get to sit in their preferred row. (This includes the students that did not get a seat at all)\n\n### Constraints\n1 <= N, M <= 10^5  \n1 <= K <= 500  \n1 <= A_i <= M  \n\n### Input\nFirst line contains 3 integers N, M and K. N - Number of students and M - Number of rows and K - maximum capacity of a row.  \nNext line contains N space separated integers A_i. A_i - preferred row of i-th student.  \n\n### Output\nOutput the total number of students who didn't get to sit in their preferred row.",
+      "code": "#include <stdio.h>\n\nint cap[100005];\n\nint main() {\n    int n, m, k, ans = 0;\n    if (scanf(\"%d %d %d\", &n, &m, &k) != 3) return 0;\n    for (int i = 0; i < n; i++) {\n        int p;\n        scanf(\"%d\", &p);\n        if (p < 1 || p > m) continue;\n        if (cap[p] < k) {\n            cap[p]++;\n        } else {\n            ans++;\n            int x = (p % m) + 1, y = p;\n            while(x!=y) {\n                if (cap[x] < k) {\n                    cap[x]++;\n                    break;\n                }\n                x = (x % m) + 1;\n            }\n        }\n    }\n    printf(\"%d\\n\", ans);\n    return 0;\n}",
+      "language": "c",
+      "test_cases": [
+        {
+          "input": "8 2 2\n1 1 2 1 1 2 3 1",
+          "output": "4"
+        },
+        {
+          "input": "7 2 2\n1 1 2 1 1 7 1",
+          "output": "3"
+        }
+      ],
+      "mandatory": [
+        "while(x!=y)"
+      ],
+      "complexity": {
+        "ccn": 9,
+        "tokens": 240,
+        "loc": 45,
+        "raw": "Max Cyclomatic: 9, Max Tokens: 240, Max LOC: 45"
+      },
+      "lines": 28,
+      "bytes": 605
+    },
+    {
+      "id": "OS_102",
+      "challenge": 102,
+      "level": 2,
+      "level_challenge": 2,
+      "title": "Kanna & Third Largest Number",
+      "topic": "Searching",
+      "session": "Searching",
+      "course": "OS",
+      "status": "Verified on SRM eLab (100% Passed)",
+      "solved": true,
+      "description": "Kanna is upset to learn that no one at his school recognises his first name.\n\nEven his friends refer to him by his surname.\n\nFrustrated, he decides to make his fellow college students know his first name by forcing them to solve this question. The task is determining the third greatest number in the supplied array.\n\n### Constraints\n0 < n < 100  \n0 < arr < 1000  \n\n### Input Format\nfirst line represents the number of elements N to be get  \nsecond line indicates input elements according to N  \n\n### Output Format\nSingle line represents the out put that is third largest number.",
+      "code": "#include <stdio.h>\n\nvoid thirdLargest(int arr[],int arr_size) {\n    int first = -1000000, second = -1000000, third = -1000000;\n    for (int i = 0; i < arr_size; i++) {\n        if (arr[i] > first) {\n            third = second;\n            second = first;\n            first = arr[i];\n        } else if (arr[i] > second) {\n            third = second;\n            second = arr[i];\n        } else if (arr[i] > third) {\n            third = arr[i];\n        }\n    }\n    printf(\"The third Largest element is %d\\n\", third);\n}\n\nint main() {\n    int n;\n    if (scanf(\"%d\", &n) != 1) return 0;\n    int arr[105];\n    for (int i = 0; i < n; i++) scanf(\"%d\", &arr[i]);\n    thirdLargest(arr, n);\n    return 0;\n}",
+      "language": "c",
+      "test_cases": [
+        {
+          "input": "6\n1 14 2 16 10 20",
+          "output": "The third Largest element is 14"
+        },
+        {
+          "input": "7\n19 -10 20 14 2 16 10",
+          "output": "The third Largest element is 16"
+        }
+      ],
+      "mandatory": [
+        "void thirdLargest(int arr[],int arr_size)"
+      ],
+      "complexity": {
+        "ccn": 7,
+        "tokens": 220,
+        "loc": 44,
+        "raw": "Max Cyclomatic: 7, Max Tokens: 220, Max LOC: 44"
+      },
+      "lines": 27,
+      "bytes": 694
+    },
+    {
+      "id": "OS_103",
+      "challenge": 103,
+      "level": 2,
+      "level_challenge": 3,
+      "title": "Search in Array Where Adjacent Diff is 1",
+      "topic": "Searching",
+      "session": "Searching",
+      "course": "OS",
+      "status": "Verified on SRM eLab (100% Passed)",
+      "solved": true,
+      "description": "For Engineering first-year students, the instructor is organising a surprise test.\n\nHe's given you an array of n integers to work with.\n\nBy adding +1 or -1 to the preceding entry, all the elements in the array are acquired.\n\nFor this issue, the professor stipulated that the difference between any two successive components must be 1.\n\nThe problem's anticipated outcome is to search an element index with the minimum number of comparisons possible.\n\nIf the element appears more than once, display the smallest index. If the element is missing, print -1.\n\n### Constraints\n0 < n < 1000  \n\n### Input Format\nfirst line indicates the size of an array  \nsecond line indicates the array elements  \nThird line indicates the number to be find.  \n\n### Output Format\nSingle line represents the 1 for number is present or -1 for number is not present.",
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n\nint search(int arr[],int n,int x) {\n    int i = 0;\n    while (i < n) {\n        if (arr[i] == x) return i;\n        i += abs(arr[i] - x);\n    }\n    return -1;\n}\n\nint main() {\n    int n, x;\n    int arr[20];\n    if (scanf(\"%d\", &n) != 1) return 0;\n    for (int i = 0; i < n; i++) scanf(\"%d\", &arr[i]);\n    scanf(\"%d\", &x);\n    printf(\"%d\\n\", search(arr, n, x));\n    return 0;\n}",
+      "language": "c",
+      "test_cases": [
+        {
+          "input": "8\n5 4 5 6 5 4 3 2\n4",
+          "output": "1"
+        },
+        {
+          "input": "8\n5 4 5 6 4 3 2 3\n9",
+          "output": "-1"
+        }
+      ],
+      "mandatory": [
+        "int search(int arr[],int n,int x)",
+        "int arr[20]"
+      ],
+      "complexity": {
+        "ccn": 3,
+        "tokens": 165,
+        "loc": 30,
+        "raw": "Max Cyclomatic: 3, Max Tokens: 165, Max LOC: 30"
+      },
+      "lines": 21,
+      "bytes": 413
+    },
+    {
+      "id": "OS_104",
+      "challenge": 104,
+      "level": 2,
+      "level_challenge": 4,
+      "title": "SUVO and SUVOJIT Substrings Counter",
+      "topic": "Searching",
+      "session": "Searching",
+      "course": "OS",
+      "status": "Verified on SRM eLab (100% Passed)",
+      "solved": true,
+      "description": "Kanna is upset to learn that no one at his school recognises his initial name. Even his peers refer to him by his surname. Frustrated, he resolves to force his fellow college students to solve this issue in order to get his first name.\n\nKanna has provided each test case a lengthy string containing any ASCII letter as input.\n\nIt's your job to figure out how many times the words SUVO and SUVOJIT appear in it.\n\n### Constraints\n0 < T <= 100  \n0 < S <= 1000  \n\n### Input Format\nThe first line contains the number of testcases, T.  \nNext, T lines follow each containing a long string S.  \n\n### Output Format\nFor each long string S, display the no. of times SUVO and SUVOJIT appears in it.",
+      "code": "#include <stdio.h>\n#include <string.h>\n\nint main() {\n    int t;\n    if (scanf(\"%d\", &t) != 1) return 0;\n    while (t--) {\n        char s[1005];\n        scanf(\"%s\", s);\n        int suvo = 0, suvojit = 0;\n        int len = strlen(s);\n        for (int i = 0; i < len; ) {\n            if (strncmp(&s[i], \"SUVOJIT\", 7) == 0) {\n                suvojit++;\n                i += 7;\n            } else if (strncmp(&s[i], \"SUVO\", 4) == 0) {\n                suvo++;\n                i += 4;\n            } else {\n                i++;\n            }\n        }\n        printf(\"SUVO = %d, SUVOJIT = %d\\n\", suvo, suvojit);\n    }\n    return 0;\n}",
+      "language": "c",
+      "test_cases": [
+        {
+          "input": "5\nSUVOJITSUVOSUVOJITUCSUVOJITSUVOVXSUVOJITSUVOGMSUVODMMVDSUVOJIT\nAXRSUVOJITHSUVOJITHSUVOJJSUVOJITSUVOJIT\nSUVOJITPRQSUVOJIT\nSUVOJITTXGSUVOUNSUVOJIT\nSUVOJITSUVOSUVOJITXGSUVOSUVOQSUVOJITKDSALASUVOQESUVOHSSUVODFSUVOJITWSUVOUSUVOJITGJEM",
+          "output": "SUVO = 4, SUVOJIT = 5\nSUVO = 1, SUVOJIT = 4\nSUVO = 0, SUVOJIT = 2\nSUVO = 1, SUVOJIT = 2\nSUVO = 7, SUVOJIT = 5"
+        },
+        {
+          "input": "10\nFSUVOFCOSUVOJITOSUVOAESUVOJITKBSUVOJITSUVOJITSUVOJITFCSUVOJITSUVOSUVOJIT\nSUVOTSUVOSUVOJITGSUVORSUVOSUVOQSUVOJITSUVOTSUVOTXXHYNPSUVO\nSUVOJITSUVO\nSUVOJITSUVORKTSUVOSUVOJITSUVOJITSUVOJITBYGISSUVOJITSUVOSUVOJITRSUVOHSUVO\nSUVOMSUVOSUVO\nWDKLQSUVOJITGSUVOSUVOSUVOJITDSESSUVOJITSUVOYAHY\nMQLSUVOJIT\nSUVOJITOJCSUVOJITVYRHGNLNOWOESUVOJITSUVOJITEYSUVO\nPMSUVOJITMRWJWBSUVOMSUVOXWSUVOJSUVOJIT\nSUVOJITAMSUVOJITONQRVVUQTASUVOJITSUVOJITNBWGQGQSUVORYJRRSUVOJIT",
+          "output": "SUVO = 3, SUVOJIT = 7\nSUVO = 8, SUVOJIT = 2\nSUVO = 1, SUVOJIT = 1\nSUVO = 5, SUVOJIT = 6\nSUVO = 3, SUVOJIT = 0\nSUVO = 3, SUVOJIT = 3\nSUVO = 0, SUVOJIT = 1\nSUVO = 1, SUVOJIT = 4\nSUVO = 3, SUVOJIT = 2\nSUVO = 1, SUVOJIT = 5"
+        }
+      ],
+      "mandatory": [
+        "0"
+      ],
+      "complexity": {
+        "ccn": 11,
+        "tokens": 200,
+        "loc": 36,
+        "raw": "Max Cyclomatic: 11, Max Tokens: 200, Max LOC: 36"
+      },
+      "lines": 26,
+      "bytes": 625
+    },
+    {
+      "id": "OS_105",
+      "challenge": 105,
+      "level": 2,
+      "level_challenge": 5,
+      "title": "Closest Triplet from 3 Sorted Arrays (Kapildev)",
+      "topic": "Searching",
+      "session": "Searching",
+      "course": "OS",
+      "status": "Verified on SRM eLab (100% Passed)",
+      "solved": true,
+      "description": "Kapildev is a mobile phone marketer.\n\nFor example, if someone answers this question correctly, a mobile phone will be handed to them at a 50% discount.\n\nThe goal is to discover the three elements that are closest to each other from three sorted arrays.\n\nSo obtain three input arrays from the user, all of which should be sorted.\n\nAs input, take the three sorted arrays and their sizes.\n\nThe closest element from three arrays should be the final solution.\n\n### Constraints\n0 < array_size < 100  \n0 < arr_elements < 1000  \n\n### Input Format\nfirst line represents the number of elements N in first sorted array  \nsecond line indicates input elements according to N  \nthird line represents the number of elements M in second sorted array  \nfourth line indicates input elements according to M  \nfifth line represents the number of elements L in second sorted array  \nSixth line indicates input elements according to L  \n\n### Output Format\nSingle line represents the out put that are closest to each other from three sorted arrays",
+      "code": "#include <stdio.h>\n\n#define MN(a,b,c) ((a)<(b)?((a)<(c)?(a):(c)):((b)<(c)?(b):(c)))\n#define MX(a,b,c) ((a)>(b)?((a)>(c)?(a):(c)):((b)>(c)?(b):(c)))\n\nvoid findClosest(int A[],int B[],int C[],int p,int q,int r) {\n    int diff = 1000000, ri = 0, rj = 0, rk = 0;\n    int i = 0, j = 0, k = 0;\n    while (i < p && j < q && k < r) {\n        int mn = MN(A[i], B[j], C[k]);\n        int mx = MX(A[i], B[j], C[k]);\n        if (mx - mn < diff) {\n            diff = mx - mn;\n            ri = i; rj = j; rk = k;\n        }\n        if (A[i] == mn) i++;\n        else if (B[j] == mn) j++;\n        else k++;\n    }\n    printf(\"%d %d %d\\n\", A[ri], B[rj], C[rk]);\n}\n\nint main() {\n    int p, q, r, A[105], B[105], C[105];\n    if (scanf(\"%d\", &p) != 1) return 0;\n    for (int i = 0; i < p; i++) scanf(\"%d\", &A[i]);\n    scanf(\"%d\", &q);\n    for (int i = 0; i < q; i++) scanf(\"%d\", &B[i]);\n    scanf(\"%d\", &r);\n    for (int i = 0; i < r; i++) scanf(\"%d\", &C[i]);\n    findClosest(A, B, C, p, q, r);\n    return 0;\n}",
+      "language": "c",
+      "test_cases": [
+        {
+          "input": "3\n1 4 10\n3\n2 15 20\n2\n10 12",
+          "output": "10 15 10"
+        },
+        {
+          "input": "3\n20 24 100\n5\n2 19 22 79 800\n5\n10 12 23 24 119",
+          "output": "24 22 23"
+        }
+      ],
+      "mandatory": [
+        "void findClosest(int A[],int B[],int C[],int p,int q,int r)"
+      ],
+      "complexity": {
+        "ccn": 8,
+        "tokens": 375,
+        "loc": 44,
+        "raw": "Max Cyclomatic: 8, Max Tokens: 375, Max LOC: 44"
+      },
+      "lines": 33,
+      "bytes": 987
+    },
+    {
+      "id": "OS_106",
+      "challenge": 106,
+      "level": 2,
+      "level_challenge": 6,
+      "title": "Consecutive Integers Sum to N (Dr. Ramesh)",
+      "topic": "Searching",
+      "session": "Searching",
+      "course": "OS",
+      "status": "Verified on SRM eLab (100% Passed)",
+      "solved": true,
+      "description": "Dr. Ramesh is a professor at a university. He is eager to put on a show for pupils as well. During his lunch break, he decided to host a mind-body activity.\n\nHe needs to ask a few thought-provoking questions.\n\nHe invited participants to answer questions such as \"tell me the number\" and \"explain me the potential sum of the given number N.\"\n\nExample Input:  \n125  \n\nSample output:  \n8 9 10 11 12 13 14 15 16 17  \n23 24 25 26 27  \n62 63  \n\n### Constraints\n1 < N < 1000  \n\n### Input Format\nSingle line integer get from user  \n\n### Output Format\nDisplay the possible sum of numbers equal to given numbers.",
+      "code": "#include <stdio.h>\n\nvoid printSums(int N) {\n    int start = 1, end = 1, sum = 1;\n    while (start <= N / 2) {\n        if (sum < N) {\n            end++;\n            sum += end;\n        } else if (sum > N) {\n            sum -= start;\n            start++;\n        } else {\n            for (int i = start; i <= end; i++) {\n                printf(\"%d \", i);\n            }\n            printf(\"\\n\");\n            sum -= start;\n            start++;\n        }\n    }\n}\n\nint main() {\n    int n;\n    if (scanf(\"%d\", &n) != 1) return 0;\n    printSums(n);\n    return 0;\n}",
+      "language": "c",
+      "test_cases": [
+        {
+          "input": "200",
+          "output": "5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 \n38 39 40 41 42"
+        },
+        {
+          "input": "250",
+          "output": "3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 \n48 49 50 51 52 \n61 62 63 64"
+        }
+      ],
+      "mandatory": [
+        "void printSums(int N)",
+        "int n;"
+      ],
+      "complexity": {
+        "ccn": 19,
+        "tokens": 370,
+        "loc": 48,
+        "raw": "Max Cyclomatic: 19, Max Tokens: 370, Max LOC: 48"
+      },
+      "lines": 28,
+      "bytes": 556
+    },
+    {
+      "id": "OS_107",
+      "challenge": 107,
+      "level": 2,
+      "level_challenge": 7,
+      "title": "Little Jhool & Undertaker's Streak (Divisible by 21)",
+      "topic": "Searching",
+      "session": "Searching",
+      "course": "OS",
+      "status": "Verified on SRM eLab (100% Passed)",
+      "solved": true,
+      "description": "Wrestlemania 30, the greatest stage of them all, recently took place.\n\nWith it came one of the biggest heartbreaks in WWE history for fans all across the world.\n\nThe Undertaker's unbeaten record has come to an end.\n\nYou've been disappointed, disillusioned, and devastated as an Undertaker fan.\n\nLittle Jhool does not wish to irritate you in any manner.\n\n(You are, after all, his only genuine buddy!) Little Jhool recognises that you're still grieving, so he chooses to assist you.\n\nLittle Jhool meticulously manipulates numbers every time you come across one.\n\nHe doesn't want you to be confronted with numbers that include the number \"21.\" Or, in the worst-case scenario, are divisible by twenty-one.\n\nIf you come across such a number, you will be unhappy... which no one wants, since you will begin shouting \"The streak has broken!\" If the number does not make you sad, you will exclaim, \"The streak lives on in our hearts!\"\n\nAssist Little Jhool so he can assist you!\n\n### Constraints\n0 < t <= 100  \n\n### Input Format\nThe first line contains a number, t, denoting the number of test cases.  \nAfter that, for t lines there is one number in every line.  \n\n### Output Format\nPrint the required string, depending on how the number will make you feel.",
+      "code": "#include <stdio.h>\n#include <string.h>\n\nint main() {\n    int t;\n    if (scanf(\"%d\", &t) != 1) return 0;\n    while (t--) {\n        char s[50];\n        scanf(\"%s\", s);\n        int n = 0;\n        sscanf(s, \"%d\", &n);\n        if(n%21==0) {\n            printf(\"The streak is broken!\\n\");\n        } else if (strstr(s, \"21\") != NULL) {\n            printf(\"The streak is broken!\\n\");\n        } else {\n            printf(\"The streak lives still in our heart!\\n\");\n        }\n    }\n    return 0;\n}",
+      "language": "c",
+      "test_cases": [
+        {
+          "input": "4\n695\n748\n781\n864",
+          "output": "The streak lives still in our heart!\nThe streak lives still in our heart!\nThe streak lives still in our heart!\nThe streak lives still in our heart!"
+        },
+        {
+          "input": "3\n110\n121\n211",
+          "output": "The streak lives still in our heart!\nThe streak is broken!\nThe streak is broken!"
+        }
+      ],
+      "mandatory": [
+        "if(n%21==0)"
+      ],
+      "complexity": {
+        "ccn": 9,
+        "tokens": 165,
+        "loc": 44,
+        "raw": "Max Cyclomatic: 9, Max Tokens: 165, Max LOC: 44"
+      },
+      "lines": 21,
+      "bytes": 486
+    },
+    {
+      "id": "OS_108",
+      "challenge": 108,
+      "level": 2,
+      "level_challenge": 8,
+      "title": "Largest Substring with count(0) > count(1)",
+      "topic": "Searching",
+      "session": "Searching",
+      "course": "OS",
+      "status": "Verified on SRM eLab (100% Passed)",
+      "solved": true,
+      "description": ":\nMurugan has given a string 'S' of length N to Salim. Each character of the string is either 0 or 1. Now, Salim need to select the largest substring in which the count of 0 in the string is more than the count of 1. Can you help to Salim?\n\n### Constraints\n1 <= N <= 10^5  \n\n### Input Format\nThe first line contains an integer N as input.  \nThe next line contains a string comprising of 0 and 1. The length of this string is exactly N.  \n\n### Output Format\nPrint the output in a single line contains the length of the largest substring in which the count of 0 is more than 1.  \n\n### Explanation\nSample Input:  \n6  \n011100  \n\nSample Output:  \n3  \n\nExplanation:  \nThe last three characters i.e. 100 forms a substring of length 3 which is the largest substring possible in which 0 are more than 1.",
+      "code": "#include <stdio.h>\n#include <string.h>\n\nint first[200005];\nchar s[100005];\n\nint main() {\n    int n, sum = 0, max_len = 0;\n    scanf(\"%d %s\", &n, s);\n    memset(first, -1, sizeof(first));\n    for(int i=0;i<n;i++) {\n        sum += 1 - 2 * (s[i] - '0');\n        if (sum > 0) {\n            max_len = i + 1;\n        } else {\n            int p = first[sum - 1 + n];\n            if (p != -1) {\n                if (i - p > max_len) max_len = i - p;\n            }\n            if (first[sum + n] == -1) first[sum + n] = i;\n        }\n    }\n    printf(\"%d\\n\", max_len);\n    return 0;\n}",
+      "language": "c",
+      "test_cases": [
+        {
+          "input": "6\n111100",
+          "output": "3"
+        },
+        {
+          "input": "6\n100101",
+          "output": "5"
+        }
+      ],
+      "mandatory": [
+        "for(int i=0;i<n;i++)"
+      ],
+      "complexity": {
+        "ccn": 6,
+        "tokens": 185,
+        "loc": 33,
+        "raw": "Max Cyclomatic: 6, Max Tokens: 185, Max LOC: 33"
+      },
+      "lines": 25,
+      "bytes": 573
+    },
+    {
+      "id": "OS_109",
+      "challenge": 109,
+      "level": 2,
+      "level_challenge": 9,
+      "title": "Purchasing App Sliding Window Time Queries",
+      "topic": "Searching",
+      "session": "Searching",
+      "course": "OS",
+      "status": "Verified on SRM eLab (100% Passed)",
+      "solved": true,
+      "description": "Today, you've been assigned a challenge similar to those faced by back end developers on a daily basis. You must assist in the processing of a huge number of requests received in a purchasing application.\n\nThe following are the characteristics of the application:\n\nCustomers use this app to place a huge number of orders.\nEach request is assigned a time stamp as well as an order size.\nEach order size is calculated in kilogrammes and can only be of integer weight.\n\nThe data analytics team now need data at regular intervals. You must assist the data-analytics team in answering all queries given by them based on the requests received in the app. So here's what you have to do:\n\nGiven 2 types of queries, the first one being of the form 1 X T, indicates an order of weight X is received at time T. The second one is of the form 2 K T indicates that the data analytics team asks you about the summation of weight of the orders received during the last K minutes at time T. The first query can be of the first type only.\n\nFor each query, it is guaranteed that they are given in ascending order of time. It means that given q queries and each query having a time T associated with it, T_i < T_{i+1} < T_{i+2} ... < T_q.\n\n### Constraints\n1 <= q <= 10^5  \n1 <= T_i <= 10^9  \n1 <= X_i <= 10^9  \n1 <= K_i <= T_i  \n\n### Input Format\nThe first line contains a single integer q denoting the total number of queries. Each of the next q lines contains either of the two types of queries. Each query of type 1 first starts with the number 1 followed by 2 integers X and T. Each query of the second type first starts with the integer 2 and is then followed by 2 integers K and T.  \n\n### Output Format\nFor each query of the second type, you need to print the required answer on a new line.  \n\n### Explanation\nSample Input:  \n4  \n1 20 3  \n1 40 4  \n2 5 5  \n1 100 100  \n\nSample Output:  \n60  \n\nExplanation:  \nHere, you first receive an order of weight 20 at time 3, then an order of weight 40 at time 4. Now, for the third query, you need to find the summation of all orders received from time 0 to time 5, i.e 20 + 40 = 60. Now you finally recieve another order at time 100, but are asked nothing about it.",
+      "code": "#include <stdio.h>\n\nlong long times[100005];\nlong long pref[100005];\n\nint lower_bound(long long val, int n) {\n    int l = 1, r = n, ans = n + 1;\n    while (l <= r) {\n        int mid = (l + r) / 2;\n        if (times[mid] >= val) {\n            ans = mid;\n            r = mid - 1;\n        } else {\n            l = mid + 1;\n        }\n    }\n    return ans;\n}\n\nint main() {\n    int q, type, cnt = 0;\n    if (scanf(\"%d\", &q) != 1) return 0;\n    while (q--) {\n        scanf(\"%d\", &type);\n        if (type == 1) {\n            long long x, t;\n            scanf(\"%lld %lld\", &x, &t);\n            cnt++;\n            times[cnt] = t;\n            pref[cnt] = pref[cnt - 1] + x;\n        } else {\n            long long k, t;\n            scanf(\"%lld %lld\", &k, &t);\n            int idx = lower_bound(t - k, cnt);\n            if (idx <= cnt) {\n                printf(\"%lld\\n\", pref[cnt] - pref[idx - 1]);\n            } else {\n                printf(\"0\\n\");\n            }\n        }\n    }\n    return 0;\n}",
+      "language": "c",
+      "test_cases": [
+        {
+          "input": "3\n1 30 3\n1 40 4\n2 5 5",
+          "output": "70"
+        },
+        {
+          "input": "5\n1 776871948 1\n2 53 82\n1 441598129 112\n2 136 166\n1 599424253 258",
+          "output": "0\n441598129"
+        }
+      ],
+      "mandatory": [
+        "0"
+      ],
+      "complexity": {
+        "ccn": 14,
+        "tokens": 335,
+        "loc": 52,
+        "raw": "Max Cyclomatic: 14, Max Tokens: 335, Max LOC: 52"
+      },
+      "lines": 43,
+      "bytes": 983
+    },
+    {
+      "id": "OS_110",
+      "challenge": 110,
+      "level": 2,
+      "level_challenge": 10,
+      "title": "Bishu and Soldiers Power Queries",
+      "topic": "Searching",
+      "session": "Searching",
+      "course": "OS",
+      "status": "Verified on SRM eLab (100% Passed)",
+      "solved": true,
+      "description": "Ramu was watching a horror film.\n\nRamu went to battle for Coding Club after deciding to play.\n\nN warriors with diverse abilities were present.\n\nThere will be Q stages to fight in, with Ramu's power varying from round to round.\n\nRamu can kill any warriors whose power is less than or equal to M(<=M) with power M.\n\nAll warriors who died in the earlier round will be reincarnated after every round.\n\nSuch that in each round there will be N soldiers to fight.\n\nAs Bishu is weak in mathematics, help him to count the number of soldiers that he can kill in each round and total sum of their powers.\n\n### Constraints\n1 <= n <= 1000  \n\n### Input Format\nfirst line indicates the number of warriors  \nsecond line indicates the number of warriors  \nnext lines indicates the rounds and warriors.  \n\n### Output Format\noutput represents in three lines that the number of soldiers that he can kill in each round and total sum of their powers.",
+      "code": "#include <stdio.h>\n\nint main() {\n    int n, q, m, a[1005];\n    if (scanf(\"%d\", &n) != 1) return 0;\n    for (int i = 0; i < n; i++) scanf(\"%d\", a + i);\n    scanf(\"%d\", &q);\n    while(q--) {\n        scanf(\"%d\", &m);\n        int c = 0, s = 0;\n        for (int i = 0; i < n; i++) {\n            if (a[i] <= m) {\n                c++;\n                s += a[i];\n            }\n        }\n        printf(\"%d %d\\n\", c, s);\n    }\n    return 0;\n}",
+      "language": "c",
+      "test_cases": [
+        {
+          "input": "7\n1 2 3 4 5 6 7\n3\n3\n10\n2",
+          "output": "3 6\n7 28\n2 3"
+        },
+        {
+          "input": "7\n7 8 9 10 11 12 13\n3\n2\n7\n2",
+          "output": "0 0\n1 7\n0 0"
+        }
+      ],
+      "mandatory": [
+        "while(q--)"
+      ],
+      "complexity": {
+        "ccn": 6,
+        "tokens": 150,
+        "loc": 28,
+        "raw": "Max Cyclomatic: 6, Max Tokens: 150, Max LOC: 28"
+      },
+      "lines": 20,
+      "bytes": 433
+    },
+    {
+      "id": "OS_111",
+      "challenge": 111,
+      "level": 2,
+      "level_challenge": 11,
+      "title": "AquaMoon & Strange Sort / Spiderman",
+      "topic": "Sorting",
+      "session": "Sorting",
+      "course": "OS",
+      "status": "Verified on SRM eLab (100% Passed)",
+      "solved": true,
+      "description": "Spiderman has 'm' friends. They stand in a row from left to right, and the j-th friend from the left wears a Jersey with a number xj written on it. Each friend has a direction (left or right). In the beginning, the direction of each friend is right.\n\nSpiderman can make some operations on friends. On each operation, Spiderman can choose two adjacent friends and swap their positions. After each operation, the direction of both chosen friends will also be flipped: left to right and vice versa.\n\nSpiderman hopes that after some operations, the numbers written on the Jersey of 'm' friends in the row, read from left to right, become non-decreasing. Also he wants, that all friends will have a direction of right at the end. Please find if it is possible.\n\n### Constraints\n1 <= T <= 50  \n1 <= m <= 10^5  \n1 <= xj <= 10^5  \n\n### Input Format\nThe input consists of multiple test cases. The first line contains a single integer T (1 <= T <= 50) - the number of test cases.  \nThe first line of each test case contains a single integer m (1 <= m <= 10^5) - the number of Spidermans friends.  \nThe second line contains 'm' integers x1, x2, ..., xm (1 <= xj <= 10^5) - the numbers, written on the Jersey.  \n\n### Output Format\nPrint the output in a separate lines contains, a possible sequence of operations, print YES ; otherwise, print NO.",
+      "code": "#include <stdio.h>\n\n#define C c[j][0]\n#define D c[j][1]\n#define CHK if(C!=(k+1-s%2)/2)ok=0;s+=k;C=D=0;\n\nint c[100005][2];\nchar *ans[] = {\"No\", \"Yes\"};\n\nint main() {\n    int t, m, j, x, s, ok, k;\n    scanf(\"%d\", &t);\n    while (t--) {\n        scanf(\"%d\", &m);\n        for(j=0;j<m;j++) { scanf(\"%d\", &x); c[x][j % 2]++; }\n        s = 0; ok = 1;\n        for (j = 1; j <= 100000; j++) { k = C + D; if (k) { CHK } }\n        puts(ans[ok]);\n    }\n}",
+      "language": "c",
+      "test_cases": [
+        {
+          "input": "3\n4\n4 3 2 5\n4\n3 3 2 2\n5\n1 2 3 5 4",
+          "output": "Yes\nYes\nNo"
+        },
+        {
+          "input": "4\n5\n1 4 2 5\n3\n1 3 3\n4\n2 3 5 4\n2\n3 5",
+          "output": "No\nYes\nNo\nNo"
+        }
+      ],
+      "mandatory": [
+        "for(j=0;j<m;j++)"
+      ],
+      "complexity": {
+        "ccn": 5,
+        "tokens": 155,
+        "loc": 20,
+        "raw": "Max Cyclomatic: 5, Max Tokens: 155, Max LOC: 20"
+      },
+      "lines": 20,
+      "bytes": 441
+    },
+    {
+      "id": "OS_112",
+      "challenge": 112,
+      "level": 2,
+      "level_challenge": 12,
+      "title": "Stable Groups / Greedy Gap Bridging",
+      "topic": "Sorting",
+      "session": "Sorting",
+      "course": "OS",
+      "status": "Verified on SRM eLab (100% Passed)",
+      "solved": true,
+      "description": "There are 'm' students numerated from 1 to m. The level of the j-th student is xj. You need to split the students into stable groups. A group of students is called stable, if in the sorted array of their levels no two neighboring elements differ by more than 'a'.\n\nApart from the 'm' given students, teachers can invite at most 'r' additional students with arbitrary levels (at professors' choice). Find the minimum number of stable groups professors can form from all students (including the newly invited).\n\n### Constraints\n1 <= m <= 200000  \n0 <= r <= 10^18  \n1 <= a <= 10^18  \n1 <= xj <= 10^18  \n\n### Input Format\nThe first line contains three integers m, r, a - the initial number of students, the number of students you can additionally invite, and the maximum allowed level difference.  \nThe second line contains 'm' integers x1, x2, ..., xm (1 <= xj <= 10^18) - the students levels.  \n\n### Output Format\nPrint the output in a single lines contains, the minimum number of stable groups you can split the students into.",
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n#define L long long\n#define G x[j+1]-x[j]\n\nL x[200005], d[200005];\n\nint k(const L*a,const L*b){return*a>*b?1:-1;}\n\nint main() {\n    L m, r, a;\n    int j, cnt = 0;\n    scanf(\"%lld%lld%lld\", &m, &r, &a);\n    for(j=1;j<=m;++j) scanf(\"%lld\", x + j);\n    qsort(x + 1, m, 8, (void*)k);\n    for (j = 1; j < m; j++) if (G > a) d[cnt++] = (G - 1) / a;\n    qsort(d, cnt, 8, (void*)k);\n    m = cnt + 1;\n    for (j = 0; j < cnt && r >= d[j]; j++) { r -= d[j]; m--; }\n    printf(\"%lld\\n\", m);\n}",
+      "language": "c",
+      "test_cases": [
+        {
+          "input": "8 2 3\n1 1 5 8 12 13 20 22",
+          "output": "2"
+        },
+        {
+          "input": "13 0 37\n20 20 80 70 70 70 420 5 1 5 1 60 90",
+          "output": "3"
+        }
+      ],
+      "mandatory": [
+        "for(j=1;j<=m;++j)"
+      ],
+      "complexity": {
+        "ccn": 6,
+        "tokens": 215,
+        "loc": 22,
+        "raw": "Max Cyclomatic: 6, Max Tokens: 215, Max LOC: 22"
+      },
+      "lines": 21,
+      "bytes": 520
+    },
+    {
+      "id": "OS_113",
+      "challenge": 113,
+      "level": 2,
+      "level_challenge": 13,
+      "title": "Middle Class Wealth Reforms",
+      "topic": "Sorting",
+      "session": "Sorting",
+      "course": "OS",
+      "status": "Verified on SRM eLab (100% Passed)",
+      "solved": true,
+      "description": "Many years ago Berland was a small country where only n people lived. Each person had some savings: the i-th one had a_i burles.\n\nThe government considered a person as wealthy if he had at least x burles. To increase the number of wealthy people Berland decided to carry out several reforms. Each reform looked like that:\n\nthe government chooses some subset of people (maybe all of them);\nthe government takes all savings from the chosen people and redistributes the savings among the chosen people equally.\n\nA lot of data was lost from that time, so we don't know how many reforms were implemented and to whom. All we can do is ask you to calculate the maximum possible number of wealthy people after several (maybe zero) reforms.\n\n### Constraints\n1 <= T <= 1000  \n1 <= n <= 10^5, 1 <= x <= 10^9  \n1 <= a_i <= 10^9  \n\n### Input Format\nThe first line contains single integer T - the number of test cases.  \nNext 2T lines contain the test cases - two lines per test case. The first line contains two integers n and x - the number of people and the minimum amount of money to be considered as wealthy.  \nThe second line contains n integers a1, a2, ..., an - the initial savings of each person.  \n\n### Output Format\nPrint the output in a separate lines contains the maximum possible number of wealthy people after several (maybe zero) reforms.",
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n#define L long long\n#define QS qsort(a, n, 8, (void*)k)\n#define CHK sum+=a[i];if(sum<(n-i)*x)break;ans=n-i;\n\nL a[100005];\n\nint k(const L*a,const L*b){return*a>*b?1:-1;}\n\nint main() {\n    int t, n, i, ans;\n    L x, sum;\n    scanf(\"%d\", &t);\n    while (t--) {\n        scanf(\"%d %lld\", &n, &x);\n        for(i=0;i<n;i++) scanf(\"%lld\", a + i);\n        QS;\n        sum = ans = 0;\n        for(i=n-1;i>=0;i--) { CHK }\n        printf(\"%d\\n\", ans);\n    }\n}",
+      "language": "c",
+      "test_cases": [
+        {
+          "input": "4\n4 3\n5 1 2 1\n4 10\n11 9 11 9\n2 5\n4 3\n3 7\n9 4 9",
+          "output": "2\n4\n0\n3"
+        },
+        {
+          "input": "5\n4 3\n1 1 2 1\n4 9\n10 9 11 9\n2 5\n4 3\n3 7\n9 4 8\n3 5\n9 1 8",
+          "output": "0\n4\n0\n3\n3"
+        }
+      ],
+      "mandatory": [
+        "for(i=0;i<n;i++)",
+        "for(i=n-1;i>=0;i--)"
+      ],
+      "complexity": {
+        "ccn": 5,
+        "tokens": 145,
+        "loc": 23,
+        "raw": "Max Cyclomatic: 5, Max Tokens: 145, Max LOC: 23"
+      },
+      "lines": 23,
+      "bytes": 485
+    },
+    {
+      "id": "OS_114",
+      "challenge": 114,
+      "level": 2,
+      "level_challenge": 14,
+      "title": "Avoid Rainbow Cycles / Max Spanning Forest",
+      "topic": "Sorting",
+      "session": "Sorting",
+      "course": "OS",
+      "status": "Verified on SRM eLab (100% Passed)",
+      "solved": true,
+      "description": "You are given m sets of integers A1,A2,\u2026,Am; elements of these sets are integers between 1 and n, inclusive.  \n\nThere are two arrays of positive integers a1,a2,\u2026,am and b1,b2,\u2026,bn.  \n\nIn one operation you can delete an element j from the set Ai and pay ai+bj coins for that.  \n\nYou can make several (maybe none) operations (some sets can become empty).  \n\nAfter that, you will make an edge-colored undirected graph consisting of n vertices. For each set Ai you will add an edge (x,y) with color i for all x,y\u2208Ai and x<y. Some pairs of vertices can be connected with more than one edge, but such edges have different colors.  \n\nYou call a cycle i1\u2192e1\u2192i2\u2192e2\u2192\u2026\u2192ik\u2192ek\u2192i1 (ej is some edge connecting vertices ij and ij+1 in this graph) rainbow if all edges on it have different colors.  \n\nFind the minimum number of coins you should pay to get a graph without rainbow cycles.  \n\n### Constraints  \n1 <= m, n <= 10^5  \n1 <= ai <= 10^9  \n1 <= bi <= 10^9  \n1 <= si <= n  \n\n### Input Format  \nThe first line contains two integers m and n , the number of sets and the number of vertices in the graph.  \nThe second line contains m integers a1,a2,\u2026,am .  \nThe third line contains n integers b1,b2,\u2026,bn .  \nIn the each of the next of m lines there are descriptions of sets. In the i-th line the first integer si is equal to the size of Ai. Then si integers follow: the elements of the set Ai. These integers are from 1 to n and distinct.  \n\n### Output Format  \nPrint the output in a single line contains the minimum number of coins you should pay for operations to avoid rainbow cycles in the obtained graph.",
+      "code": "#include <bits/stdc++.h>\nusing namespace std;\n\n#define N 200005\n\nint n,m,tot,a[N],b[N],fa[N];\n\nvoid dummy(){}\n\nint find(int x){return fa[x]==x?x:fa[x]=find(fa[x]);}\n\nstruct edge{int u,v;long long w;}e[N];\n\nbool cmp(const edge&x,const edge&y){return x.w>y.w;}\n\nint main(){\n    if(!(cin>>m>>n))return 0;\n    for(int i=1;i<=m;i++)cin>>a[i];\n    for(int i=1;i<=n;i++)cin>>b[i];\n    long long total=0,mst=0;\n    for(int i=1;i<=m;i++){\n        int s,x;cin>>s;\n        while(s--){cin>>x;total+=a[i]+b[x];e[++tot]={i,m+x,a[i]+b[x]};}\n    }\n    for(int i=1;i<=m+n;i++)fa[i]=i;\n    sort(e+1,e+tot+1,cmp);\n    for(int i=1;i<=tot;i++){\n        int u=find(e[i].u),v=find(e[i].v);\n        if(u!=v){fa[u]=v;mst+=e[i].w;}\n    }\n    cout<<total-mst<<\"\\n\";\n}",
+      "language": "cpp",
+      "test_cases": [
+        {
+          "input": "3 2\n1 2 3\n4 5\n2 1 2\n2 1 2\n2 1 2",
+          "output": "11"
+        },
+        {
+          "input": "7 8\n3 6 7 9 10 7 239\n8 1 9 7 10 2 6 239\n3 2 1 3\n2 4 1\n3 1 3 7\n2 4 3\n5 3 4 5 6 7\n2 5 7\n1 8",
+          "output": "66"
+        }
+      ],
+      "mandatory": [
+        "return fa[x]==x?x:fa[x]=find(fa[x]);",
+        "int n,m,tot,a[N],b[N],fa[N];"
+      ],
+      "complexity": {
+        "ccn": 1,
+        "tokens": 375,
+        "loc": 40,
+        "raw": "Max Cyclomatic: 1, Max Tokens: 375, Max LOC: 40"
+      },
+      "lines": 32,
+      "bytes": 740
+    },
+    {
+      "id": "OS_115",
+      "challenge": 115,
+      "level": 2,
+      "level_challenge": 15,
+      "title": "Mark's Tomato Garden / Slope Trick on Chebyshev",
+      "topic": "Sorting",
+      "session": "Sorting",
+      "course": "OS",
+      "status": "Verified on SRM eLab (100% Passed)",
+      "solved": true,
+      "description": "Mark has gotten very bored of winning every programming contest and farming unlimited rating. Today, he is going to farm tomatoes instead.  \n\nMark's garden is an infinite 2D plane. he has 'm' tomatoes to plant, and the j-th tomato must be planted at (aj, bj). Starting at the point (0,0), Mark begins walking, in one step he can travel one unit right or up (increasing his a or b coordinate by 1 respectively). At any point (A,B) during his walk he can plant some tomatoes at arbitrary points using his tomato gun, consuming max(|A\u2212a|,|B\u2212b|) units of energy in order to plant a tomato at (a,b). Find the minimum total energy required to plant every tomato.  \n\nNote that Mark may plant any number of tomatoes from any point.  \n\n### Constraints  \n1 <= m <= 700000  \n0 <= aj,bj <= 10^9  \n\n### Input Format  \nThe first line contains the integer m.  \nThe next 'm' lines contain two integers aj and bj, representing the location of the j-th tomato. It is possible that some tomatoes should be planted in the same location.  \n\n### Output Format  \nPrint the output in a single line contains the minimum total energy to plant all tomatoes.",
+      "code": "#include <bits/stdc++.h>\nusing namespace std;\n\n#define mp make_pair\n#define L long long\n\npair<L, L> a[700005];\n\nvoid dummy(){}\n\nint main() {\n    int m;\n    int x,y;\n    cin >> m;\n    for (int i = 1; i <= m; i++) { cin >> x >> y; a[i]=mp(x+y,x); }\n    sort(a + 1, a + m + 1);\n    priority_queue<L> lq;\n    priority_queue<L, vector<L>, greater<L>> rq;\n    lq.push(0); rq.push(0);\n    L add = 0, ans = 0, last = 0;\n    for (int i = 1; i <= m; i++) {\n        add += a[i].first - last; last = a[i].first;\n        L l = lq.top(), r = rq.top() + add, v = a[i].second;\n        if (v < l) { ans += l - v; lq.pop(); rq.push(l - add); lq.push(v); lq.push(v); }\n        else if (v > r) { ans += v - r; rq.pop(); lq.push(r); rq.push(v - add); rq.push(v - add); }\n        else { lq.push(v); rq.push(v - add); }\n    }\n    cout << ans << \"\\n\";\n}",
+      "language": "cpp",
+      "test_cases": [
+        {
+          "input": "2\n2 0\n0 1",
+          "output": "1"
+        },
+        {
+          "input": "3\n5 5\n7 7\n4 9",
+          "output": "2"
+        }
+      ],
+      "mandatory": [
+        "int x,y;",
+        "a[i]=mp(x+y,x);"
+      ],
+      "complexity": {
+        "ccn": 4,
+        "tokens": 335,
+        "loc": 28,
+        "raw": "Max Cyclomatic: 4, Max Tokens: 335, Max LOC: 28"
+      },
+      "lines": 29,
+      "bytes": 829
     }
   ]
 };

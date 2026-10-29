@@ -143,20 +143,28 @@ body {
 
 .official-search-kbd {
   position: absolute;
-  right: 6px;
-  top: 50%;
-  transform: translateY(-50%);
+  right: 8px;
+  top: 6px;
+  bottom: 6px;
   background: #f0f0f0;
   border: 1px solid #d9d9d9;
   border-radius: 3px;
-  font-size: 10px;
-  height: 20px;
-  line-height: 18px;
-  padding: 0 5px;
+  font-size: 11px;
+  padding: 0 6px;
   color: #8c8c8c;
   font-family: monospace;
   box-sizing: border-box;
   pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+@media (max-width: 768px) {
+  .official-search-kbd {
+    display: none !important;
+  }
 }
 
 /* Search Dropdown */

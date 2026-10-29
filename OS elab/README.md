@@ -86,6 +86,7 @@
 | 90 | **Q090** | Graph | Level 1 Challenge 90 (Police Chase - Minimum s-t Cut) | [Q090.c](./Q090.c) | [Q090.md](./Q090.md) | **100% Passed** |
 | 91 | **Q091** | Hashing | Level 1 Challenge 91 (Keyboard Key Swaps - Inverted Substitution) | [Q091.c](./Q091.c) | [Q091.md](./Q091.md) | **100% Passed** |
 | 92 | **Q092** | Hashing | Level 1 Challenge 92 (Canthi and Sami are having a game! The g) | [Q092.c](./Q092.c) | [Q092.md](./Q092.md) | **100% Passed** |
+| 93 | **Q093** | Hashing | Level 1 Challenge 93 (T-Rex And The Pairs - Array Difference Equation) | [Q093.c](./Q093.c) | [Q093.md](./Q093.md) | **100% Passed** |
 | 96 | **Q096** | Hashing | Level 1 Challenge 96 (Rick was besieged by walkers after the G) | [Q096.c](./Q096.c) | [Q096.md](./Q096.md) | **100% Passed** |
 
 ---
@@ -139,7 +140,6 @@
 | 81 | **Q081** | Graph | Level 1 Challenge 81 (In the country of india, there are N cit) | [Q081.c](./Q081.c) | [Q081.md](./Q081.md) | Partial (0%) |
 | 82 | **Q082** | IPC | Level 1 Challenge 82 (A pipe is a technique for passing inform) | [Q082.c](./Q082.c) | [Q082.md](./Q082.md) | Partial (55.56%) |
 | 83 | **Q083** | IPC | Level 1 Challenge 83 (Child reads the first string sent by par) | [Q083.c](./Q083.c) | [Q083.md](./Q083.md) | Partial (0%) |
-| 93 | **Q093** | Hashing | Level 1 Challenge 93 (You are given an array of length) | [Q093.c](./Q093.c) | [Q093.md](./Q093.md) | Partial (37.50%) |
 | 94 | **Q094** | Hashing | Level 1 Challenge 94 (When shah was trying to learn English th) | [Q094.c](./Q094.c) | [Q094.md](./Q094.md) | Partial (37.50%) |
 | 95 | **Q095** | Hashing | Level 1 Challenge 95 (You are given an array A of length N whi) | [Q095.c](./Q095.c) | [Q095.md](./Q095.md) | Partial (37.50%) |
 | 97 | **Q097** | Hashing | Level 1 Challenge 97 (The students of college) | [Q097.c](./Q097.c) | [Q097.md](./Q097.md) | Partial (25.00%) |

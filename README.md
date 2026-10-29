@@ -6,8 +6,7 @@ This repository contains verified solutions and documentation for Operating Syst
 
 ```
 ├── OS prac/
-│   ├── OS_Lab_Practicals_Complete.md    # Master verified documentation for Experiments 1-15 & Value Added 1-2
-│   └── programs/                        # All 27 standalone C, C++, and Bash source files
+│   └── osl1-15.md                       # Master verified documentation for Experiments 1-15 & Value Added 1-2
 └── OS elab/
     ├── README.md                        # eLab progress overview and solutions index
     ├── Q001.c ... Q030.c                # C/C++ solution source codes
@@ -16,7 +15,7 @@ This repository contains verified solutions and documentation for Operating Syst
 
 ---
 
-## 1. [OS Practicals (`OS prac/`)](./OS%20prac/OS_Lab_Practicals_Complete.md)
+## 1. [OS Practicals (`OS prac/osl1-15.md`)](./OS%20prac/osl1-15.md)
 Complete verified practical manual solutions covering all 15 experiments and 2 value-added programs:
 - **Exp 1:** Basic Linux Commands & Process Creation (`fork.c`)
 - **Exp 2:** Process Creation & System Calls (`fork_srmist.c`, `fork_yes.c`, `process_ids.c`)

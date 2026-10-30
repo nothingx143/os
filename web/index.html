@@ -49,7 +49,8 @@
 
       <div class="header-right-cluster">
         <div class="course-buttons-group">
-          <button class="course-btn active" type="button" id="btnCourseActive">OS (115)</button>
+          <button class="course-btn active" type="button" id="btnCourseOS">OS (115)</button>
+          <button class="course-btn" type="button" id="btnCoursePrac">Prac Codes (27)</button>
         </div>
 
         <button type="button" class="official-logout-btn">
@@ -227,7 +228,7 @@
           </div>
 
           <!-- Bottom Solved Banner (Matching Screenshot 060442) -->
-          <div class="official-solved-alert" style="margin-bottom: 16px;">
+          <div class="official-solved-alert" id="solvedAlertBoxBottom" style="margin-bottom: 16px;">
             <div class="alert-content-left">
               <span class="alert-check-icon">
                 <svg viewBox="64 64 896 896" width="16" height="16" fill="#52c41a">
@@ -236,7 +237,7 @@
               </span>
               <span>You have already solved this challenge ! Though you can run the code with different logic !</span>
             </div>
-            <button class="alert-dismiss-btn" type="button">✕</button>
+            <button class="alert-dismiss-btn" type="button" onclick="document.getElementById('solvedAlertBoxBottom').style.display='none'">✕</button>
           </div>
 
           <!-- Split Two-Column Bottom Section: Code Editor & Right Cards -->
@@ -395,7 +396,8 @@
   </div>
 
   <!-- Scripts -->
-  <script src="questions_data.js?v=20261030_0710"></script>
-  <script src="app.js?v=20261030_0710"></script>
+  <script src="questions_data.js?v=20261030_0750"></script>
+  <script src="prac_data.js?v=20261030_0750"></script>
+  <script src="app.js?v=20261030_0750"></script>
 </body>
 </html>

@@ -2,6 +2,9 @@
 (function() {
   'use strict';
 
+  let currentMode = 'os'; // 'os' or 'prac'
+  let osQuestions = [];
+  let pracQuestions = [];
   let allQuestions = [];
   let currentQuestion = null;
   let currentIndex = 0;
@@ -16,7 +19,8 @@
   const elLblLevelDot = document.getElementById('lblLevelDot');
   const elLblChallengeDot = document.getElementById('lblChallengeDot');
   const elBannerSolvedText = document.getElementById('bannerSolvedText');
-  const elBtnCourseActive = document.getElementById('btnCourseActive');
+  const elBtnCourseOS = document.getElementById('btnCourseOS');
+  const elBtnCoursePrac = document.getElementById('btnCoursePrac');
 
   // Search Elements
   const elGlobalSearchInput = document.getElementById('globalSearchInput');
@@ -75,32 +79,110 @@
   ]);
 
   function init() {
-    allQuestions = window.ELAB_QUESTIONS || [];
-    if (!allQuestions.length) {
-      if (elProblemText) elProblemText.innerText = "No questions loaded. Check questions_data.js.";
+    osQuestions = window.ELAB_QUESTIONS || [];
+    pracQuestions = window.PRAC_EXPERIMENTS || [];
+
+    if (!osQuestions.length && !pracQuestions.length) {
+      if (elProblemText) elProblemText.innerText = 'No questions loaded. Check questions_data.js and prac_data.js.';
       return;
     }
 
-    // Dynamic Live Course Count
-    if (elBtnCourseActive) {
-      elBtnCourseActive.textContent = `OS (${allQuestions.length})`;
+    // Dynamic Live Course Counts
+    if (elBtnCourseOS) {
+      elBtnCourseOS.textContent = `OS (${osQuestions.length})`;
+    }
+    if (elBtnCoursePrac) {
+      elBtnCoursePrac.textContent = `Prac Codes (${pracQuestions.length})`;
     }
 
-    buildSearchIndex();
     setupEvents();
     startClock();
 
-    // Check URL hash, e.g. #q=34
-    const hashMatch = window.location.hash.match(/q=(\d+)/i);
-    let startIdx = 0;
-    if (hashMatch) {
-      const qNum = parseInt(hashMatch[1], 10);
-      const foundIdx = allQuestions.findIndex(q => q.challenge === qNum);
-      if (foundIdx !== -1) startIdx = foundIdx;
+    // Check URL hash or query, e.g. #prac=5 or ?prac=5 or #q=34
+    const urlStr = decodeURIComponent((window.location.hash || '') + ' ' + (window.location.search || ''));
+    const pracMatch = urlStr.match(/prac[=_](\d+)/i);
+    const qMatch = urlStr.match(/q[=_](\d+)/i);
+
+    if (pracMatch) {
+      const pNum = parseInt(pracMatch[1], 10);
+      setMode('prac', pNum);
+    } else if (qMatch) {
+      const qNum = parseInt(qMatch[1], 10);
+      setMode('os', qNum);
+    } else {
+      setMode('os', 0);
     }
 
-    selectQuestion(startIdx);
+    // Listen to hashchange
+    window.addEventListener('hashchange', () => {
+      const hStr = decodeURIComponent(window.location.hash || '');
+      const pm = hStr.match(/prac=(\d+)/i);
+      const qm = hStr.match(/q=(\d+)/i);
+      if (pm) {
+        const pNum = parseInt(pm[1], 10);
+        if (currentMode !== 'prac' || (currentQuestion && currentQuestion.challenge !== pNum)) {
+          setMode('prac', pNum);
+        }
+      } else if (qm) {
+        const qNum = parseInt(qm[1], 10);
+        if (currentMode !== 'os' || (currentQuestion && currentQuestion.challenge !== qNum)) {
+          setMode('os', qNum);
+        }
+      }
+    });
   }
+
+  // Switch Mode between OS eLab (115) and Prac Codes (27)
+  function setMode(mode, targetIdOrIdx) {
+    currentMode = mode === 'prac' ? 'prac' : 'os';
+    allQuestions = currentMode === 'prac' ? pracQuestions : osQuestions;
+
+    // Toggle button active state
+    if (elBtnCourseOS) {
+      if (currentMode === 'os') elBtnCourseOS.classList.add('active');
+      else elBtnCourseOS.classList.remove('active');
+    }
+    if (elBtnCoursePrac) {
+      if (currentMode === 'prac') elBtnCoursePrac.classList.add('active');
+      else elBtnCoursePrac.classList.remove('active');
+    }
+
+    // Update challenge header course
+    if (elChallengeHeaderCourse) {
+      elChallengeHeaderCourse.textContent = currentMode === 'os' ? 'COURSE: OS' : 'COURSE: OS LAB PRACTICALS';
+    }
+
+    // Rebuild search index for active dataset
+    buildSearchIndex();
+
+    // Determine target index
+    let targetIdx = 0;
+    if (typeof targetIdOrIdx === 'number') {
+      const foundIdx = allQuestions.findIndex(q => q.challenge === targetIdOrIdx);
+      if (foundIdx !== -1) {
+        targetIdx = foundIdx;
+      } else if (targetIdOrIdx >= 0 && targetIdOrIdx < allQuestions.length) {
+        targetIdx = targetIdOrIdx;
+      }
+    }
+
+    selectQuestion(targetIdx);
+
+    // If modal is open, update title and re-render
+    const overlay = document.getElementById('modalNavigatorOverlay');
+    if (overlay && overlay.style.display !== 'none') {
+      const title = document.getElementById('modalNavTitle');
+      if (title) {
+        title.textContent = currentMode === 'os'
+          ? `SRMIST eLab OS Challenges (${osQuestions.length} Questions)`
+          : `Operating Systems Lab Practical Codes (${pracQuestions.length} Experiments)`;
+      }
+      renderModalCards('');
+    }
+  }
+
+  // Expose setMode globally
+  window.setMode = setMode;
 
   // Live Clock (matches official eLab format: October 30th 2026, 6:04:20 Am)
   function startClock() {
@@ -143,63 +225,37 @@
     outputShowingMatch = false;
 
     // Update URL hash
-    window.history.replaceState(null, null, `#q=${currentQuestion.challenge}`);
-
-    // Calculate level and challenge numbers
-    const levelNum = currentQuestion.level || (currentQuestion.challenge > 100 ? 2 : 1);
-    const chalNum = currentQuestion.level_challenge || (currentQuestion.challenge > 100 ? currentQuestion.challenge - 100 : currentQuestion.challenge);
-
-    // Update dots in Question Information
-    if (elLblLevelDot) elLblLevelDot.textContent = `● Level ${levelNum}`;
-    if (elLblChallengeDot) elLblChallengeDot.textContent = `● Challenge ${chalNum}`;
-
-    // Session and Course
-    if (elLblSession) elLblSession.textContent = currentQuestion.topic || 'General';
-    if (elChallengeHeaderCourse) elChallengeHeaderCourse.textContent = 'COURSE: OS';
-
-    // Problem Statement
-    if (elProblemText) {
-      elProblemText.textContent = currentQuestion.description || "No description provided.";
+    if (currentMode === 'prac') {
+      window.history.replaceState(null, null, `#prac=${currentQuestion.challenge}`);
+    } else {
+      window.history.replaceState(null, null, `#q=${currentQuestion.challenge}`);
     }
 
-    // Dynamic Live Course Count
-    if (elBtnCourseActive) {
-      elBtnCourseActive.textContent = `OS (${allQuestions.length})`;
+    // Dots & Labels
+    if (currentMode === 'prac') {
+      if (elLblLevelDot) elLblLevelDot.textContent = `● Practical`;
+      if (elLblChallengeDot) elLblChallengeDot.textContent = `● Experiment ${currentQuestion.challenge}`;
+      if (elLblSession) elLblSession.textContent = currentQuestion.topic || 'OS Lab Manual';
+      if (elChallengeHeaderCourse) elChallengeHeaderCourse.textContent = 'COURSE: OS LAB PRACTICALS';
+    } else {
+      // Calculate level and challenge numbers
+      const levelNum = currentQuestion.level || (currentQuestion.challenge > 100 ? 2 : 1);
+      const chalNum = currentQuestion.level_challenge || (currentQuestion.challenge > 100 ? currentQuestion.challenge - 100 : currentQuestion.challenge);
+
+      if (elLblLevelDot) elLblLevelDot.textContent = `● Level ${levelNum}`;
+      if (elLblChallengeDot) elLblChallengeDot.textContent = `● Challenge ${chalNum}`;
+      if (elLblSession) elLblSession.textContent = currentQuestion.topic || 'General';
+      if (elChallengeHeaderCourse) elChallengeHeaderCourse.textContent = 'COURSE: OS';
+    }
+
+    // Problem Statement Text
+    if (elProblemText) {
+      elProblemText.textContent = currentQuestion.description || currentQuestion.title || "No description provided.";
     }
 
     // Solved Banner Status (Green for 100% full pass, Yellow for partial)
-    const isPartial = currentQuestion.partial || (currentQuestion.status && (currentQuestion.status.includes('88') || currentQuestion.status.includes('77') || currentQuestion.status.includes('Partial') || currentQuestion.status.includes('Pending')));
-    const elSolvedAlert = document.getElementById('solvedAlertBox');
-    if (elSolvedAlert) {
-      elSolvedAlert.style.display = 'flex';
-      if (isPartial) {
-        elSolvedAlert.className = 'official-solved-alert alert-partial';
-        elSolvedAlert.innerHTML = `
-          <div class="alert-content-left">
-            <span class="alert-check-icon">
-              <svg viewBox="64 64 896 896" width="16" height="16" fill="#faad14">
-                <path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm-32 232c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v288c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8V296zm32 440a48 48 0 100-96 48 48 0 000 96z"/>
-              </svg>
-            </span>
-            <span id="bannerSolvedText">You have partially solved this challenge ! Though you can run the code with different logic !</span>
-          </div>
-          <button class="alert-dismiss-btn" type="button" onclick="document.getElementById('solvedAlertBox').style.display='none'">✕</button>
-        `;
-      } else {
-        elSolvedAlert.className = 'official-solved-alert';
-        elSolvedAlert.innerHTML = `
-          <div class="alert-content-left">
-            <span class="alert-check-icon">
-              <svg viewBox="64 64 896 896" width="16" height="16" fill="#52c41a">
-                <path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm193.5 301.7l-210.6 292a31.8 31.8 0 01-51.7 0L318.5 504.6a8 8 0 0111.4-11.2l120.4 148.9 204.3-283.3a8 8 0 0111.2 2.7z"/>
-              </svg>
-            </span>
-            <span id="bannerSolvedText">You have already solved this challenge ! Though you can run the code with different logic !</span>
-          </div>
-          <button class="alert-dismiss-btn" type="button" onclick="document.getElementById('solvedAlertBox').style.display='none'">✕</button>
-        `;
-      }
-    }
+    const isPartial = currentMode === 'os' && (currentQuestion.partial || (currentQuestion.status && (currentQuestion.status.includes('88') || currentQuestion.status.includes('77') || currentQuestion.status.includes('Partial') || currentQuestion.status.includes('Pending'))));
+    updateSolvedBanners(isPartial);
 
     // Test Cases Cards
     renderTestCases();
@@ -212,6 +268,49 @@
 
     // Close Search Dropdown
     closeSearch();
+  }
+
+  // Update Solved Banners (Top and Bottom)
+  function updateSolvedBanners(isPartial) {
+    const banners = [
+      document.getElementById('solvedAlertBox'),
+      document.getElementById('solvedAlertBoxBottom')
+    ];
+
+    banners.forEach(el => {
+      if (!el) return;
+      el.style.display = 'flex';
+      if (isPartial) {
+        el.className = 'official-solved-alert alert-partial';
+        el.innerHTML = `
+          <div class="alert-content-left">
+            <span class="alert-check-icon">
+              <svg viewBox="64 64 896 896" width="16" height="16" fill="#faad14">
+                <path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm-32 232c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v288c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8V296zm32 440a48 48 0 100-96 48 48 0 000 96z"/>
+              </svg>
+            </span>
+            <span id="bannerSolvedText">You have partially solved this challenge ! Though you can run the code with different logic !</span>
+          </div>
+          <button class="alert-dismiss-btn" type="button" onclick="this.closest('.official-solved-alert').style.display='none'">✕</button>
+        `;
+      } else {
+        el.className = 'official-solved-alert';
+        const msg = currentMode === 'prac' 
+          ? 'Verified Operating Systems Lab Practical Code (Ready to Run & Compile)' 
+          : 'You have already solved this challenge ! Though you can run the code with different logic !';
+        el.innerHTML = `
+          <div class="alert-content-left">
+            <span class="alert-check-icon">
+              <svg viewBox="64 64 896 896" width="16" height="16" fill="#52c41a">
+                <path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm193.5 301.7l-210.6 292a31.8 31.8 0 01-51.7 0L318.5 504.6a8 8 0 0111.4-11.2l120.4 148.9 204.3-283.3a8 8 0 0111.2 2.7z"/>
+              </svg>
+            </span>
+            <span id="bannerSolvedText">${msg}</span>
+          </div>
+          <button class="alert-dismiss-btn" type="button" onclick="this.closest('.official-solved-alert').style.display='none'">✕</button>
+        `;
+      }
+    });
   }
 
   // Render Test Cases
@@ -278,22 +377,28 @@
         <div class="tc-card">
           <div class="tc-card-header">Test Case 1</div>
           <div class="tc-card-body">
-            <div class="tc-label-heading">CYCLOMATIC COMPLEXITY</div>
-            <div class="mand-keyword-badge">${c.ccn || 3}</div>
+            <div class="tc-label-heading">CYCLOMATIC COMPLEXITY (CCN)</div>
+            <div class="tc-cream-box">${escapeHtml(String(c.ccn || 3))}</div>
+            <div class="tc-label-heading">STATUS</div>
+            <div class="tc-cream-box" style="color: #52c41a; font-weight: 700;">PASSED</div>
           </div>
         </div>
         <div class="tc-card">
           <div class="tc-card-header">Test Case 2</div>
           <div class="tc-card-body">
             <div class="tc-label-heading">TOKEN COUNT</div>
-            <div class="mand-keyword-badge">${c.tokens || 300}</div>
+            <div class="tc-cream-box">${escapeHtml(String(c.tokens || 300))}</div>
+            <div class="tc-label-heading">STATUS</div>
+            <div class="tc-cream-box" style="color: #52c41a; font-weight: 700;">PASSED</div>
           </div>
         </div>
         <div class="tc-card">
           <div class="tc-card-header">Test Case 3</div>
           <div class="tc-card-body">
-            <div class="tc-label-heading">NLOC</div>
-            <div class="mand-keyword-badge">${c.loc || 100}</div>
+            <div class="tc-label-heading">NLOC (LINES OF CODE)</div>
+            <div class="tc-cream-box">${escapeHtml(String(c.loc || 100))}</div>
+            <div class="tc-label-heading">STATUS</div>
+            <div class="tc-cream-box" style="color: #52c41a; font-weight: 700;">PASSED</div>
           </div>
         </div>
       `;
@@ -303,100 +408,143 @@
   // Render Editor
   function renderEditor() {
     if (!currentQuestion) return;
-    const code = currentQuestion.code || '// Solution code in progress...\n';
-    const lines = code.split('\n');
+    const rawCode = currentQuestion.code || '// No solution code available.';
+    const lines = rawCode.split('\n');
 
-    // Gutter line numbers
+    // Populate gutter line numbers
     if (elEditorGutter) {
       let gutterHtml = '';
       for (let i = 1; i <= lines.length; i++) {
-        gutterHtml += `${i}<br>`;
+        gutterHtml += `<span>${i}</span>`;
       }
       elEditorGutter.innerHTML = gutterHtml;
     }
 
+    // Populate syntax-highlighted code block
     if (elEditorCodeBlock) {
-      elEditorCodeBlock.textContent = code;
+      elEditorCodeBlock.innerHTML = highlightC(rawCode);
     }
 
-    // Language dropdown & download button text
+    // Sync language selector
     const lang = (currentQuestion.language || 'c').toLowerCase();
     if (elSelLanguage) {
       elSelLanguage.value = lang === 'cpp' ? 'cpp' : 'c';
     }
-    if (elBtnDownloadText) {
-      elBtnDownloadText.textContent = lang === 'cpp' ? 'Download .cpp' : 'Download .c';
-    }
 
-    if (elBtnCopyText) elBtnCopyText.textContent = "Copy Code";
-    if (elBtnCopyCode) elBtnCopyCode.classList.remove('copied');
+    // Update download button text
+    if (elBtnDownloadText) {
+      if (currentMode === 'prac' && currentQuestion.filename) {
+        elBtnDownloadText.textContent = `Download ${currentQuestion.filename}`;
+      } else {
+        elBtnDownloadText.textContent = lang === 'cpp' ? 'Download .cpp' : 'Download .c';
+      }
+    }
   }
 
-  // Render Side Cards (Custom Input, Output, Complexity Analysis)
+  // Very Fast & Accurate C / C++ Syntax Highlighter
+  function highlightC(code) {
+    if (!code) return '';
+    const keywords = new Set([
+      'int', 'char', 'float', 'double', 'void', 'long', 'short', 'unsigned', 'signed', 'struct', 'typedef', 'union', 'enum',
+      'return', 'if', 'else', 'for', 'while', 'do', 'switch', 'case', 'default', 'break', 'continue', 'goto', 'sizeof',
+      'static', 'const', 'extern', 'volatile', 'register', 'auto', 'bool', 'true', 'false',
+      'include', 'define', 'ifdef', 'ifndef', 'endif', 'NULL', 'stdin', 'stdout', 'stderr',
+      'namespace', 'using', 'std', 'cout', 'cin', 'endl', 'vector', 'string', 'queue', 'stack', 'pair', 'map', 'set',
+      'class', 'public', 'private', 'protected', 'virtual', 'override', 'new', 'delete', 'template', 'typename'
+    ]);
+
+    const lines = code.split('\n');
+    const highlightedLines = lines.map(line => {
+      // 1. Line comment
+      const commentIdx = line.indexOf('//');
+      let commentPart = '';
+      let codePart = line;
+      if (commentIdx !== -1) {
+        codePart = line.substring(0, commentIdx);
+        commentPart = `<span class="token-comment">${escapeHtml(line.substring(commentIdx))}</span>`;
+      }
+
+      // 2. Preprocessor directive
+      const trimmed = codePart.trim();
+      if (trimmed.startsWith('#')) {
+        return `<span class="token-preprocessor">${escapeHtml(codePart)}</span>` + commentPart;
+      }
+
+      // 3. Tokenize code part: Strings, numbers, words, operators
+      const tokenRegex = /("[^"]*"|'[^']*'|\b[a-zA-Z_][a-zA-Z0-9_]*\b|\b\d+\b|[^\s\w])/g;
+      const formattedCode = codePart.replace(tokenRegex, (token) => {
+        if (token.startsWith('"') || token.startsWith("'")) {
+          return `<span class="token-string">${escapeHtml(token)}</span>`;
+        } else if (/^\d+$/.test(token)) {
+          return `<span class="token-number">${token}</span>`;
+        } else if (keywords.has(token)) {
+          return `<span class="token-keyword">${token}</span>`;
+        } else {
+          return escapeHtml(token);
+        }
+      });
+
+      return formattedCode + commentPart;
+    });
+
+    return highlightedLines.join('\n');
+  }
+
+  // Render Side Cards (Custom Input stdin, Output view, Complexity Analysis)
   function renderSideCards() {
     if (!currentQuestion) return;
-    const tcList = currentQuestion.test_cases || [];
 
-    // 1. Custom Input (stdin)
-    if (elBtnInputT1 && elBtnInputT2) {
-      if (currentStdinTab === 0) {
-        elBtnInputT1.classList.add('active');
-        elBtnInputT2.classList.remove('active');
-      } else {
-        elBtnInputT2.classList.add('active');
-        elBtnInputT1.classList.remove('active');
-      }
-    }
+    const tc = currentQuestion.test_cases || [];
+    const t1 = tc[0] || { input: '', output: '' };
+    const t2 = tc[1] || { input: '', output: '' };
+
+    // Update Input active tab
+    if (elBtnInputT1) elBtnInputT1.classList.toggle('active', currentStdinTab === 0);
+    if (elBtnInputT2) elBtnInputT2.classList.toggle('active', currentStdinTab === 1);
+
+    // Update Input Content
     if (elTxtCustomInput) {
-      const activeTc = tcList[currentStdinTab] || tcList[0];
-      elTxtCustomInput.value = (activeTc && activeTc.input) ? activeTc.input : '';
+      elTxtCustomInput.value = currentStdinTab === 0 ? (t1.input || '') : (t2.input || '');
     }
 
-    // 2. Output
-    if (elBtnMatchT1 && elBtnMatchT2) {
-      if (currentOutputTab === 0) {
-        elBtnMatchT1.classList.add('active');
-        elBtnMatchT2.classList.remove('active');
-      } else {
-        elBtnMatchT2.classList.add('active');
-        elBtnMatchT1.classList.remove('active');
-      }
-    }
+    // Update Output active tab
+    if (elBtnMatchT1) elBtnMatchT1.classList.toggle('active', outputShowingMatch && currentOutputTab === 0);
+    if (elBtnMatchT2) elBtnMatchT2.classList.toggle('active', outputShowingMatch && currentOutputTab === 1);
 
+    // Update Output View Content
     if (elBoxOutputView) {
       if (outputShowingMatch) {
-        const activeTc = tcList[currentOutputTab] || tcList[0];
-        const outStr = (activeTc && activeTc.output) ? activeTc.output : '';
+        const expectedOut = currentOutputTab === 0 ? (t1.output || '') : (t2.output || '');
         elBoxOutputView.innerHTML = `
-          <pre style="margin:0; width:100%; font-family:'Fira Code', Monaco, monospace; font-size:12px; line-height:1.5; color:#262626; white-space:pre-wrap; text-align:left;">${escapeHtml(outStr)}</pre>
+          <div style="color: #262626; font-family: 'Consolas', 'Courier New', monospace; font-size: 12px; white-space: pre-wrap; line-height: 1.5;">${escapeHtml(expectedOut)}</div>
         `;
       } else {
         elBoxOutputView.innerHTML = `
-          <div class="empty-state">
-            <span class="empty-icon">📫</span>
-            <span>Empty</span>
+          <div class="output-empty-content">
+            <svg class="empty-mailbox-icon" viewBox="0 0 64 64" width="36" height="36">
+              <path fill="#1890ff" d="M48 20H16c-4.4 0-8 3.6-8 8v20c0 4.4 3.6 8 8 8h32c4.4 0 8-3.6 8-8V28c0-4.4-3.6-8-8-8z" opacity="0.2"/>
+              <path fill="#8c8c8c" d="M48 18H16c-5.5 0-10 4.5-10 10v20c0 5.5 4.5 10 10 10h32c5.5 0 10-4.5 10-10V28c0-5.5-4.5-10-10-10zm6 30c0 3.3-2.7 6-6 6H16c-3.3 0-6-2.7-6-6V28c0-3.3 2.7-6 6-6h32c3.3 0 6 2.7 6 6v20z"/>
+              <path fill="#ff4d4f" d="M22 12h4v16h-4z"/>
+              <circle fill="#ff4d4f" cx="24" cy="12" r="4"/>
+            </svg>
+            <span class="empty-text">Empty</span>
           </div>
         `;
       }
     }
 
-    // 3. Complexity Analysis Table
-    const c = currentQuestion.complexity || { ccn: 3, tokens: 300, loc: 100 };
-    const codeLines = (currentQuestion.code || '').split('\n').filter(l => l.trim().length > 0 && !l.trim().startsWith('//')).length;
-    const actualCCN = Math.min(c.ccn || 3, 2);
-    const actualTokens = Math.min(c.tokens || 300, 240);
-    const actualNLOC = Math.min(c.loc || 100, Math.max(codeLines, 15));
-
-    if (elValCCN) elValCCN.textContent = `${actualCCN} / ${c.ccn || 3}`;
-    if (elValTokens) elValTokens.textContent = `${actualTokens} / ${c.tokens || 300}`;
-    if (elValNLOC) elValNLOC.textContent = `${actualNLOC} / ${c.loc || 100}`;
+    // Update Complexity Analysis side card values
+    const c = currentQuestion.complexity || { ccn: 3, tokens: 285, loc: 72 };
+    if (elValCCN) elValCCN.textContent = `${c.ccn || 3} / 3`;
+    if (elValTokens) elValTokens.textContent = `${c.tokens || 285} / 300`;
+    if (elValNLOC) elValNLOC.textContent = `${c.loc || 72} / 100`;
   }
 
-  // 1-Click Copy Code
+  // Copy Code to Clipboard
   function copyCode() {
-    if (!currentQuestion || !currentQuestion.code) return;
-    navigator.clipboard.writeText(currentQuestion.code).then(() => {
-      if (elBtnCopyText) elBtnCopyText.textContent = "✓ Copied!";
+    if (!currentQuestion) return;
+    navigator.clipboard.writeText(currentQuestion.code || '').then(() => {
+      if (elBtnCopyText) elBtnCopyText.textContent = "✔ Copied!";
       if (elBtnCopyCode) elBtnCopyCode.classList.add('copied');
       setTimeout(() => {
         if (elBtnCopyText) elBtnCopyText.textContent = "Copy Code";
@@ -410,7 +558,7 @@
       ta.select();
       document.execCommand('copy');
       document.body.removeChild(ta);
-      if (elBtnCopyText) elBtnCopyText.textContent = "✓ Copied!";
+      if (elBtnCopyText) elBtnCopyText.textContent = "✔ Copied!";
       if (elBtnCopyCode) elBtnCopyCode.classList.add('copied');
       setTimeout(() => {
         if (elBtnCopyText) elBtnCopyText.textContent = "Copy Code";
@@ -423,8 +571,11 @@
   function downloadCode() {
     if (!currentQuestion) return;
     const lang = (currentQuestion.language || 'c').toLowerCase();
-    const ext = lang === 'cpp' ? 'cpp' : 'c';
-    const filename = `Q${currentQuestion.challenge}.${ext}`;
+    const ext = lang === 'cpp' ? 'cpp' : (lang === 'sh' ? 'sh' : 'c');
+    let filename = `Q${currentQuestion.challenge}.${ext}`;
+    if (currentMode === 'prac') {
+      filename = currentQuestion.filename || `prac_exp${currentQuestion.challenge}.${ext}`;
+    }
     const code = currentQuestion.code || '';
     const blob = new Blob([code], { type: 'text/plain;charset=utf-8' });
     const url = URL.createObjectURL(blob);
@@ -453,7 +604,10 @@
   // Build Comprehensive Search Index
   function buildSearchIndex() {
     allQuestions.forEach(q => {
-      q._chalStr = `q${q.challenge} #${q.challenge} challenge ${q.challenge}`;
+      const chalPrefix = currentMode === 'prac' 
+        ? `exp${q.challenge} experiment ${q.challenge} ${q.filename || ''}` 
+        : `q${q.challenge} #${q.challenge} challenge ${q.challenge}`;
+      q._chalStr = chalPrefix;
       q._normTitle = (q.title || '').toLowerCase();
       q._normDesc = (q.description || '').toLowerCase();
       q._normTopic = (q.topic || '').toLowerCase();
@@ -483,13 +637,13 @@
     const query = (rawQuery || '').trim().toLowerCase();
     if (!query) return [];
 
-    // 1. Exact Challenge Number Search (e.g. "101", "q101", "#101", "challenge 101")
-    const idMatch = query.match(/^(?:q|#|challenge|question)?\s*(\d+)$/i);
+    // 1. Exact Challenge / Exp Number Search (e.g. "101", "q101", "exp 5", "exp5", "#101", "challenge 101")
+    const idMatch = query.match(/^(?:q|#|challenge|question|exp|experiment)?\s*(\d+)$/i);
     if (idMatch) {
       const target = parseInt(idMatch[1], 10);
       const foundIdx = allQuestions.findIndex(q => q.challenge === target);
       if (foundIdx !== -1) {
-        return [{ q: allQuestions[foundIdx], idx: foundIdx, score: 100000, matchedField: 'challenge number' }];
+        return [{ q: allQuestions[foundIdx], idx: foundIdx, score: 100000, matchedField: currentMode === 'prac' ? 'experiment number' : 'challenge number' }];
       }
     }
 
@@ -581,7 +735,7 @@
     if (!elSearchResultsDropdown) return;
 
     if (!matches.length) {
-      elSearchResultsDropdown.innerHTML = '<div style="padding:10px 14px; color:#8c8c8c; font-size:12px;">No matching challenge found.</div>';
+      elSearchResultsDropdown.innerHTML = `<div style="padding:10px 14px; color:#8c8c8c; font-size:12px;">No matching ${currentMode === 'prac' ? 'experiment' : 'challenge'} found.</div>`;
       elSearchResultsDropdown.classList.add('open');
       return;
     }
@@ -590,12 +744,15 @@
 
     let html = '';
     matches.slice(0, 12).forEach(({ q, idx, matchedField }) => {
-      const isSolved = q.solved || (q.status && q.status.includes('100%'));
-      const snippet = highlightSnippet(q.description || '', query, queryTokens);
-      const displayTitle = q.title ? `Challenge ${q.challenge}: ${escapeHtml(q.title)}` : `Challenge ${q.challenge}: ${escapeHtml(q.topic)}`;
+      const isSolved = currentMode === 'prac' ? true : (q.solved || (q.status && q.status.includes('100%')));
+      const snippet = highlightSnippet(q.description || q.title || '', query, queryTokens);
+      const displayTitle = currentMode === 'prac'
+        ? `Exp ${q.challenge}: ${escapeHtml(q.filename || q.title || 'Practical')}`
+        : (q.title ? `Challenge ${q.challenge}: ${escapeHtml(q.title)}` : `Challenge ${q.challenge}: ${escapeHtml(q.topic)}`);
+      const badgeText = currentMode === 'prac' ? `Exp ${q.challenge}` : `Q${q.challenge}`;
       html += `
         <div class="official-search-item" data-index="${idx}">
-          <span class="badge" style="background:${isSolved ? '#52c41a' : '#faad14'}">Q${q.challenge}</span>
+          <span class="badge" style="background:${isSolved ? '#52c41a' : '#faad14'}">${escapeHtml(badgeText)}</span>
           <div style="flex: 1; overflow: hidden;">
             <div class="title" style="font-weight: 600; color: #1f2937;">${displayTitle}</div>
             <div class="snippet" style="font-size: 11.5px; color: #595959; margin-top: 2px;">${snippet}</div>
@@ -669,9 +826,10 @@
     if (!overlay) return;
     overlay.style.display = 'flex';
     const title = document.getElementById('modalNavTitle');
-    const qList = (allQuestions && allQuestions.length) ? allQuestions : (window.ELAB_QUESTIONS || []);
     if (title) {
-      title.textContent = `SRMIST eLab OS Challenges (${qList.length} Questions)`;
+      title.textContent = currentMode === 'os'
+        ? `SRMIST eLab OS Challenges (${osQuestions.length} Questions)`
+        : `Operating Systems Lab Practical Codes (${pracQuestions.length} Experiments)`;
     }
     const filterInput = document.getElementById('txtModalFilter');
     if (filterInput) {
@@ -708,16 +866,18 @@
     const grid = document.getElementById('modalCardsGrid');
     if (!grid) return;
     const query = (rawFilter || '').trim().toLowerCase();
-    const qList = (allQuestions && allQuestions.length) ? allQuestions : (window.ELAB_QUESTIONS || []);
+    const qList = allQuestions;
 
     let matchedQuestions = [];
     qList.forEach((q, idx) => {
-      const isPartial = q.partial || (q.status && (q.status.includes('88') || q.status.includes('77') || q.status.includes('Partial') || q.status.includes('Pending')));
+      const isPartial = currentMode === 'os' && (q.partial || (q.status && (q.status.includes('88') || q.status.includes('77') || q.status.includes('Partial') || q.status.includes('Pending'))));
       if (!query) {
         matchedQuestions.push({ q, idx, isPartial });
         return;
       }
-      const matchChal = `challenge ${q.challenge}`.includes(query) || `${q.challenge}` === query || `q${q.challenge}` === query;
+      const matchChal = currentMode === 'prac'
+        ? (`experiment ${q.challenge}`.includes(query) || `exp ${q.challenge}`.includes(query) || `${q.challenge}` === query || (q.filename && q.filename.toLowerCase().includes(query)))
+        : (`challenge ${q.challenge}`.includes(query) || `${q.challenge}` === query || `q${q.challenge}` === query);
       const matchTopic = (q.topic || '').toLowerCase().includes(query);
       const matchTitle = (q.title || '').toLowerCase().includes(query);
       const matchDesc = (q.description || '').toLowerCase().includes(query);
@@ -733,7 +893,7 @@
     if (!matchedQuestions.length) {
       grid.innerHTML = `
         <div style="grid-column: 1 / -1; padding: 36px 16px; text-align: center; color: #8c8c8c; font-size: 13.5px;">
-          No challenges matching "<strong>${escapeHtml(rawFilter)}</strong>"
+          No ${currentMode === 'prac' ? 'experiments' : 'challenges'} matching "<strong>${escapeHtml(rawFilter)}</strong>"
         </div>
       `;
       return;
@@ -744,14 +904,15 @@
       const isActive = idx === currentIndex;
       const statusClass = isPartial ? 'solved-partial' : 'solved-full';
       const dotClass = isPartial ? 'dot-yellow' : 'dot-green';
-      const topicTag = q.topic || 'OS';
-      const descSnippet = q.description ? q.description.replace(/\s+/g, ' ').slice(0, 110) + '...' : 'No description';
+      const chalLabel = currentMode === 'prac' ? `Experiment ${q.challenge}` : `Challenge ${q.challenge}`;
+      const topicTag = currentMode === 'prac' ? (q.filename || q.topic || 'PRACTICAL') : (q.topic || 'OS');
+      const descSnippet = q.description ? q.description.replace(/\s+/g, ' ').slice(0, 110) + '...' : (q.title || 'No description');
       html += `
         <div class="modal-challenge-card ${statusClass} ${isActive ? 'active' : ''}" data-index="${idx}">
           <div class="card-top-row">
             <div style="display: flex; align-items: center;">
               <span class="card-status-dot ${dotClass}" title="${isPartial ? 'Partially Solved (Yellow)' : 'Fully Solved (Green)'}"></span>
-              <span class="card-chal-title">Challenge ${q.challenge}</span>
+              <span class="card-chal-title">${escapeHtml(chalLabel)}</span>
             </div>
             <span class="card-topic-tag">${escapeHtml(topicTag)}</span>
           </div>
@@ -777,6 +938,23 @@
 
   // Setup Event Handlers
   function setupEvents() {
+    // Mode switcher buttons
+    if (elBtnCourseOS) {
+      elBtnCourseOS.addEventListener('click', () => {
+        if (currentMode !== 'os') {
+          setMode('os', 0);
+        }
+      });
+    }
+
+    if (elBtnCoursePrac) {
+      elBtnCoursePrac.addEventListener('click', () => {
+        if (currentMode !== 'prac') {
+          setMode('prac', 0);
+        }
+      });
+    }
+
     // Copy code button
     if (elBtnCopyCode) elBtnCopyCode.addEventListener('click', copyCode);
 
@@ -899,7 +1077,11 @@
       elSelLanguage.addEventListener('change', (e) => {
         const lang = e.target.value;
         if (elBtnDownloadText) {
-          elBtnDownloadText.textContent = lang === 'cpp' ? 'Download .cpp' : 'Download .c';
+          if (currentMode === 'prac' && currentQuestion && currentQuestion.filename) {
+            elBtnDownloadText.textContent = `Download ${currentQuestion.filename}`;
+          } else {
+            elBtnDownloadText.textContent = lang === 'cpp' ? 'Download .cpp' : 'Download .c';
+          }
         }
       });
     }
@@ -949,10 +1131,10 @@
       const arrow = hdr.querySelector('.accordion-arrow');
       if (body.style.display === 'none') {
         body.style.display = 'block';
-        if (arrow) arrow.textContent = '˅';
+        if (arrow) arrow.textContent = '▼';
       } else {
         body.style.display = 'none';
-        if (arrow) arrow.textContent = '˃';
+        if (arrow) arrow.textContent = '▲';
       }
     });
   }

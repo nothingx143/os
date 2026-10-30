@@ -269,13 +269,14 @@ body {
 }
 
 .palette-btn {
+  position: relative;
   width: 28px;
   height: 28px;
   flex-shrink: 0;
   border: 1px solid #d9d9d9;
   border-radius: 3px;
-  background: #fafafa;
-  color: #595959;
+  background: #ffffff;
+  color: #333333;
   font-size: 11.5px;
   font-weight: 600;
   display: flex;
@@ -283,30 +284,51 @@ body {
   justify-content: center;
   cursor: pointer;
   transition: all 0.15s;
+  overflow: hidden;
+  user-select: none;
 }
 
 .palette-btn:hover {
   border-color: #1890ff;
   color: #1890ff;
-  background: #e6f7ff;
+  background: #f0f7ff;
 }
 
-.palette-btn.solved {
-  background: #52c41a;
-  border-color: #52c41a;
-  color: #fff;
+/* Green Highlighted Corner for Solved */
+.palette-btn.solved::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 9px 9px 0;
+  border-color: transparent #52c41a transparent transparent;
+  pointer-events: none;
 }
 
-.palette-btn.unsolved {
-  background: #faad14;
-  border-color: #faad14;
-  color: #fff;
+/* Yellow Highlighted Corner for Unsolved */
+.palette-btn.unsolved::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 9px 9px 0;
+  border-color: transparent #faad14 transparent transparent;
+  pointer-events: none;
 }
 
 .palette-btn.active {
-  box-shadow: 0 0 0 2px #1890ff;
-  transform: scale(1.1);
+  border-color: #1890ff;
+  box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.25);
+  background: #e6f7ff;
+  color: #1890ff;
   font-weight: 800;
+  transform: scale(1.08);
 }
 
 /* Official Descriptions Table styling */

@@ -357,6 +357,43 @@
 
   </div>
 
+  <!-- Challenges Navigator Modal (Triggered by [⬡] button) -->
+  <div id="modalNavigatorOverlay" class="official-modal-overlay" style="display: none;">
+    <div class="official-modal-dialog" role="dialog" aria-modal="true">
+      <!-- Modal Header -->
+      <div class="official-modal-header">
+        <div class="modal-header-left">
+          <span class="modal-icon-palette">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none">
+              <rect x="2" y="2" width="9" height="9" rx="2" fill="#ff4d4f" />
+              <rect x="13" y="2" width="9" height="9" rx="2" fill="#52c41a" />
+              <rect x="2" y="13" width="9" height="9" rx="2" fill="#1890ff" />
+              <rect x="13" y="13" width="9" height="9" rx="2" fill="#faad14" />
+            </svg>
+          </span>
+          <span class="modal-title-text" id="modalNavTitle">SRMIST eLab OS Challenges (115 Questions)</span>
+        </div>
+        <button id="btnCloseModalNav" type="button" class="modal-close-btn" title="Close">✕</button>
+      </div>
+
+      <!-- Filter Input -->
+      <div class="modal-filter-row">
+        <input 
+          type="text" 
+          id="txtModalFilter" 
+          class="modal-filter-input" 
+          placeholder="Filter challenges by keyword or topic..." 
+          autocomplete="off"
+        />
+      </div>
+
+      <!-- Cards 3-Column Grid -->
+      <div class="modal-cards-container" id="modalCardsGrid">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+    </div>
+  </div>
+
   <!-- Scripts -->
   <script src="questions_data.js"></script>
   <script src="app.js"></script>

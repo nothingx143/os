@@ -29,6 +29,13 @@
   const elBtnNextChal = document.getElementById('btnNextChal');
   const elBtnInfo = document.getElementById('btnInfo');
 
+  // Challenges Navigator Modal Elements
+  const elModalOverlay = document.getElementById('modalNavigatorOverlay');
+  const elBtnCloseModalNav = document.getElementById('btnCloseModalNav');
+  const elTxtModalFilter = document.getElementById('txtModalFilter');
+  const elModalCardsGrid = document.getElementById('modalCardsGrid');
+  const elModalNavTitle = document.getElementById('modalNavTitle');
+
   // Test Cases Grids
   const elLogicalCardsGrid = document.getElementById('logicalCardsGrid');
   const elMandatoryCardsGrid = document.getElementById('mandatoryCardsGrid');
@@ -622,6 +629,94 @@
     return escapeHtml(snippet).replace(regex, '<mark>$1</mark>');
   }
 
+  // Open Challenges Navigator Modal
+  function openChallengesModal() {
+    if (!elModalOverlay) return;
+    elModalOverlay.style.display = 'flex';
+    if (elModalNavTitle) {
+      elModalNavTitle.textContent = `SRMIST eLab OS Challenges (${allQuestions.length} Questions)`;
+    }
+    if (elTxtModalFilter) {
+      elTxtModalFilter.value = '';
+    }
+    renderModalCards('');
+    setTimeout(() => {
+      if (elTxtModalFilter) elTxtModalFilter.focus();
+      // Scroll active card into view
+      if (elModalCardsGrid) {
+        const activeCard = elModalCardsGrid.querySelector('.modal-challenge-card.active');
+        if (activeCard && activeCard.scrollIntoView) {
+          activeCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }
+    }, 60);
+  }
+
+  // Close Challenges Navigator Modal
+  function closeChallengesModal() {
+    if (elModalOverlay) {
+      elModalOverlay.style.display = 'none';
+    }
+  }
+
+  // Render Modal Challenge Cards Grid
+  function renderModalCards(rawFilter) {
+    if (!elModalCardsGrid) return;
+    const query = (rawFilter || '').trim().toLowerCase();
+
+    let matchedQuestions = [];
+    allQuestions.forEach((q, idx) => {
+      if (!query) {
+        matchedQuestions.push({ q, idx });
+        return;
+      }
+      const matchChal = `challenge ${q.challenge}`.includes(query) || `${q.challenge}` === query || `q${q.challenge}` === query;
+      const matchTopic = (q.topic || '').toLowerCase().includes(query);
+      const matchTitle = (q.title || '').toLowerCase().includes(query);
+      const matchDesc = (q.description || '').toLowerCase().includes(query);
+
+      if (matchChal || matchTopic || matchTitle || matchDesc) {
+        matchedQuestions.push({ q, idx });
+      }
+    });
+
+    if (!matchedQuestions.length) {
+      elModalCardsGrid.innerHTML = `
+        <div style="grid-column: 1 / -1; padding: 36px 16px; text-align: center; color: #8c8c8c; font-size: 13.5px;">
+          No challenges matching "<strong>${escapeHtml(rawFilter)}</strong>"
+        </div>
+      `;
+      return;
+    }
+
+    let html = '';
+    matchedQuestions.forEach(({ q, idx }) => {
+      const isActive = idx === currentIndex;
+      const topicTag = q.topic || 'OS';
+      const descSnippet = q.description ? q.description.replace(/\s+/g, ' ').slice(0, 110) + '...' : 'No description';
+      html += `
+        <div class="modal-challenge-card ${isActive ? 'active' : ''}" data-index="${idx}">
+          <div class="card-top-row">
+            <span class="card-chal-title">Challenge ${q.challenge}</span>
+            <span class="card-topic-tag">${escapeHtml(topicTag)}</span>
+          </div>
+          <div class="card-desc-snippet">${escapeHtml(descSnippet)}</div>
+        </div>
+      `;
+    });
+
+    elModalCardsGrid.innerHTML = html;
+
+    // Attach click events to cards
+    elModalCardsGrid.querySelectorAll('.modal-challenge-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const idx = parseInt(card.getAttribute('data-index'), 10);
+        selectQuestion(idx);
+        closeChallengesModal();
+      });
+    });
+  }
+
   // Setup Event Handlers
   function setupEvents() {
     // Copy code button
@@ -652,10 +747,27 @@
       });
     }
 
+    // Hexagon [⬡] button opens Challenges Navigator Modal (as requested)
     if (elBtnInfo) {
-      elBtnInfo.addEventListener('click', () => {
-        const card = document.querySelector('.challenge-main-card');
-        if (card) card.scrollIntoView({ behavior: 'smooth' });
+      elBtnInfo.addEventListener('click', openChallengesModal);
+    }
+
+    // Modal close and filter events
+    if (elBtnCloseModalNav) {
+      elBtnCloseModalNav.addEventListener('click', closeChallengesModal);
+    }
+
+    if (elModalOverlay) {
+      elModalOverlay.addEventListener('click', (e) => {
+        if (e.target === elModalOverlay) {
+          closeChallengesModal();
+        }
+      });
+    }
+
+    if (elTxtModalFilter) {
+      elTxtModalFilter.addEventListener('input', (e) => {
+        renderModalCards(e.target.value);
       });
     }
 
@@ -699,9 +811,16 @@
       }
     });
 
-    // Press '/' to search shortcut
+    // Press '/' to search shortcut and Escape to close modal
     document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        if (elModalOverlay && elModalOverlay.style.display !== 'none') {
+          closeChallengesModal();
+          return;
+        }
+      }
       if (e.key === '/' && document.activeElement !== elGlobalSearchInput && !['input', 'textarea'].includes((document.activeElement.tagName || '').toLowerCase())) {
+        if (elModalOverlay && elModalOverlay.style.display !== 'none') return;
         e.preventDefault();
         if (elGlobalSearchInput) {
           elGlobalSearchInput.focus();

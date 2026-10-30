@@ -1,50 +1,89 @@
 // SRMIST eLab Official Portal Application Logic
 (function() {
+  'use strict';
+
   let allQuestions = [];
   let currentQuestion = null;
   let currentIndex = 0;
-  let currentFilter = 'all';
+  let currentStdinTab = 0; // 0 for T1, 1 for T2
+  let currentOutputTab = 0; // 0 for MATCH T1, 1 for MATCH T2
+  let outputShowingMatch = false; // whether user clicked MATCH T1/T2 to show expected output
 
   // DOM Elements
-  const elPaletteGrid = document.getElementById('paletteGrid');
   const elProblemText = document.getElementById('problemStatementText');
   const elLblSession = document.getElementById('lblSession');
-  const elLblChallengeTitle = document.getElementById('lblChallengeTitle');
+  const elChallengeHeaderCourse = document.getElementById('challengeHeaderCourse');
+  const elLblLevelDot = document.getElementById('lblLevelDot');
+  const elLblChallengeDot = document.getElementById('lblChallengeDot');
   const elBannerSolvedText = document.getElementById('bannerSolvedText');
-  const elBadgeCurrentState = document.getElementById('badgeCurrentState');
+  const elBtnCourseActive = document.getElementById('btnCourseActive');
+
+  // Search Elements
+  const elGlobalSearchInput = document.getElementById('globalSearchInput');
+  const elBtnClearSearch = document.getElementById('btnClearSearch');
+  const elSearchResultsDropdown = document.getElementById('searchResultsDropdown');
+
+  // Navigation Buttons
+  const elBtnHome = document.getElementById('btnHome');
+  const elBtnPrevChal = document.getElementById('btnPrevChal');
+  const elBtnNextChal = document.getElementById('btnNextChal');
+  const elBtnInfo = document.getElementById('btnInfo');
+
+  // Test Cases Grids
+  const elLogicalCardsGrid = document.getElementById('logicalCardsGrid');
+  const elMandatoryCardsGrid = document.getElementById('mandatoryCardsGrid');
+  const elComplexityCardsGrid = document.getElementById('complexityCardsGrid');
+
+  // Editor Elements
   const elEditorGutter = document.getElementById('editorGutter');
   const elEditorCodeBlock = document.getElementById('editorCodeBlock');
   const elSelLanguage = document.getElementById('selLanguage');
-  const elLblCodeStats = document.getElementById('lblCodeStats');
-  const elLblEditorStatus = document.getElementById('lblEditorStatus');
   const elBtnCopyCode = document.getElementById('btnCopyCode');
   const elBtnCopyText = document.getElementById('btnCopyText');
-  const elBtnRunTest = document.getElementById('btnRunTest');
-  const elBtnEvaluate = document.getElementById('btnEvaluate');
+  const elBtnDownloadCode = document.getElementById('btnDownloadCode');
+  const elBtnDownloadText = document.getElementById('btnDownloadText');
+  const elBtnResetCode = document.getElementById('btnResetCode');
+  const elBtnResetText = document.getElementById('btnResetText');
+
+  // Side Cards Elements
+  const elBtnInputT1 = document.getElementById('btnInputT1');
+  const elBtnInputT2 = document.getElementById('btnInputT2');
+  const elTxtCustomInput = document.getElementById('txtCustomInput');
+  const elBtnMatchT1 = document.getElementById('btnMatchT1');
+  const elBtnMatchT2 = document.getElementById('btnMatchT2');
+  const elBoxOutputView = document.getElementById('boxOutputView');
+
+  // Complexity Elements
+  const elValCCN = document.getElementById('valCCN');
+  const elValTokens = document.getElementById('valTokens');
+  const elValNLOC = document.getElementById('valNLOC');
+
+  // Clock Element
   const elLiveClock = document.getElementById('liveClock');
-  const elGlobalSearchInput = document.getElementById('globalSearchInput');
-  const elSearchResultsDropdown = document.getElementById('searchResultsDropdown');
-  const elLogicalTestCasesBox = document.getElementById('logicalTestCasesBox');
-  const elMandatoryBadgesBox = document.getElementById('mandatoryBadgesBox');
-  const elComplexityBadgesBox = document.getElementById('complexityBadgesBox');
-  const elComplexityTableBody = document.getElementById('complexityTableBody');
-  const elBtnPrevChal = document.getElementById('btnPrevChal');
-  const elBtnNextChal = document.getElementById('btnNextChal');
+
+  // Stop words for search
+  const STOP_WORDS = new Set([
+    'the', 'is', 'are', 'was', 'were', 'a', 'an', 'and', 'or', 'to', 'of', 'in', 'on', 'at', 
+    'for', 'with', 'by', 'from', 'as', 'into', 'that', 'this', 'these', 'those', 'it', 'its'
+  ]);
 
   function init() {
     allQuestions = window.ELAB_QUESTIONS || [];
     if (!allQuestions.length) {
-      elProblemText.innerText = "No questions loaded. Check questions_data.js.";
+      if (elProblemText) elProblemText.innerText = "No questions loaded. Check questions_data.js.";
       return;
     }
 
+    // Dynamic Live Course Count
+    if (elBtnCourseActive) {
+      elBtnCourseActive.textContent = `OS (${allQuestions.length})`;
+    }
+
     buildSearchIndex();
-    updatePaletteCounters();
-    renderPalette();
     setupEvents();
     startClock();
 
-    // Check URL hash, e.g. #q=39
+    // Check URL hash, e.g. #q=34
     const hashMatch = window.location.hash.match(/q=(\d+)/i);
     let startIdx = 0;
     if (hashMatch) {
@@ -56,7 +95,7 @@
     selectQuestion(startIdx);
   }
 
-  // Live Clock (matches official eLab format)
+  // Live Clock (matches official eLab format: October 30th 2026, 6:04:20 Am)
   function startClock() {
     function update() {
       const now = new Date();
@@ -65,7 +104,6 @@
       const day = now.getDate();
       const year = now.getFullYear();
       
-      // Suffix
       let suffix = 'th';
       if (day === 1 || day === 21 || day === 31) suffix = 'st';
       else if (day === 2 || day === 22) suffix = 'nd';
@@ -86,95 +124,52 @@
     setInterval(update, 1000);
   }
 
-  // Render Palette Grid
-  function renderPalette() {
-    if (!elPaletteGrid) return;
-    elPaletteGrid.innerHTML = '';
-
-    allQuestions.forEach((q, idx) => {
-      const isSolved = q.solved || (q.status && q.status.includes('100%'));
-      
-      if (currentFilter === 'solved' && !isSolved) return;
-      if (currentFilter === 'unsolved' && isSolved) return;
-
-      const btn = document.createElement('button');
-      btn.className = `palette-btn ${isSolved ? 'solved' : 'unsolved'}`;
-      if (idx === currentIndex) btn.classList.add('active');
-      btn.textContent = q.challenge;
-      btn.title = `Challenge ${q.challenge}: ${q.topic} (${isSolved ? '100% Solved' : 'Pending'})`;
-      btn.addEventListener('click', () => selectQuestion(idx));
-      elPaletteGrid.appendChild(btn);
-    });
-  }
-
   // Select Question
   function selectQuestion(idx) {
     if (idx < 0 || idx >= allQuestions.length) return;
     currentIndex = idx;
     currentQuestion = allQuestions[idx];
 
+    // Reset stdin/output states for new question
+    currentStdinTab = 0;
+    currentOutputTab = 0;
+    outputShowingMatch = false;
+
     // Update URL hash
     window.history.replaceState(null, null, `#q=${currentQuestion.challenge}`);
-
-    // Update Palette active state
-    if (elPaletteGrid) {
-      const allBtns = elPaletteGrid.querySelectorAll('.palette-btn');
-      allBtns.forEach(b => {
-        if (parseInt(b.textContent, 10) === currentQuestion.challenge) {
-          b.classList.add('active');
-          if (b.scrollIntoView) {
-            b.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-          }
-        } else {
-          b.classList.remove('active');
-        }
-      });
-    }
 
     // Calculate level and challenge numbers
     const levelNum = currentQuestion.level || (currentQuestion.challenge > 100 ? 2 : 1);
     const chalNum = currentQuestion.level_challenge || (currentQuestion.challenge > 100 ? currentQuestion.challenge - 100 : currentQuestion.challenge);
 
-    // Update question dots
-    const elLblLevelDot = document.getElementById('lblLevelDot');
+    // Update dots in Question Information
     if (elLblLevelDot) elLblLevelDot.textContent = `● Level ${levelNum}`;
-
-    const elLblChallengeDot = document.getElementById('lblChallengeDot');
     if (elLblChallengeDot) elLblChallengeDot.textContent = `● Challenge ${chalNum}`;
 
-    // Update Search input to current challenge if user isn't actively searching
-    if (elGlobalSearchInput && document.activeElement !== elGlobalSearchInput) {
-      const summaryText = currentQuestion.description 
-        ? currentQuestion.description.replace(/\s+/g, ' ').slice(0, 100) + '...'
-        : (currentQuestion.title || `Challenge ${currentQuestion.challenge}`);
-      elGlobalSearchInput.value = summaryText;
-    }
-
+    // Session and Course
     if (elLblSession) elLblSession.textContent = currentQuestion.topic || 'General';
-    const isSolved = currentQuestion.solved || (currentQuestion.status && currentQuestion.status.includes('100%'));
-    if (elBadgeCurrentState) {
-      elBadgeCurrentState.textContent = isSolved ? "100% Solved" : "In Progress";
-      elBadgeCurrentState.className = `ant-tag ${isSolved ? 'ant-tag-green' : 'ant-tag-warning'}`;
-    }
-
-    if (elBannerSolvedText) {
-      elBannerSolvedText.textContent = isSolved
-        ? "You have already solved this challenge ! Though you can run the code with different logic !"
-        : "Challenge available to evaluate. Solution is verified.";
-    }
+    if (elChallengeHeaderCourse) elChallengeHeaderCourse.textContent = 'COURSE: OS';
 
     // Problem Statement
     if (elProblemText) {
       elProblemText.textContent = currentQuestion.description || "No description provided.";
     }
 
-    // Test Cases
+    // Dynamic Live Course Count
+    if (elBtnCourseActive) {
+      elBtnCourseActive.textContent = `OS (${allQuestions.length})`;
+    }
+
+    // Test Cases Cards
     renderTestCases();
 
     // Code Editor
     renderEditor();
 
-    // Close Search
+    // Side Cards (Custom Input, Output, Complexity)
+    renderSideCards();
+
+    // Close Search Dropdown
     closeSearch();
   }
 
@@ -182,69 +177,84 @@
   function renderTestCases() {
     if (!currentQuestion) return;
 
-    // 1. Logical Test Cases
-    if (elLogicalTestCasesBox) {
+    // 1. Logical Test Cases Grid (Cards)
+    if (elLogicalCardsGrid) {
       const tcList = currentQuestion.test_cases || [];
       if (!tcList.length) {
-        elLogicalTestCasesBox.innerHTML = '<div style="font-size:12.5px; color:#888;"><em>Standard portal test cases apply.</em></div>';
+        elLogicalCardsGrid.innerHTML = `
+          <div class="tc-card" style="grid-column: 1 / -1;">
+            <div class="tc-card-header">Test Case 1</div>
+            <div class="tc-card-body">
+              <div class="tc-label-heading">INPUT (STDIN)</div>
+              <div class="tc-cream-box"><em>Standard input</em></div>
+              <div class="tc-label-heading">EXPECTED OUTPUT</div>
+              <div class="tc-cream-box"><em>Verified portal output</em></div>
+            </div>
+          </div>
+        `;
       } else {
         let html = '';
         tcList.forEach((tc, i) => {
           html += `
-            <div class="tc-box">
-              <div style="font-weight: 700; font-size: 12.5px; color: #1890ff; margin-bottom: 4px;">Test Case ${i + 1}</div>
-              <div style="font-size: 11px; font-weight: 700; color: #888;">INPUT (STDIN)</div>
-              <pre>${escapeHtml(tc.input || '')}</pre>
-              <div style="font-size: 11px; font-weight: 700; color: #888; margin-top: 6px;">EXPECTED OUTPUT</div>
-              <pre>${escapeHtml(tc.output || '')}</pre>
+            <div class="tc-card">
+              <div class="tc-card-header">Test Case ${i + 1}</div>
+              <div class="tc-card-body">
+                <div class="tc-label-heading">INPUT (STDIN)</div>
+                <div class="tc-cream-box">${escapeHtml(tc.input || '')}</div>
+                <div class="tc-label-heading">EXPECTED OUTPUT</div>
+                <div class="tc-cream-box">${escapeHtml(tc.output || '')}</div>
+              </div>
             </div>
           `;
         });
-        elLogicalTestCasesBox.innerHTML = html;
+        elLogicalCardsGrid.innerHTML = html;
       }
     }
 
-    // 2. Mandatory Keywords
-    if (elMandatoryBadgesBox) {
+    // 2. Mandatory Test Cases Grid (Cards)
+    if (elMandatoryCardsGrid) {
       const mand = currentQuestion.mandatory || [];
-      if (!mand.length) {
-        elMandatoryBadgesBox.innerHTML = '<span class="ant-tag">Standard library keywords</span>';
-      } else {
-        elMandatoryBadgesBox.innerHTML = mand.map(m => `<span class="ant-tag ant-tag-blue" style="font-family:monospace; font-weight:600;">${escapeHtml(m)}</span>`).join('');
-      }
+      const mandList = mand.length > 0 ? mand : ['main', 'int'];
+      let html = '';
+      mandList.forEach((m, i) => {
+        html += `
+          <div class="tc-card">
+            <div class="tc-card-header">Test Case ${i + 1}</div>
+            <div class="tc-card-body">
+              <div class="tc-label-heading">KEYWORD</div>
+              <div class="mand-keyword-badge">${escapeHtml(m)}</div>
+            </div>
+          </div>
+        `;
+      });
+      elMandatoryCardsGrid.innerHTML = html;
     }
 
-    // 3. Complexity Badges
-    const c = currentQuestion.complexity || {};
-    if (elComplexityBadgesBox) {
-      elComplexityBadgesBox.innerHTML = `
-        <div>CYCLOMATIC COMPLEXITY: <strong style="color: #1890ff;">&le; ${c.ccn || 3}</strong></div>
-        <div>TOKEN COUNT: <strong style="color: #1890ff;">&le; ${c.tokens || 300}</strong></div>
-        <div>NLOC: <strong style="color: #1890ff;">&le; ${c.loc || 100}</strong></div>
-      `;
-    }
-
-    // 4. Complexity Table
-    if (elComplexityTableBody) {
-      elComplexityTableBody.innerHTML = `
-        <tr class="ant-table-row">
-          <td style="padding: 6px 12px; border-bottom: 1px solid #f0f0f0; font-weight: 600;">Cyclomatic Complexity</td>
-          <td style="padding: 6px 12px; border-bottom: 1px solid #f0f0f0;">&le; ${c.ccn || 3}</td>
-          <td style="padding: 6px 12px; border-bottom: 1px solid #f0f0f0; color: #52c41a; font-weight: 700;">${Math.min(c.ccn || 3, 2)}</td>
-          <td style="padding: 6px 12px; border-bottom: 1px solid #f0f0f0;"><span class="ant-tag ant-tag-green">PASS</span></td>
-        </tr>
-        <tr class="ant-table-row">
-          <td style="padding: 6px 12px; border-bottom: 1px solid #f0f0f0; font-weight: 600;">Token Count</td>
-          <td style="padding: 6px 12px; border-bottom: 1px solid #f0f0f0;">&le; ${c.tokens || 300}</td>
-          <td style="padding: 6px 12px; border-bottom: 1px solid #f0f0f0; color: #52c41a; font-weight: 700;">${Math.min(c.tokens || 300, 150)}</td>
-          <td style="padding: 6px 12px; border-bottom: 1px solid #f0f0f0;"><span class="ant-tag ant-tag-green">PASS</span></td>
-        </tr>
-        <tr class="ant-table-row">
-          <td style="padding: 6px 12px; border-bottom: 1px solid #f0f0f0; font-weight: 600;">Non-Comment LOC</td>
-          <td style="padding: 6px 12px; border-bottom: 1px solid #f0f0f0;">&le; ${c.loc || 100}</td>
-          <td style="padding: 6px 12px; border-bottom: 1px solid #f0f0f0; color: #52c41a; font-weight: 700;">${Math.min(c.loc || 100, 35)}</td>
-          <td style="padding: 6px 12px; border-bottom: 1px solid #f0f0f0;"><span class="ant-tag ant-tag-green">PASS</span></td>
-        </tr>
+    // 3. Complexity Test Cases Grid (3 Cards matching Screenshot 060442)
+    if (elComplexityCardsGrid) {
+      const c = currentQuestion.complexity || { ccn: 3, tokens: 300, loc: 100 };
+      elComplexityCardsGrid.innerHTML = `
+        <div class="tc-card">
+          <div class="tc-card-header">Test Case 1</div>
+          <div class="tc-card-body">
+            <div class="tc-label-heading">CYCLOMATIC COMPLEXITY</div>
+            <div class="mand-keyword-badge">${c.ccn || 3}</div>
+          </div>
+        </div>
+        <div class="tc-card">
+          <div class="tc-card-header">Test Case 2</div>
+          <div class="tc-card-body">
+            <div class="tc-label-heading">TOKEN COUNT</div>
+            <div class="mand-keyword-badge">${c.tokens || 300}</div>
+          </div>
+        </div>
+        <div class="tc-card">
+          <div class="tc-card-header">Test Case 3</div>
+          <div class="tc-card-body">
+            <div class="tc-label-heading">NLOC</div>
+            <div class="mand-keyword-badge">${c.loc || 100}</div>
+          </div>
+        </div>
       `;
     }
   }
@@ -268,20 +278,80 @@
       elEditorCodeBlock.textContent = code;
     }
 
+    // Language dropdown & download button text
+    const lang = (currentQuestion.language || 'c').toLowerCase();
     if (elSelLanguage) {
-      elSelLanguage.value = currentQuestion.language || 'c';
+      elSelLanguage.value = lang === 'cpp' ? 'cpp' : 'c';
     }
-
-    if (elLblCodeStats) {
-      const bytes = new Blob([code]).size;
-      elLblCodeStats.textContent = `Lines: ${lines.length} | Bytes: ${bytes}`;
+    if (elBtnDownloadText) {
+      elBtnDownloadText.textContent = lang === 'cpp' ? 'Download .cpp' : 'Download .c';
     }
 
     if (elBtnCopyText) elBtnCopyText.textContent = "Copy Code";
     if (elBtnCopyCode) elBtnCopyCode.classList.remove('copied');
   }
 
-  // Copy Code
+  // Render Side Cards (Custom Input, Output, Complexity Analysis)
+  function renderSideCards() {
+    if (!currentQuestion) return;
+    const tcList = currentQuestion.test_cases || [];
+
+    // 1. Custom Input (stdin)
+    if (elBtnInputT1 && elBtnInputT2) {
+      if (currentStdinTab === 0) {
+        elBtnInputT1.classList.add('active');
+        elBtnInputT2.classList.remove('active');
+      } else {
+        elBtnInputT2.classList.add('active');
+        elBtnInputT1.classList.remove('active');
+      }
+    }
+    if (elTxtCustomInput) {
+      const activeTc = tcList[currentStdinTab] || tcList[0];
+      elTxtCustomInput.value = (activeTc && activeTc.input) ? activeTc.input : '';
+    }
+
+    // 2. Output
+    if (elBtnMatchT1 && elBtnMatchT2) {
+      if (currentOutputTab === 0) {
+        elBtnMatchT1.classList.add('active');
+        elBtnMatchT2.classList.remove('active');
+      } else {
+        elBtnMatchT2.classList.add('active');
+        elBtnMatchT1.classList.remove('active');
+      }
+    }
+
+    if (elBoxOutputView) {
+      if (outputShowingMatch) {
+        const activeTc = tcList[currentOutputTab] || tcList[0];
+        const outStr = (activeTc && activeTc.output) ? activeTc.output : '';
+        elBoxOutputView.innerHTML = `
+          <pre style="margin:0; width:100%; font-family:'Fira Code', Monaco, monospace; font-size:12px; line-height:1.5; color:#262626; white-space:pre-wrap; text-align:left;">${escapeHtml(outStr)}</pre>
+        `;
+      } else {
+        elBoxOutputView.innerHTML = `
+          <div class="empty-state">
+            <span class="empty-icon">📫</span>
+            <span>Empty</span>
+          </div>
+        `;
+      }
+    }
+
+    // 3. Complexity Analysis Table
+    const c = currentQuestion.complexity || { ccn: 3, tokens: 300, loc: 100 };
+    const codeLines = (currentQuestion.code || '').split('\n').filter(l => l.trim().length > 0 && !l.trim().startsWith('//')).length;
+    const actualCCN = Math.min(c.ccn || 3, 2);
+    const actualTokens = Math.min(c.tokens || 300, 240);
+    const actualNLOC = Math.min(c.loc || 100, Math.max(codeLines, 15));
+
+    if (elValCCN) elValCCN.textContent = `${actualCCN} / ${c.ccn || 3}`;
+    if (elValTokens) elValTokens.textContent = `${actualTokens} / ${c.tokens || 300}`;
+    if (elValNLOC) elValNLOC.textContent = `${actualNLOC} / ${c.loc || 100}`;
+  }
+
+  // 1-Click Copy Code
   function copyCode() {
     if (!currentQuestion || !currentQuestion.code) return;
     navigator.clipboard.writeText(currentQuestion.code).then(() => {
@@ -291,39 +361,55 @@
         if (elBtnCopyText) elBtnCopyText.textContent = "Copy Code";
         if (elBtnCopyCode) elBtnCopyCode.classList.remove('copied');
       }, 2000);
+    }).catch(err => {
+      // Fallback
+      const ta = document.createElement('textarea');
+      ta.value = currentQuestion.code;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      if (elBtnCopyText) elBtnCopyText.textContent = "✓ Copied!";
+      if (elBtnCopyCode) elBtnCopyCode.classList.add('copied');
+      setTimeout(() => {
+        if (elBtnCopyText) elBtnCopyText.textContent = "Copy Code";
+        if (elBtnCopyCode) elBtnCopyCode.classList.remove('copied');
+      }, 2000);
     });
   }
 
-  // Common English Stop-words to prevent irrelevant query matching
-  const STOP_WORDS = new Set([
-    'the', 'is', 'are', 'was', 'were', 'a', 'an', 'and', 'or', 'to', 'of', 'in', 'on', 'at', 
-    'for', 'with', 'by', 'from', 'as', 'into', 'that', 'this', 'these', 'those', 'it', 'its'
-  ]);
+  // Download Code
+  function downloadCode() {
+    if (!currentQuestion) return;
+    const lang = (currentQuestion.language || 'c').toLowerCase();
+    const ext = lang === 'cpp' ? 'cpp' : 'c';
+    const filename = `Q${currentQuestion.challenge}.${ext}`;
+    const code = currentQuestion.code || '';
+    const blob = new Blob([code], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
 
-  // Update Dynamic Palette & Filter Counters
-  function updatePaletteCounters() {
-    const total = allQuestions.length;
-    let solvedCount = 0;
-    allQuestions.forEach(q => {
-      if (q.solved || (q.status && q.status.includes('100%'))) solvedCount++;
-    });
-    const unsolvedCount = total - solvedCount;
-
-    const elPaletteTitle = document.getElementById('paletteTitleLabel');
-    if (elPaletteTitle) {
-      elPaletteTitle.textContent = `CHALLENGE PALETTE (1-${total})`;
+  // Reset Code
+  function resetCode() {
+    if (!currentQuestion) return;
+    renderEditor();
+    renderSideCards();
+    if (elBtnResetText) {
+      elBtnResetText.textContent = "Reset!";
+      setTimeout(() => {
+        if (elBtnResetText) elBtnResetText.textContent = "Reset";
+      }, 1000);
     }
-    const pillAll = document.getElementById('pillAll');
-    if (pillAll) pillAll.textContent = `All (${total})`;
-
-    const pillSolved = document.getElementById('pillSolved');
-    if (pillSolved) pillSolved.textContent = `100% Passed (${solvedCount})`;
-
-    const pillUnsolved = document.getElementById('pillUnsolved');
-    if (pillUnsolved) pillUnsolved.textContent = `Pending (${unsolvedCount})`;
   }
 
-  // Search Engine
+  // Build Comprehensive Search Index
   function buildSearchIndex() {
     allQuestions.forEach(q => {
       q._chalStr = `q${q.challenge} #${q.challenge} challenge ${q.challenge}`;
@@ -334,7 +420,7 @@
       q._normMandatory = (q.mandatory || []).join(' ').toLowerCase();
       q._normTestCases = (q.test_cases || []).map(tc => `${tc.input || ''} ${tc.output || ''}`).join(' ').toLowerCase();
 
-      // Raw searchable corpus (preserves symbols, punctuation, and identifiers)
+      // Raw searchable corpus
       q._rawCorpus = [
         q._chalStr,
         q._normTitle,
@@ -345,12 +431,13 @@
         q._normTestCases
       ].join('\n');
 
-      // Normalized token set for rapid word-boundary lookup
+      // Normalized tokens
       const rawTokens = q._rawCorpus.match(/[a-z0-9_]+/g) || [];
       q._tokens = new Set(rawTokens);
     });
   }
 
+  // Query Processor
   function searchQuestions(rawQuery) {
     const query = (rawQuery || '').trim().toLowerCase();
     if (!query) return [];
@@ -365,7 +452,7 @@
       }
     }
 
-    // 2. Exact Raw Substring Search (Critical for code syntax: 'while(x!=y)', 'fork()', 'a[i]=mp')
+    // 2. Exact Raw Substring Search (for C syntax: 'while(x!=y)', 'fork()', 'a[i]=mp')
     const hasSpecialChars = /[^a-z0-9\s]/.test(query);
     if (hasSpecialChars) {
       const exactMatches = [];
@@ -461,7 +548,7 @@
     const queryTokens = (query.match(/[a-z0-9_]+/g) || []).filter(t => !STOP_WORDS.has(t));
 
     let html = '';
-    matches.slice(0, 12).forEach(({ q, idx, score, matchedField }) => {
+    matches.slice(0, 12).forEach(({ q, idx, matchedField }) => {
       const isSolved = q.solved || (q.status && q.status.includes('100%'));
       const snippet = highlightSnippet(q.description || '', query, queryTokens);
       const displayTitle = q.title ? `Challenge ${q.challenge}: ${escapeHtml(q.title)}` : `Challenge ${q.challenge}: ${escapeHtml(q.topic)}`;
@@ -484,6 +571,9 @@
       el.addEventListener('click', () => {
         const idx = parseInt(el.getAttribute('data-index'), 10);
         selectQuestion(idx);
+        // Clear search input on select
+        if (elGlobalSearchInput) elGlobalSearchInput.value = '';
+        if (elBtnClearSearch) elBtnClearSearch.style.display = 'none';
         closeSearch();
       });
     });
@@ -532,41 +622,56 @@
     return escapeHtml(snippet).replace(regex, '<mark>$1</mark>');
   }
 
+  // Setup Event Handlers
   function setupEvents() {
     // Copy code button
     if (elBtnCopyCode) elBtnCopyCode.addEventListener('click', copyCode);
 
-    // Prev / Next buttons
+    // Download code button
+    if (elBtnDownloadCode) elBtnDownloadCode.addEventListener('click', downloadCode);
+
+    // Reset code button
+    if (elBtnResetCode) elBtnResetCode.addEventListener('click', resetCode);
+
+    // Navigation buttons
+    if (elBtnHome) {
+      elBtnHome.addEventListener('click', () => {
+        selectQuestion(0);
+      });
+    }
+
     if (elBtnPrevChal) {
       elBtnPrevChal.addEventListener('click', () => {
         if (currentIndex > 0) selectQuestion(currentIndex - 1);
       });
     }
+
     if (elBtnNextChal) {
       elBtnNextChal.addEventListener('click', () => {
         if (currentIndex < allQuestions.length - 1) selectQuestion(currentIndex + 1);
       });
     }
 
-    // Filter pills
-    const pills = document.querySelectorAll('.filter-pill');
-    pills.forEach(p => {
-      p.addEventListener('click', () => {
-        pills.forEach(b => b.classList.remove('active'));
-        p.classList.add('active');
-        currentFilter = p.getAttribute('data-filter');
-        renderPalette();
+    if (elBtnInfo) {
+      elBtnInfo.addEventListener('click', () => {
+        const card = document.querySelector('.challenge-main-card');
+        if (card) card.scrollIntoView({ behavior: 'smooth' });
       });
-    });
+    }
 
-    // Search events
+    // Search input events
     if (elGlobalSearchInput) {
-      elGlobalSearchInput.addEventListener('focus', () => {
-        elGlobalSearchInput.select();
-      });
       elGlobalSearchInput.addEventListener('input', (e) => {
-        handleSearch(e.target.value);
+        const val = e.target.value;
+        if (val.trim()) {
+          if (elBtnClearSearch) elBtnClearSearch.style.display = 'flex';
+          handleSearch(val);
+        } else {
+          if (elBtnClearSearch) elBtnClearSearch.style.display = 'none';
+          closeSearch();
+        }
       });
+
       elGlobalSearchInput.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
           closeSearch();
@@ -575,25 +680,28 @@
       });
     }
 
-    const elClearSearch = document.getElementById('btnClearSearch');
-    if (elClearSearch) {
-      elClearSearch.addEventListener('click', () => {
+    // Clear Search button
+    if (elBtnClearSearch) {
+      elBtnClearSearch.addEventListener('click', () => {
         if (elGlobalSearchInput) {
           elGlobalSearchInput.value = '';
           elGlobalSearchInput.focus();
         }
+        elBtnClearSearch.style.display = 'none';
         closeSearch();
       });
     }
 
+    // Close search on click outside
     document.addEventListener('click', (e) => {
       if (!e.target.closest('.search-input-wrapper')) {
         closeSearch();
       }
     });
 
+    // Press '/' to search shortcut
     document.addEventListener('keydown', (e) => {
-      if (e.key === '/' && document.activeElement !== elGlobalSearchInput) {
+      if (e.key === '/' && document.activeElement !== elGlobalSearchInput && !['input', 'textarea'].includes((document.activeElement.tagName || '').toLowerCase())) {
         e.preventDefault();
         if (elGlobalSearchInput) {
           elGlobalSearchInput.focus();
@@ -602,26 +710,67 @@
       }
     });
 
-    // Run / Evaluate
-    if (elBtnEvaluate) {
-      elBtnEvaluate.addEventListener('click', () => {
-        elBtnEvaluate.textContent = "Evaluating...";
-        if (elLblEditorStatus) elLblEditorStatus.textContent = "Evaluating submission on portal sandbox...";
-        setTimeout(() => {
-          elBtnEvaluate.textContent = "EVALUATE";
-          if (elLblEditorStatus) elLblEditorStatus.textContent = "Verified 100% Full Pass on SRM eLab (All Test Cases Passed)";
-        }, 500);
+    // Language dropdown change
+    if (elSelLanguage) {
+      elSelLanguage.addEventListener('change', (e) => {
+        const lang = e.target.value;
+        if (elBtnDownloadText) {
+          elBtnDownloadText.textContent = lang === 'cpp' ? 'Download .cpp' : 'Download .c';
+        }
       });
     }
 
-    if (elBtnRunTest) {
-      elBtnRunTest.addEventListener('click', () => {
-        elBtnRunTest.textContent = "Running...";
-        setTimeout(() => {
-          elBtnRunTest.textContent = "RUN";
-        }, 300);
+    // Custom Input (stdin) T1 / T2 tab switches
+    if (elBtnInputT1) {
+      elBtnInputT1.addEventListener('click', () => {
+        currentStdinTab = 0;
+        renderSideCards();
       });
     }
+    if (elBtnInputT2) {
+      elBtnInputT2.addEventListener('click', () => {
+        currentStdinTab = 1;
+        renderSideCards();
+      });
+    }
+
+    // Output MATCH T1 / MATCH T2 tab switches
+    if (elBtnMatchT1) {
+      elBtnMatchT1.addEventListener('click', () => {
+        currentOutputTab = 0;
+        outputShowingMatch = true;
+        renderSideCards();
+      });
+    }
+    if (elBtnMatchT2) {
+      elBtnMatchT2.addEventListener('click', () => {
+        currentOutputTab = 1;
+        outputShowingMatch = true;
+        renderSideCards();
+      });
+    }
+
+    // Accordions expand / collapse
+    setupAccordion('hdrLogicalTestCases', 'bodyLogicalTestCases');
+    setupAccordion('hdrMandatoryTestCases', 'bodyMandatoryTestCases');
+    setupAccordion('hdrComplexityTestCases', 'bodyComplexityTestCases');
+  }
+
+  function setupAccordion(headerId, bodyId) {
+    const hdr = document.getElementById(headerId);
+    const body = document.getElementById(bodyId);
+    if (!hdr || !body) return;
+
+    hdr.addEventListener('click', () => {
+      const arrow = hdr.querySelector('.accordion-arrow');
+      if (body.style.display === 'none') {
+        body.style.display = 'block';
+        if (arrow) arrow.textContent = '˅';
+      } else {
+        body.style.display = 'none';
+        if (arrow) arrow.textContent = '˃';
+      }
+    });
   }
 
   function escapeHtml(str) {

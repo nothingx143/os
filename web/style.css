@@ -426,17 +426,13 @@ body {
   top: 42px;
   left: 0;
   right: 0;
-  background: #fff;
+  background: #ffffff;
   border: 1px solid #d9d9d9;
   border-radius: 4px;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
   max-height: 420px;
   overflow-y: auto;
-  z-index: 1000;
-  display: none;
-}
-  overflow-y: auto;
-  z-index: 1000;
+  z-index: 9999;
   display: none;
 }
 
@@ -445,12 +441,12 @@ body {
 }
 
 .official-search-item {
-  padding: 8px 12px;
+  padding: 10px 14px;
   border-bottom: 1px solid #f0f0f0;
   cursor: pointer;
   display: flex;
   align-items: flex-start;
-  gap: 10px;
+  gap: 12px;
   transition: background-color 0.15s;
 }
 
@@ -459,11 +455,11 @@ body {
 }
 
 .official-search-item .badge {
-  background-color: #1890ff;
+  background-color: #0166ff;
   color: #fff;
   font-size: 11px;
   font-weight: 700;
-  padding: 2px 6px;
+  padding: 2px 8px;
   border-radius: 3px;
   flex-shrink: 0;
   margin-top: 2px;
@@ -477,7 +473,7 @@ body {
 }
 
 .official-search-item .snippet {
-  font-size: 11.5px;
+  font-size: 12px;
   color: #595959;
   line-height: 1.4;
 }
@@ -489,204 +485,383 @@ body {
   border-radius: 2px;
 }
 
-/* Palette Bar */
-.filter-pill {
-  background: none;
-  border: 1px solid #d9d9d9;
-  border-radius: 12px;
-  font-size: 11.5px;
-  padding: 2px 10px;
-  color: #595959;
-  cursor: pointer;
-  transition: all 0.15s;
+/* -------------------------------------------------------------
+   ACCORDION TEST CASES (Matching Screenshots 060433 & 060442)
+   ------------------------------------------------------------- */
+.accordion-block {
+  margin-bottom: 8px;
 }
 
-.filter-pill.active,
-.filter-pill:hover {
-  background: #1890ff;
-  border-color: #1890ff;
-  color: #fff;
-}
-
-.official-palette-scroll {
-  display: flex;
-  gap: 5px;
-  overflow-x: auto;
-  padding: 4px 0 6px;
-  scrollbar-width: thin;
-}
-
-.official-palette-scroll::-webkit-scrollbar {
-  height: 6px;
-}
-
-.official-palette-scroll::-webkit-scrollbar-thumb {
-  background: #d9d9d9;
-  border-radius: 4px;
-}
-
-.palette-btn {
-  position: relative;
-  width: 28px;
-  height: 28px;
-  flex-shrink: 0;
-  border: 1px solid #d9d9d9;
-  border-radius: 3px;
-  background: #ffffff;
-  color: #333333;
-  font-size: 11.5px;
-  font-weight: 600;
+.accordion-header {
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 6px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #262626;
   cursor: pointer;
-  transition: all 0.15s;
-  overflow: hidden;
+  margin-bottom: 10px;
   user-select: none;
 }
 
-.palette-btn:hover {
-  border-color: #1890ff;
-  color: #1890ff;
-  background: #f0f7ff;
+.accordion-arrow {
+  font-size: 11px;
+  color: #595959;
+  font-weight: 700;
 }
 
-/* Green Highlighted Corner for Solved */
-.palette-btn.solved::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 0 9px 9px 0;
-  border-color: transparent #52c41a transparent transparent;
-  pointer-events: none;
-}
-
-/* Yellow Highlighted Corner for Unsolved */
-.palette-btn.unsolved::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 0 9px 9px 0;
-  border-color: transparent #faad14 transparent transparent;
-  pointer-events: none;
-}
-
-.palette-btn.active {
-  border-color: #1890ff;
-  box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.25);
-  background: #e6f7ff;
-  color: #1890ff;
-  font-weight: 800;
-  transform: scale(1.08);
-}
-
-/* Official Descriptions Table styling */
-.ant-descriptions-bordered .ant-descriptions-item-label {
-  background-color: #fafafa !important;
+.accordion-title {
+  font-size: 13.5px;
+  color: #262626;
   font-weight: 600;
-  color: #555555;
-  border-color: #f0f0f0 !important;
 }
 
-.ant-descriptions-bordered .ant-descriptions-item-content {
-  border-color: #f0f0f0 !important;
+/* Cards Grids */
+.test-case-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 16px;
+}
+
+.tc-card {
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+
+.tc-card-header {
+  background: #0166ff;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 13px;
+  padding: 8px 14px;
+}
+
+.tc-card-body {
+  background: #ffffff;
+  border: 1px solid #e8e8e8;
+  border-top: none;
+  padding: 12px 14px;
+  border-radius: 0 0 4px 4px;
+}
+
+.tc-label-heading {
+  font-size: 11px;
+  font-weight: 800;
+  color: #333333;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.tc-cream-box {
+  background: #fffbe6;
+  border: 1px solid #ffe58f;
+  border-radius: 3px;
+  padding: 10px 14px;
+  font-family: 'Fira Code', Monaco, monospace;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: #262626;
+  white-space: pre-wrap;
+  margin-bottom: 12px;
+}
+
+.tc-cream-box:last-child {
+  margin-bottom: 0;
+}
+
+/* Mandatory Cards */
+.mandatory-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.mand-keyword-badge {
+  background: #fffbe6;
+  border: 1px solid #ffe58f;
+  border-radius: 3px;
+  padding: 6px 14px;
+  font-family: 'Fira Code', monospace;
+  font-size: 13px;
+  font-weight: 700;
+  color: #262626;
+  display: inline-block;
+  margin-top: 4px;
+}
+
+/* Complexity Cards */
+.complexity-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
 }
 
 /* -------------------------------------------------------------
-   LIGHT MODE CODE EDITOR (Exact SRM eLab Official Light Ace Skin)
+   SPLIT BOTTOM SECTION: CODE EDITOR & ANALYSIS CARDS
    ------------------------------------------------------------- */
+.bottom-split-container {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  margin-top: 16px;
+}
+
+@media (max-width: 992px) {
+  .bottom-split-container {
+    flex-direction: column;
+  }
+  .editor-column, .analysis-column {
+    flex: 1 1 100% !important;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+}
+
+.editor-column {
+  flex: 0 0 62%;
+  max-width: 62%;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  border: 1px solid #e8e8e8;
+  background: #ffffff;
+}
+
+.analysis-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Card Blue Header */
+.card-blue-header {
+  background: #0166ff;
+  color: #ffffff;
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 4px 4px 0 0;
+}
+
+.header-bold-title {
+  font-weight: 700;
+  font-size: 13px;
+  color: #ffffff;
+}
+
+.editor-header-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.header-action-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+  border-radius: 4px;
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 3px 10px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.2s;
+}
+
+.header-action-btn:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.header-action-btn.copy-btn {
+  background: rgba(255, 255, 255, 0.25);
+  font-weight: 700;
+}
+
+.header-action-btn.copied {
+  background: #52c41a !important;
+  border-color: #52c41a !important;
+}
+
+.editor-lang-dropdown {
+  background: #ffffff;
+  color: #262626;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 2px 8px;
+  height: 26px;
+  outline: none;
+  cursor: pointer;
+}
+
+/* Official Ace / Monaco Light Editor Body */
 .official-editor-container {
   display: flex;
   background: #ffffff !important;
-  color: #000000 !important;
-  font-family: Monaco, Menlo, "Ubuntu Mono", Consolas, "Source Code Pro", source-code-pro, monospace !important;
-  font-size: 14.5px !important;
+  color: #262626 !important;
+  font-family: Monaco, Menlo, Consolas, "Courier New", monospace !important;
+  font-size: 14px !important;
   line-height: 1.6 !important;
-  max-height: 520px;
+  min-height: 480px;
+  max-height: 600px;
   overflow: auto;
-  border-top: none;
 }
 
 .official-editor-gutter {
-  width: 48px;
-  background: #f0f0f0 !important;
-  border-right: 1px solid #e0e0e0 !important;
+  width: 44px;
+  background: #fafafa !important;
+  border-right: 1px solid #f0f0f0 !important;
   padding: 12px 6px;
   text-align: right;
-  color: #555555 !important;
+  color: #8c8c8c !important;
   user-select: none;
-  font-size: 13px !important;
-  font-family: inherit;
+  font-size: 12.5px !important;
+  line-height: 1.6 !important;
 }
 
 .official-editor-code {
   flex: 1;
   padding: 12px 16px;
   margin: 0;
-  color: #000000 !important;
   background: #ffffff !important;
+  color: #262626 !important;
   overflow-x: auto;
-  font-family: inherit;
-  tab-size: 4;
+  font-size: 13.5px !important;
+  line-height: 1.6 !important;
 }
 
 .official-editor-code code {
+  color: #262626 !important;
   font-family: inherit;
-  color: #000000 !important;
 }
 
-/* Copy Button (Official Style) */
-.official-copy-btn {
-  background-color: #52c41a;
-  border: 1px solid #52c41a;
-  color: #fff;
-  border-radius: 3px;
-  font-size: 12px;
-  font-weight: 700;
-  padding: 3px 12px;
-  height: 28px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  transition: all 0.2s;
-}
-
-.official-copy-btn:hover {
-  background-color: #389e0d;
-  border-color: #389e0d;
-}
-
-.official-copy-btn.copied {
-  background-color: #1890ff;
-  border-color: #1890ff;
-}
-
-/* Test Cases Formatter */
-.tc-box {
-  background: #fafafa;
-  border: 1px solid #e8e8e8;
+/* Right Side Analysis Cards */
+.side-card {
   border-radius: 4px;
-  padding: 10px 14px;
-  margin-bottom: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  border: 1px solid #e8e8e8;
+  background: #ffffff;
 }
 
-.tc-box pre {
-  margin: 2px 0 0;
-  background: #fff;
-  border: 1px solid #f0f0f0;
+.header-pills-group {
+  display: flex;
+  gap: 4px;
+}
+
+.small-pill-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #ffffff;
   border-radius: 3px;
-  padding: 6px 10px;
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 1px 8px;
+  cursor: pointer;
+}
+
+.small-pill-btn.active {
+  background: #ffffff;
+  color: #0166ff;
+  border-color: #ffffff;
+}
+
+.side-card-body {
+  padding: 12px;
+}
+
+.stdin-textarea {
+  width: 100%;
+  height: 90px;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  padding: 8px 10px;
   font-family: 'Fira Code', monospace;
   font-size: 12px;
+  color: #595959;
+  outline: none;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+.stdin-textarea:focus {
+  border-color: #0166ff;
+}
+
+.output-body {
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.empty-state {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #8c8c8c;
+  font-size: 13px;
+}
+
+.empty-icon {
+  font-size: 16px;
+}
+
+.status-passed-badge {
+  background: #ffffff;
+  color: #389e0d;
+  font-size: 10.5px;
+  font-weight: 800;
+  padding: 1px 8px;
+  border-radius: 3px;
+  letter-spacing: 0.3px;
+}
+
+.complexity-exact-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.complexity-exact-table td {
+  padding: 7px 4px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.complexity-exact-table tr:last-child td {
+  border-bottom: none;
+}
+
+.col-metric {
   color: #262626;
-  white-space: pre-wrap;
+  font-weight: 600;
+}
+
+.col-val {
+  text-align: right;
+  font-weight: 700;
+  color: #262626;
+  padding-right: 12px;
+}
+
+.col-badge {
+  text-align: right;
+  width: 45px;
+}
+
+.badge-pass {
+  background: #f6ffed;
+  border: 1px solid #b7eb8f;
+  color: #389e0d;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 1px 6px;
+  border-radius: 3px;
 }

@@ -167,6 +167,40 @@
       elBtnCourseActive.textContent = `OS (${allQuestions.length})`;
     }
 
+    // Solved Banner Status (Green for 100% full pass, Yellow for partial)
+    const isPartial = currentQuestion.partial || (currentQuestion.status && (currentQuestion.status.includes('88') || currentQuestion.status.includes('77') || currentQuestion.status.includes('Partial') || currentQuestion.status.includes('Pending')));
+    const elSolvedAlert = document.getElementById('solvedAlertBox');
+    if (elSolvedAlert) {
+      elSolvedAlert.style.display = 'flex';
+      if (isPartial) {
+        elSolvedAlert.className = 'official-solved-alert alert-partial';
+        elSolvedAlert.innerHTML = `
+          <div class="alert-content-left">
+            <span class="alert-check-icon">
+              <svg viewBox="64 64 896 896" width="16" height="16" fill="#faad14">
+                <path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm-32 232c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v288c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8V296zm32 440a48 48 0 100-96 48 48 0 000 96z"/>
+              </svg>
+            </span>
+            <span id="bannerSolvedText">You have partially solved this challenge ! Though you can run the code with different logic !</span>
+          </div>
+          <button class="alert-dismiss-btn" type="button" onclick="document.getElementById('solvedAlertBox').style.display='none'">✕</button>
+        `;
+      } else {
+        elSolvedAlert.className = 'official-solved-alert';
+        elSolvedAlert.innerHTML = `
+          <div class="alert-content-left">
+            <span class="alert-check-icon">
+              <svg viewBox="64 64 896 896" width="16" height="16" fill="#52c41a">
+                <path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm193.5 301.7l-210.6 292a31.8 31.8 0 01-51.7 0L318.5 504.6a8 8 0 0111.4-11.2l120.4 148.9 204.3-283.3a8 8 0 0111.2 2.7z"/>
+              </svg>
+            </span>
+            <span id="bannerSolvedText">You have already solved this challenge ! Though you can run the code with different logic !</span>
+          </div>
+          <button class="alert-dismiss-btn" type="button" onclick="document.getElementById('solvedAlertBox').style.display='none'">✕</button>
+        `;
+      }
+    }
+
     // Test Cases Cards
     renderTestCases();
 
@@ -678,17 +712,21 @@
 
     let matchedQuestions = [];
     qList.forEach((q, idx) => {
+      const isPartial = q.partial || (q.status && (q.status.includes('88') || q.status.includes('77') || q.status.includes('Partial') || q.status.includes('Pending')));
       if (!query) {
-        matchedQuestions.push({ q, idx });
+        matchedQuestions.push({ q, idx, isPartial });
         return;
       }
       const matchChal = `challenge ${q.challenge}`.includes(query) || `${q.challenge}` === query || `q${q.challenge}` === query;
       const matchTopic = (q.topic || '').toLowerCase().includes(query);
       const matchTitle = (q.title || '').toLowerCase().includes(query);
       const matchDesc = (q.description || '').toLowerCase().includes(query);
+      const matchStatus = (query === 'partial' || query === 'yellow' || query === 'pending') 
+        ? isPartial 
+        : ((query === 'full' || query === 'green' || query === 'solved' || query === 'done') ? !isPartial : false);
 
-      if (matchChal || matchTopic || matchTitle || matchDesc) {
-        matchedQuestions.push({ q, idx });
+      if (matchChal || matchTopic || matchTitle || matchDesc || matchStatus) {
+        matchedQuestions.push({ q, idx, isPartial });
       }
     });
 
@@ -702,14 +740,19 @@
     }
 
     let html = '';
-    matchedQuestions.forEach(({ q, idx }) => {
+    matchedQuestions.forEach(({ q, idx, isPartial }) => {
       const isActive = idx === currentIndex;
+      const statusClass = isPartial ? 'solved-partial' : 'solved-full';
+      const dotClass = isPartial ? 'dot-yellow' : 'dot-green';
       const topicTag = q.topic || 'OS';
       const descSnippet = q.description ? q.description.replace(/\s+/g, ' ').slice(0, 110) + '...' : 'No description';
       html += `
-        <div class="modal-challenge-card ${isActive ? 'active' : ''}" data-index="${idx}">
+        <div class="modal-challenge-card ${statusClass} ${isActive ? 'active' : ''}" data-index="${idx}">
           <div class="card-top-row">
-            <span class="card-chal-title">Challenge ${q.challenge}</span>
+            <div style="display: flex; align-items: center;">
+              <span class="card-status-dot ${dotClass}" title="${isPartial ? 'Partially Solved (Yellow)' : 'Fully Solved (Green)'}"></span>
+              <span class="card-chal-title">Challenge ${q.challenge}</span>
+            </div>
             <span class="card-topic-tag">${escapeHtml(topicTag)}</span>
           </div>
           <div class="card-desc-snippet">${escapeHtml(descSnippet)}</div>

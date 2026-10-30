@@ -631,20 +631,25 @@
 
   // Open Challenges Navigator Modal
   function openChallengesModal() {
-    if (!elModalOverlay) return;
-    elModalOverlay.style.display = 'flex';
-    if (elModalNavTitle) {
-      elModalNavTitle.textContent = `SRMIST eLab OS Challenges (${allQuestions.length} Questions)`;
+    const overlay = document.getElementById('modalNavigatorOverlay');
+    if (!overlay) return;
+    overlay.style.display = 'flex';
+    const title = document.getElementById('modalNavTitle');
+    const qList = (allQuestions && allQuestions.length) ? allQuestions : (window.ELAB_QUESTIONS || []);
+    if (title) {
+      title.textContent = `SRMIST eLab OS Challenges (${qList.length} Questions)`;
     }
-    if (elTxtModalFilter) {
-      elTxtModalFilter.value = '';
+    const filterInput = document.getElementById('txtModalFilter');
+    if (filterInput) {
+      filterInput.value = '';
     }
     renderModalCards('');
     setTimeout(() => {
-      if (elTxtModalFilter) elTxtModalFilter.focus();
+      if (filterInput) filterInput.focus();
       // Scroll active card into view
-      if (elModalCardsGrid) {
-        const activeCard = elModalCardsGrid.querySelector('.modal-challenge-card.active');
+      const grid = document.getElementById('modalCardsGrid');
+      if (grid) {
+        const activeCard = grid.querySelector('.modal-challenge-card.active');
         if (activeCard && activeCard.scrollIntoView) {
           activeCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
@@ -654,18 +659,25 @@
 
   // Close Challenges Navigator Modal
   function closeChallengesModal() {
-    if (elModalOverlay) {
-      elModalOverlay.style.display = 'none';
+    const overlay = document.getElementById('modalNavigatorOverlay');
+    if (overlay) {
+      overlay.style.display = 'none';
     }
   }
 
+  // Expose globally for inline onclick handlers
+  window.openChallengesModal = openChallengesModal;
+  window.closeChallengesModal = closeChallengesModal;
+
   // Render Modal Challenge Cards Grid
   function renderModalCards(rawFilter) {
-    if (!elModalCardsGrid) return;
+    const grid = document.getElementById('modalCardsGrid');
+    if (!grid) return;
     const query = (rawFilter || '').trim().toLowerCase();
+    const qList = (allQuestions && allQuestions.length) ? allQuestions : (window.ELAB_QUESTIONS || []);
 
     let matchedQuestions = [];
-    allQuestions.forEach((q, idx) => {
+    qList.forEach((q, idx) => {
       if (!query) {
         matchedQuestions.push({ q, idx });
         return;
@@ -681,7 +693,7 @@
     });
 
     if (!matchedQuestions.length) {
-      elModalCardsGrid.innerHTML = `
+      grid.innerHTML = `
         <div style="grid-column: 1 / -1; padding: 36px 16px; text-align: center; color: #8c8c8c; font-size: 13.5px;">
           No challenges matching "<strong>${escapeHtml(rawFilter)}</strong>"
         </div>
@@ -705,15 +717,18 @@
       `;
     });
 
-    elModalCardsGrid.innerHTML = html;
+    grid.innerHTML = html;
 
-    // Attach click events to cards
-    elModalCardsGrid.querySelectorAll('.modal-challenge-card').forEach(card => {
-      card.addEventListener('click', () => {
+    // Attach click & touch events to cards
+    grid.querySelectorAll('.modal-challenge-card').forEach(card => {
+      function handleCardSelect(e) {
+        e.preventDefault();
         const idx = parseInt(card.getAttribute('data-index'), 10);
         selectQuestion(idx);
         closeChallengesModal();
-      });
+      }
+      card.addEventListener('click', handleCardSelect);
+      card.addEventListener('touchend', handleCardSelect);
     });
   }
 
@@ -749,7 +764,14 @@
 
     // Hexagon [⬡] button opens Challenges Navigator Modal (as requested)
     if (elBtnInfo) {
-      elBtnInfo.addEventListener('click', openChallengesModal);
+      elBtnInfo.addEventListener('click', (e) => {
+        e.preventDefault();
+        openChallengesModal();
+      });
+      elBtnInfo.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        openChallengesModal();
+      });
     }
 
     // Modal close and filter events

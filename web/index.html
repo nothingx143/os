@@ -7,7 +7,7 @@
   <!-- Official SRM eLab Ant Design Stylesheet -->
   <link rel="stylesheet" href="official_elab.css">
   <!-- Enhanced Companion Styling & Layout Fixes -->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=20261030_0700">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -115,7 +115,7 @@
               <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/>
             </svg>
           </button>
-          <button id="btnInfo" type="button" class="nav-action-btn" title="Information / Details">
+          <button id="btnInfo" type="button" class="nav-action-btn" title="All Challenges Navigator (⬡)" onclick="window.openChallengesModal && window.openChallengesModal()">
             <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
               <path d="M12 2l8 4.6v9.2L12 22l-8-4.6V6.6L12 2m0 2.3L5.5 7.8v8.4L12 19.7l6.5-3.5V7.8L12 4.3z"/>
             </svg>
@@ -358,8 +358,8 @@
   </div>
 
   <!-- Challenges Navigator Modal (Triggered by [⬡] button) -->
-  <div id="modalNavigatorOverlay" class="official-modal-overlay" style="display: none;">
-    <div class="official-modal-dialog" role="dialog" aria-modal="true">
+  <div id="modalNavigatorOverlay" class="official-modal-overlay" style="display: none;" onclick="if(event.target === this) window.closeChallengesModal && window.closeChallengesModal()">
+    <div class="official-modal-dialog" role="dialog" aria-modal="true" onclick="event.stopPropagation()">
       <!-- Modal Header -->
       <div class="official-modal-header">
         <div class="modal-header-left">
@@ -373,7 +373,7 @@
           </span>
           <span class="modal-title-text" id="modalNavTitle">SRMIST eLab OS Challenges (115 Questions)</span>
         </div>
-        <button id="btnCloseModalNav" type="button" class="modal-close-btn" title="Close">✕</button>
+        <button id="btnCloseModalNav" type="button" class="modal-close-btn" title="Close" onclick="window.closeChallengesModal && window.closeChallengesModal()">✕</button>
       </div>
 
       <!-- Filter Input -->
@@ -395,7 +395,7 @@
   </div>
 
   <!-- Scripts -->
-  <script src="questions_data.js"></script>
-  <script src="app.js"></script>
+  <script src="questions_data.js?v=20261030_0700"></script>
+  <script src="app.js?v=20261030_0700"></script>
 </body>
 </html>

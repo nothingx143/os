@@ -131,12 +131,26 @@
       });
     }
 
-    // Update Headers
-    if (elLblSession) elLblSession.textContent = currentQuestion.topic || 'General';
+    // Calculate level and challenge numbers
     const levelNum = currentQuestion.level || (currentQuestion.challenge > 100 ? 2 : 1);
     const chalNum = currentQuestion.level_challenge || (currentQuestion.challenge > 100 ? currentQuestion.challenge - 100 : currentQuestion.challenge);
-    if (elLblChallengeTitle) elLblChallengeTitle.textContent = `Level ${levelNum}Challenge ${chalNum}`;
 
+    // Update question dots
+    const elLblLevelDot = document.getElementById('lblLevelDot');
+    if (elLblLevelDot) elLblLevelDot.textContent = `● Level ${levelNum}`;
+
+    const elLblChallengeDot = document.getElementById('lblChallengeDot');
+    if (elLblChallengeDot) elLblChallengeDot.textContent = `● Challenge ${chalNum}`;
+
+    // Update Search input to current challenge if user isn't actively searching
+    if (elGlobalSearchInput && document.activeElement !== elGlobalSearchInput) {
+      const summaryText = currentQuestion.description 
+        ? currentQuestion.description.replace(/\s+/g, ' ').slice(0, 100) + '...'
+        : (currentQuestion.title || `Challenge ${currentQuestion.challenge}`);
+      elGlobalSearchInput.value = summaryText;
+    }
+
+    if (elLblSession) elLblSession.textContent = currentQuestion.topic || 'General';
     const isSolved = currentQuestion.solved || (currentQuestion.status && currentQuestion.status.includes('100%'));
     if (elBadgeCurrentState) {
       elBadgeCurrentState.textContent = isSolved ? "100% Solved" : "In Progress";
@@ -547,6 +561,9 @@
 
     // Search events
     if (elGlobalSearchInput) {
+      elGlobalSearchInput.addEventListener('focus', () => {
+        elGlobalSearchInput.select();
+      });
       elGlobalSearchInput.addEventListener('input', (e) => {
         handleSearch(e.target.value);
       });
@@ -558,8 +575,19 @@
       });
     }
 
+    const elClearSearch = document.getElementById('btnClearSearch');
+    if (elClearSearch) {
+      elClearSearch.addEventListener('click', () => {
+        if (elGlobalSearchInput) {
+          elGlobalSearchInput.value = '';
+          elGlobalSearchInput.focus();
+        }
+        closeSearch();
+      });
+    }
+
     document.addEventListener('click', (e) => {
-      if (!e.target.closest('.official-search-container')) {
+      if (!e.target.closest('.search-input-wrapper')) {
         closeSearch();
       }
     });
